@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What the Package Does (One Line, Title Case) • marginaleffects</title>
+<title>Marginal effects for a wide variety of models • marginaleffects</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/readable/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="What the Package Does (One Line, Title Case)">
-<meta property="og:description" content="What the package does (one paragraph).">
+<script src="pkgdown.js"></script><meta property="og:title" content="Marginal effects for a wide variety of models">
+<meta property="og:description" content='Compute, summarize, and plot "marginal effects" for a wide variety of models. The package uses automatic differentiation to compute marginal effects for numeric regressors (partial derivatives of the regression equation), and calculates adjusted contrasts for categorical regressors.'>
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -44,7 +44,7 @@
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="reference/index.html">Functions</a>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -52,10 +52,10 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="news/index.html">Changelog</a>
+  <a href="https://github.com/vincentarelbundock/marginaleffects/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
 </li>
       </ul>
 </div>
@@ -593,12 +593,12 @@
 <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="reference/typical.html">typical</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
-<span class="co">#&gt;         dydx truth</span>
-<span class="co">#&gt; 1 -7.0014512    -7</span>
-<span class="co">#&gt; 2 -3.0013295    -3</span>
-<span class="co">#&gt; 3  0.9987923     1</span>
-<span class="co">#&gt; 4  4.9989141     5</span>
-<span class="co">#&gt; 5  8.9990358     9</span></code></pre></div>
+<span class="co">#&gt;        dydx truth</span>
+<span class="co">#&gt; 1 -6.999047    -7</span>
+<span class="co">#&gt; 2 -2.997719    -3</span>
+<span class="co">#&gt; 3  1.003609     1</span>
+<span class="co">#&gt; 4  5.004937     5</span>
+<span class="co">#&gt; 5  9.006266     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
@@ -692,7 +692,16 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/vincentarelbundock/marginaleffects/">https://​github.com/​vincentarelbundock/​marginaleffects/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/vincentarelbundock/marginaleffects/issues">https://​github.com/​vincentarelbundock/​marginaleffects/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
