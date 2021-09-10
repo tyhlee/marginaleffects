@@ -85,12 +85,12 @@
 <p>Marginal effects are partial derivatives of the regression equation with respect to each variable in the model for each unit in the data.</p>
 </blockquote>
 <p>Marginal effects are extremely useful, because they are intuitive and easy to interpret. They are often the main quantity of interest in an empirical analysis.</p>
-<p>Unfortunately, to calculate marginal effects we need to take derivatives of the regression equation. This can be challenging to do manually, especially when our models are non-linear, or when regressors are transformed or interacted. Computing the variance of a marginal effect is even more difficult.</p>
-<p>The <code>marginaleffects</code> package hopes to do most of this hard work for you.</p>
 </div>
 <div id="why" class="section level2">
 <h2 class="hasAnchor">
 <a href="#why" class="anchor"></a>Why?</h2>
+<p>Unfortunately, to calculate marginal effects we need to take derivatives of the regression equation. This can be challenging to do manually, especially when our models are non-linear, or when regressors are transformed or interacted. Computing the variance of a marginal effect is even more difficult.</p>
+<p>The <code>marginaleffects</code> package hopes to do most of this hard work for you.</p>
 <p>Many <code>R</code> packages advertise their ability to compute “marginal effects.” However, most of them do <em>not</em> actually compute marginal effects <em>as defined above</em> (the term is ambiguously defined in the statistical literature and used differently across fields). Instead, they compute related quantities such as “Estimated Marginal Means” or “Differences in Predicted Probabilities.” The rare packages that actually compute marginal effects are typically limited in the model types they support, and in the range of transformations they allow (interactions, polynomials, etc.).</p>
 <p>The main package in the <code>R</code> ecosystem to compute marginal effects is <a href="https://cran.r-project.org/web/packages/margins/index.html">the fantastic, trailblazing, and powerful <code>margins</code></a> by <a href="https://thomasleeper.com/">Thomas J. Leeper.</a> The <code>marginaleffects</code> package is (essentially) a clone of <code>margins</code>.</p>
 <p>So why did I write a clone?</p>
@@ -593,12 +593,12 @@
 <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="reference/typical.html">typical</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
-<span class="co">#&gt;        dydx truth</span>
-<span class="co">#&gt; 1 -6.999047    -7</span>
-<span class="co">#&gt; 2 -2.997719    -3</span>
-<span class="co">#&gt; 3  1.003609     1</span>
-<span class="co">#&gt; 4  5.004937     5</span>
-<span class="co">#&gt; 5  9.006266     9</span></code></pre></div>
+<span class="co">#&gt;         dydx truth</span>
+<span class="co">#&gt; 1 -7.0186008    -7</span>
+<span class="co">#&gt; 2 -3.0096886    -3</span>
+<span class="co">#&gt; 3  0.9992236     1</span>
+<span class="co">#&gt; 4  5.0081359     5</span>
+<span class="co">#&gt; 5  9.0170481     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
