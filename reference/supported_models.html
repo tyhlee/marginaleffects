@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • marginaleffects</title>
+<title>List of model types supported by the marginaleffects package — supported_models • marginaleffects</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="List of model types supported by the marginaleffects package — supported_models" />
+<meta property="og:description" content="A list of model types supported by the marginaleffects package" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,84 +109,33 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>List of model types supported by the <code>marginaleffects</code> package</h1>
+    <small class="dont-index">Source: <a href='https://github.com/vincentarelbundock/marginaleffects/blob/master/R/supported_models.R'><code>R/supported_models.R</code></a></small>
+    <div class="hidden name"><code>supported_models.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>A list of model types supported by the <code>marginaleffects</code> package</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='va'>supported_models</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="counterfactual.html">counterfactual()</a></code> </p>
-        </td>
-        <td><p>Generate "counterfactual" datasets for use in <code>marginaleffects</code>'s <code>newdata</code> argument</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="marginaleffects.html">marginaleffects()</a></code> </p>
-        </td>
-        <td><p>Marginal effects using numerical derivatives</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.marginaleffects.html">plot(<i>&lt;marginaleffects&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Point-range plot of average marginal effects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_cme.html">plot_cme()</a></code> </p>
-        </td>
-        <td><p>Conditional marginal effects plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.marginaleffects.html">summary(<i>&lt;marginaleffects&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarize a <code>marginaleffects</code> object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="supported_models.html">supported_models</a></code> </p>
-        </td>
-        <td><p>List of model types supported by the <code>marginaleffects</code> package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tidy.marginaleffects.html">tidy(<i>&lt;marginaleffects&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Tidy a <code>marginaleffects</code> object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="typical.html">typical()</a></code> </p>
-        </td>
-        <td><p>Generate "typical" datasets for use in <code>marginaleffects</code>'s <code>newdata</code> argument</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>data.frame</p><dl>
+<dt>Model</dt><dd><p>package::function of the model type</p></dd>
+<dt>Support: Effect</dt><dd><p>Can <code>marginaleffects</code> retrieve marginal effects?</p></dd>
+<dt>Support: Std.Errors</dt><dd><p>Can <code>marginaleffects</code> retrieve standard errors?</p></dd>
+<dt>Validty: Stata</dt><dd><p>Has the validity of numerical results been checked against Stata's margins command?</p></dd>
+<dt>Validty: margins</dt><dd><p>Has the validity of numerical results been checked against R's margins package?</p></dd>
+
+</dl>
+
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

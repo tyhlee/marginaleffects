@@ -131,9 +131,9 @@
 <thead><tr class="header">
 <th align="left">Model</th>
 <th align="left">Support: Effect</th>
-<th align="left">Support: Std.Errors</th>
+<th align="left">Support: Std. Errors</th>
 <th align="left">Validity: Stata</th>
-<th align="left">Validity: margins</th>
+<th align="left">Validity: Margins</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -151,14 +151,14 @@
 <td align="left">✓</td>
 </tr>
 <tr class="odd">
-<td align="left">AER::ivreg</td>
+<td align="left">aer::ivreg</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 </tr>
 <tr class="even">
-<td align="left">AER::tobit</td>
+<td align="left">aer::tobit</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
@@ -235,41 +235,48 @@
 <td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left">MASS::rlm</td>
+<td align="left">✓</td>
+<td align="left">✓</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
 <td align="left">ordinal::clm</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">✓</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pscl::hurdle</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rms::lrm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">speedglm::speedglm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">speedglm::speedlm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">survey::svyglm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
@@ -502,108 +509,67 @@
 <p>You can also display models with contrasts using <code>modelsummary</code>’s <code>group</code> argument:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    <span class="st">"Logit"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">large_penguin</span> <span class="op">~</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>,
-    <span class="st">"OLS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">flipper_length_mm</span> <span class="op">+</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">flipper_length_mm</span> <span class="op">+</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">marginaleffects</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html">modelsummary</a></span><span class="op">(</span><span class="va">mfx</span>, group <span class="op">=</span> <span class="va">term</span> <span class="op">+</span> <span class="va">contrast</span> <span class="op">~</span> <span class="va">model</span><span class="op">)</span>
-<span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, thisvar, value = ""): invalid factor level, NA</span>
-<span class="co">#&gt; generated</span>
-
-<span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, thisvar, value = ""): invalid factor level, NA</span>
-<span class="co">#&gt; generated</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html">modelsummary</a></span><span class="op">(</span><span class="va">mfx</span>, group <span class="op">=</span> <span class="va">term</span> <span class="op">+</span> <span class="va">contrast</span> <span class="op">~</span> <span class="va">model</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
 <th align="left"></th>
-<th align="center">Logit</th>
-<th align="center">OLS</th>
+<th align="center">Model 1</th>
+<th align="center">Model 2</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">flipper_length_mm</td>
+<td align="left"></td>
+<td align="center">40.705</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="center">(3.068)</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
 <td align="left">species</td>
-<td align="left">Chinstrap / Adelie</td>
-<td align="center">0.690</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="center">(0.265)</td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Gentoo / Adelie</td>
-<td align="center">436.242</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="center">(446.354)</td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Gentoo / Chinstrap</td>
-<td align="center">632.182</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="center">(668.012)</td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
 <td align="left">Chinstrap - Adelie</td>
-<td align="center"></td>
 <td align="center">-206.510</td>
+<td align="center">32.426</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left"></td>
-<td align="center"></td>
 <td align="center">(57.731)</td>
+<td align="center">(67.512)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Gentoo - Adelie</td>
-<td align="center"></td>
 <td align="center">266.810</td>
+<td align="center">1375.354</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left"></td>
-<td align="center"></td>
 <td align="center">(95.264)</td>
+<td align="center">(56.148)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Gentoo - Chinstrap</td>
-<td align="center"></td>
 <td align="center">473.320</td>
+<td align="center">1342.928</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left"></td>
-<td align="center"></td>
 <td align="center">(86.746)</td>
-</tr>
-<tr class="odd">
-<td align="left">flipper_length_mm</td>
-<td align="left"></td>
-<td align="center"></td>
-<td align="center">40.705</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="center"></td>
-<td align="center">(3.068)</td>
+<td align="center">(69.857)</td>
 </tr>
 <tr class="odd">
 <td align="left">Num.Obs.</td>
@@ -614,38 +580,38 @@
 <tr class="even">
 <td align="left">R2</td>
 <td align="left"></td>
-<td align="center"></td>
 <td align="center">0.783</td>
+<td align="center">0.670</td>
 </tr>
 <tr class="odd">
 <td align="left">R2 Adj.</td>
 <td align="left"></td>
-<td align="center"></td>
 <td align="center">0.781</td>
+<td align="center">0.668</td>
 </tr>
 <tr class="even">
 <td align="left">AIC</td>
 <td align="left"></td>
-<td align="center">236.4</td>
 <td align="center">5031.5</td>
+<td align="center">5172.7</td>
 </tr>
 <tr class="odd">
 <td align="left">BIC</td>
 <td align="left"></td>
-<td align="center">247.9</td>
 <td align="center">5050.7</td>
+<td align="center">5188.0</td>
 </tr>
 <tr class="even">
 <td align="left">Log.Lik.</td>
 <td align="left"></td>
-<td align="center">-115.188</td>
 <td align="center">-2510.762</td>
+<td align="center">-2582.337</td>
 </tr>
 <tr class="odd">
 <td align="left">F</td>
 <td align="left"></td>
-<td align="center"></td>
 <td align="center">405.693</td>
+<td align="center">343.626</td>
 </tr>
 </tbody>
 </table>
@@ -687,11 +653,11 @@
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
 <span class="co">#&gt;        dydx truth</span>
-<span class="co">#&gt; 1 -7.006585    -7</span>
-<span class="co">#&gt; 2 -3.002953    -3</span>
-<span class="co">#&gt; 3  1.000680     1</span>
-<span class="co">#&gt; 4  5.004312     5</span>
-<span class="co">#&gt; 5  9.007944     9</span></code></pre></div>
+<span class="co">#&gt; 1 -7.001929    -7</span>
+<span class="co">#&gt; 2 -3.000685    -3</span>
+<span class="co">#&gt; 3  1.000560     1</span>
+<span class="co">#&gt; 4  5.001805     5</span>
+<span class="co">#&gt; 5  9.003049     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
@@ -776,8 +742,7 @@
 <p>Add your new model class to the lists of supported models in:</p>
 <ul>
 <li>The <code>sanity_model</code> function of the <code>R/sanity.R</code> file.</li>
-<li>The supported models table of the <code>README.Rmd</code> file.</li>
-<li>The “Details” section of the <code>R/marginaleffects.R</code> documentation</li>
+<li>The supported models CSV table in <code>data-raw/supported_models.csv</code>. Then, run the <code>data-raw/supported_models.R</code> script to propagate your change throughout the package documentation.</li>
 <li>The “Suggests” list in the <code>DESCRIPTION</code> file.</li>
 </ul>
 </div>

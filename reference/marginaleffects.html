@@ -40,7 +40,13 @@
 
 
 <meta property="og:title" content="Marginal effects using numerical derivatives — marginaleffects" />
-<meta property="og:description" content="Warning: This package is experimental." />
+<meta property="og:description" content="Warning: This package is experimental.  A &quot;marginal effect&quot; is the partial
+derivative of the regression equation with respect to a variable in the
+model. This package uses automatic differentiation tu compute marginal
+effects for a vast array of models, including non-linear models with
+transformations (e.g., polynomials). The list of supported model types is
+available in the supported_models dataset which accompanies this package:
+marginaleffects::supported_models" />
 
 
 
@@ -117,7 +123,13 @@
     </div>
 
     <div class="ref-description">
-    <p>Warning: This package is experimental.</p>
+    <p>Warning: This package is experimental.  A "marginal effect" is the partial
+derivative of the regression equation with respect to a variable in the
+model. This package uses automatic differentiation tu compute marginal
+effects for a vast array of models, including non-linear models with
+transformations (e.g., polynomials). The list of supported model types is
+available in the <code>supported_models</code> dataset which accompanies this package:
+<code><a href='supported_models.html'>marginaleffects::supported_models</a></code></p>
     </div>
 
     <pre class="usage"><span class='fu'>marginaleffects</span><span class='op'>(</span>
@@ -179,39 +191,6 @@ space in memory.</p></td>
       <td><p>Additional arguments are pushed forward to <code><a href='https://rdrr.io/r/stats/predict.html'>predict()</a></code>.</p></td>
     </tr>
     </table>
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>A "marginal effect" is the partial derivative of the regression equation
-with respect to a variable in the model. This package uses automatic
-differentiation tu compute marginal effects for a vast array of models,
-including non-linear models with transformations (e.g., polynomials).</p>
-<p>Most -- but not all -- of the models below have been checked against
-alternative software packages to validate results. Visit the
-<code>marginaleffects</code> website to learn more about the testing procedure and
-coverage.</p>
-<p>Supported models:</p><ul>
-<li><p>stats::lm</p></li>
-<li><p>stats::glm</p></li>
-<li><p>stats::loess (no variance)</p></li>
-<li><p>AER::ivreg</p></li>
-<li><p>AER::tobit</p></li>
-<li><p>betareg::betareg</p></li>
-<li><p>bife::bife</p></li>
-<li><p>estimatr::lm_robust</p></li>
-<li><p>fixest::feols</p></li>
-<li><p>fixest::feglm</p></li>
-<li><p>gam::gam</p></li>
-<li><p>lme4::lmer</p></li>
-<li><p>lme4::glmer</p></li>
-<li><p>MASS::polr (no variance)</p></li>
-<li><p>ordinal::clm (no variance)</p></li>
-<li><p>pscl::hurdle</p></li>
-<li><p>rms:lrm</p></li>
-<li><p>speedglm::speedglm</p></li>
-<li><p>speedglm::speedlm</p></li>
-<li><p>survey::svyglm</p></li>
-</ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
