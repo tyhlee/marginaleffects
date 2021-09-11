@@ -171,62 +171,69 @@
 <td align="left">✓</td>
 </tr>
 <tr class="even">
+<td align="left">estimatr::lm_robust</td>
+<td align="left">✓</td>
+<td align="left">✓</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
 <td align="left">fixest::feols</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fixest::feglm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ivreg::ivreg</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">lme4::lmer</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">lme4::glmer</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MASS::polr</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">✓</td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ordinal::clm</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">✓</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">pscl::hurdle</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">survey::svyglm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
@@ -643,12 +650,12 @@
 <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="reference/typical.html">typical</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
-<span class="co">#&gt;        dydx truth</span>
-<span class="co">#&gt; 1 -6.984955    -7</span>
-<span class="co">#&gt; 2 -2.990531    -3</span>
-<span class="co">#&gt; 3  1.003893     1</span>
-<span class="co">#&gt; 4  4.998317     5</span>
-<span class="co">#&gt; 5  8.992741     9</span></code></pre></div>
+<span class="co">#&gt;         dydx truth</span>
+<span class="co">#&gt; 1 -7.0193202    -7</span>
+<span class="co">#&gt; 2 -3.0106319    -3</span>
+<span class="co">#&gt; 3  0.9980564     1</span>
+<span class="co">#&gt; 4  5.0067448     5</span>
+<span class="co">#&gt; 5  9.0154331     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
