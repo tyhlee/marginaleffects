@@ -150,74 +150,74 @@
 <td align="left">✓</td>
 </tr>
 <tr class="odd">
-<td align="left">stats::loess</td>
-<td align="left">✓</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">✓</td>
-</tr>
-<tr class="even">
 <td align="left">AER::ivreg</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">betareg::betareg</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">fixest::feols</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fixest::feglm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ivreg::ivreg</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">lme4::lmer</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">lme4::glmer</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MASS::polr</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">✓</td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ordinal::clm</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">✓</td>
+</tr>
+<tr class="even">
+<td align="left">pscl::hurdle</td>
+<td align="left">✓</td>
+<td align="left">✓</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">survey::svyglm</td>
@@ -241,7 +241,7 @@
 <a href="#getting-started" class="anchor"></a>Getting started</h2>
 <p>First, we load the library, download the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguins</a> data from the <a href="https://vincentarelbundock.github.io/Rdatasets/articles/data.html"><code>Rdatasets</code> archive</a>, and estimate a GLM model:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">marginaleffects</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span>
 
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/palmerpenguins/penguins.csv"</span><span class="op">)</span>
 <span class="va">dat</span><span class="op">$</span><span class="va">large_penguin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">body_mass_g</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>
@@ -254,20 +254,20 @@
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
-<span class="co">#&gt;   rowid              term        dydx   std.error large_penguin bill_length_mm</span>
-<span class="co">#&gt; 1     1    bill_length_mm 0.017622745 0.007837288             0           39.1</span>
-<span class="co">#&gt; 2     1 flipper_length_mm 0.006763748 0.001561740             0           39.1</span>
-<span class="co">#&gt; 3     2    bill_length_mm 0.035846649 0.011917159             0           39.5</span>
-<span class="co">#&gt; 4     2 flipper_length_mm 0.013758244 0.002880123             0           39.5</span>
-<span class="co">#&gt; 5     3    bill_length_mm 0.084433436 0.021119186             0           40.3</span>
-<span class="co">#&gt; 6     3 flipper_length_mm 0.032406447 0.008159318             0           40.3</span>
-<span class="co">#&gt;   flipper_length_mm species</span>
-<span class="co">#&gt; 1               181  Adelie</span>
-<span class="co">#&gt; 2               181  Adelie</span>
-<span class="co">#&gt; 3               186  Adelie</span>
-<span class="co">#&gt; 4               186  Adelie</span>
-<span class="co">#&gt; 5               195  Adelie</span>
-<span class="co">#&gt; 6               195  Adelie</span></code></pre></div>
+<span class="co">#&gt;   rowid     type              term        dydx   std.error predicted_response</span>
+<span class="co">#&gt; 1     1 response    bill_length_mm 0.017622745 0.007837288         0.05123266</span>
+<span class="co">#&gt; 2     1 response flipper_length_mm 0.006763748 0.001561740         0.05123266</span>
+<span class="co">#&gt; 3     2 response    bill_length_mm 0.035846649 0.011917159         0.11125087</span>
+<span class="co">#&gt; 4     2 response flipper_length_mm 0.013758244 0.002880123         0.11125087</span>
+<span class="co">#&gt; 5     3 response    bill_length_mm 0.084433436 0.021119186         0.36919834</span>
+<span class="co">#&gt; 6     3 response flipper_length_mm 0.032406447 0.008159318         0.36919834</span>
+<span class="co">#&gt;   large_penguin bill_length_mm flipper_length_mm species</span>
+<span class="co">#&gt; 1             0           39.1               181  Adelie</span>
+<span class="co">#&gt; 2             0           39.1               181  Adelie</span>
+<span class="co">#&gt; 3             0           39.5               186  Adelie</span>
+<span class="co">#&gt; 4             0           39.5               186  Adelie</span>
+<span class="co">#&gt; 5             0           40.3               195  Adelie</span>
+<span class="co">#&gt; 6             0           40.3               195  Adelie</span></code></pre></div>
 <p>Notice that the results are presented in “tidy” long format: each row of the original dataset gets a unique <code>rowid</code> value, each unit-level marginal effect appears on a distinct row, and metadata appears neatly in separate columns. This makes it easy to operate on the results programmatically.</p>
 </div>
 <div id="average-marginal-effects" class="section level2">
@@ -276,19 +276,21 @@
 <p>A dataset with one marginal effect estimate per unit of observation is a bit unwieldy and difficult to interpret. Many analysts like to report the “Average Marginal Effect”, that is, the average of all the observation-specific marginal effects. These are easy to compute based on the full <code>data.frame</code> shown above, but the <code>summary</code> function is convenient:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
+<span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, is.na(out$contrast), value = structure(c(NA, :</span>
+<span class="co">#&gt; invalid factor level, NA generated</span>
 <span class="co">#&gt; Average marginal effects </span>
-<span class="co">#&gt;                Term           Contrast   Effect Std. Error z value   Pr(&gt;|z|)</span>
-<span class="co">#&gt; 1    bill_length_mm                     0.02757    0.00849 3.24819  0.0011614</span>
-<span class="co">#&gt; 2 flipper_length_mm                     0.01058    0.00332 3.18766  0.0014343</span>
-<span class="co">#&gt; 3           species Chinstrap - Adelie -5.20837    1.04973         2.0906e-06</span>
-<span class="co">#&gt; 4           species    Gentoo - Adelie  0.78461    1.25627          0.8066373</span>
-<span class="co">#&gt; 5           species Gentoo - Chinstrap  5.99298    1.30388         1.2828e-05</span>
-<span class="co">#&gt;      2.5 %   97.5 %</span>
-<span class="co">#&gt; 1  0.01093  0.04421</span>
-<span class="co">#&gt; 2  0.00408  0.01709</span>
-<span class="co">#&gt; 3 -7.26580 -3.15094</span>
-<span class="co">#&gt; 4 -1.67763  3.24685</span>
-<span class="co">#&gt; 5  3.43743  8.54853</span>
+<span class="co">#&gt;       type              Term           Contrast    Effect Std. Error  z value</span>
+<span class="co">#&gt; 1 response    bill_length_mm               &lt;NA&gt;   0.02757    0.00849  3.24819</span>
+<span class="co">#&gt; 2 response flipper_length_mm               &lt;NA&gt;   0.01058    0.00332  3.18766</span>
+<span class="co">#&gt; 3 response           species Chinstrap / Adelie   0.00547    0.00574 -4.96164</span>
+<span class="co">#&gt; 4 response           species    Gentoo / Adelie   2.19156    2.75319  0.62456</span>
+<span class="co">#&gt; 5 response           species Gentoo / Chinstrap 400.60647  522.34202  4.59627</span>
+<span class="co">#&gt;     Pr(&gt;|z|)      2.5 %     97.5 %</span>
+<span class="co">#&gt; 1  0.0011614    0.01093    0.04421</span>
+<span class="co">#&gt; 2  0.0014343    0.00408    0.01709</span>
+<span class="co">#&gt; 3 2.0906e-06   -0.00578    0.01673</span>
+<span class="co">#&gt; 4  0.8066373   -3.20459    7.58770</span>
+<span class="co">#&gt; 5 1.2828e-05 -623.16509 1424.37802</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
@@ -296,15 +298,15 @@
 <p>You can also extract average marginal effects using <code>tidy</code> and <code>glance</code> methods which conform to the <a href="https://broom.tidymodels.org/"><code>broom</code> package specification</a>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 5 × 8</span>
-<span class="co">#&gt; # Groups:   term [3]</span>
-<span class="co">#&gt;   term              contrast estimate std.error statistic p.value conf.low conf.high</span>
-<span class="co">#&gt;   &lt;chr&gt;             &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 bill_length_mm    &lt;NA&gt;       0.0276   0.00849      3.25 1.16e-3  0.0109     0.0442</span>
-<span class="co">#&gt; 2 flipper_length_mm &lt;NA&gt;       0.0106   0.00332      3.19 1.43e-3  0.00408    0.0171</span>
-<span class="co">#&gt; 3 species           Chinstr…  -5.21     1.05        NA    2.09e-6 -7.27      -3.15  </span>
-<span class="co">#&gt; 4 species           Gentoo …   0.785    1.26        NA    8.07e-1 -1.68       3.25  </span>
-<span class="co">#&gt; 5 species           Gentoo …   5.99     1.30        NA    1.28e-5  3.44       8.55</span>
+<span class="co">#&gt; # A tibble: 5 × 9</span>
+<span class="co">#&gt; # Groups:   type [1]</span>
+<span class="co">#&gt;   type     term  contrast estimate std.error statistic p.value conf.low conf.high</span>
+<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 response bill… &lt;NA&gt;      2.76e-2   0.00849     3.25  1.16e-3  1.09e-2    0.0442</span>
+<span class="co">#&gt; 2 response flip… &lt;NA&gt;      1.06e-2   0.00332     3.19  1.43e-3  4.08e-3    0.0171</span>
+<span class="co">#&gt; 3 response spec… Chinstr…  5.47e-3   0.00574    -4.96  2.09e-6 -5.78e-3    0.0167</span>
+<span class="co">#&gt; 4 response spec… Gentoo …  2.19e+0   2.75        0.625 8.07e-1 -3.20e+0    7.59  </span>
+<span class="co">#&gt; 5 response spec… Gentoo …  4.01e+2 522.          4.60  1.28e-5 -6.23e+2 1424.</span>
 
 <span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt;   null.deviance df.null    logLik      AIC      BIC deviance df.residual nobs</span>
@@ -325,16 +327,16 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="reference/typical.html">typical</a></span><span class="op">(</span>flipper_length_mm <span class="op">=</span> <span class="fl">180</span>, 
                                        species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid              term       dydx   std.error bill_length_mm</span>
-<span class="co">#&gt; 1     1    bill_length_mm 0.06730577 0.035695241          44.45</span>
-<span class="co">#&gt; 2     1 flipper_length_mm 0.02583260 0.005812078          44.45</span>
-<span class="co">#&gt; 3     2    bill_length_mm 0.08815874 0.032833955          44.45</span>
-<span class="co">#&gt; 4     2 flipper_length_mm 0.03383629 0.005861870          44.45</span>
-<span class="co">#&gt;   flipper_length_mm species</span>
-<span class="co">#&gt; 1               180  Adelie</span>
-<span class="co">#&gt; 2               180  Adelie</span>
-<span class="co">#&gt; 3               180  Gentoo</span>
-<span class="co">#&gt; 4               180  Gentoo</span></code></pre></div>
+<span class="co">#&gt;   rowid     type              term       dydx   std.error predicted_response</span>
+<span class="co">#&gt; 1     1 response    bill_length_mm 0.06730577 0.035695241          0.2463215</span>
+<span class="co">#&gt; 2     1 response flipper_length_mm 0.02583260 0.005812078          0.2463215</span>
+<span class="co">#&gt; 3     2 response    bill_length_mm 0.08815874 0.032833955          0.4173366</span>
+<span class="co">#&gt; 4     2 response flipper_length_mm 0.03383629 0.005861870          0.4173366</span>
+<span class="co">#&gt;   bill_length_mm flipper_length_mm species</span>
+<span class="co">#&gt; 1          44.45               180  Adelie</span>
+<span class="co">#&gt; 2          44.45               180  Adelie</span>
+<span class="co">#&gt; 3          44.45               180  Gentoo</span>
+<span class="co">#&gt; 4          44.45               180  Gentoo</span></code></pre></div>
 <p>When variables are omitted from the <code>typical</code> call, they will automatically be set at their median or mode (depending on variable type).</p>
 </div>
 <div id="counterfactual-marginal-effects" class="section level2">
@@ -455,7 +457,12 @@
 
 <span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">mod</span>, <span class="va">marginaleffects</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html">modelsummary</a></span><span class="op">(</span><span class="va">mfx</span>, group <span class="op">=</span> <span class="va">term</span> <span class="op">+</span> <span class="va">contrast</span> <span class="op">~</span> <span class="va">model</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html">modelsummary</a></span><span class="op">(</span><span class="va">mfx</span>, group <span class="op">=</span> <span class="va">term</span> <span class="op">+</span> <span class="va">contrast</span> <span class="op">~</span> <span class="va">model</span><span class="op">)</span>
+<span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, thisvar, value = ""): invalid factor level, NA</span>
+<span class="co">#&gt; generated</span>
+
+<span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, thisvar, value = ""): invalid factor level, NA</span>
+<span class="co">#&gt; generated</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -466,38 +473,74 @@
 <tbody>
 <tr class="odd">
 <td align="left">species</td>
+<td align="left">Chinstrap / Adelie</td>
+<td align="center">0.690</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="center">(0.265)</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Gentoo / Adelie</td>
+<td align="center">436.242</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="center">(446.354)</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Gentoo / Chinstrap</td>
+<td align="center">632.182</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="center">(668.012)</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
 <td align="left">Chinstrap - Adelie</td>
-<td align="center">-0.371</td>
+<td align="center"></td>
 <td align="center">-206.510</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left"></td>
-<td align="center">(0.384)</td>
+<td align="center"></td>
 <td align="center">(57.731)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Gentoo - Adelie</td>
-<td align="center">6.078</td>
+<td align="center"></td>
 <td align="center">266.810</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left"></td>
-<td align="center">(1.023)</td>
+<td align="center"></td>
 <td align="center">(95.264)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Gentoo - Chinstrap</td>
-<td align="center">6.449</td>
+<td align="center"></td>
 <td align="center">473.320</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left"></td>
-<td align="center">(1.057)</td>
+<td align="center"></td>
 <td align="center">(86.746)</td>
 </tr>
 <tr class="odd">
@@ -594,11 +637,11 @@
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
 <span class="co">#&gt;        dydx truth</span>
-<span class="co">#&gt; 1 -6.999426    -7</span>
-<span class="co">#&gt; 2 -2.997651    -3</span>
-<span class="co">#&gt; 3  1.004124     1</span>
-<span class="co">#&gt; 4  5.005899     5</span>
-<span class="co">#&gt; 5  9.007674     9</span></code></pre></div>
+<span class="co">#&gt; 1 -7.004247    -7</span>
+<span class="co">#&gt; 2 -3.001050    -3</span>
+<span class="co">#&gt; 3  1.002148     1</span>
+<span class="co">#&gt; 4  5.005346     5</span>
+<span class="co">#&gt; 5  9.008544     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
@@ -680,11 +723,12 @@
 <div id="step-4-finalize" class="section level4">
 <h4 class="hasAnchor">
 <a href="#step-4-finalize" class="anchor"></a><em>Step 4:</em> Finalize</h4>
-<p>Add your new model class to the lists of supported models:</p>
+<p>Add your new model class to the lists of supported models in:</p>
 <ul>
-<li>In the <code>sanity_dydx_model</code> function of the <code>R/sanity.R</code> file.</li>
-<li>In the supported models table of the <code>README.Rmd</code> file.</li>
-<li>In the “Details” section of the <code>R/marginaleffects.R</code> documentation</li>
+<li>The <code>sanity_model</code> function of the <code>R/sanity.R</code> file.</li>
+<li>The supported models table of the <code>README.Rmd</code> file.</li>
+<li>The “Details” section of the <code>R/marginaleffects.R</code> documentation</li>
+<li>The “Suggests” list in the <code>DESCRIPTION</code> file.</li>
 </ul>
 </div>
 </div>

@@ -142,7 +142,7 @@ to 0.95, which corresponds to a 95 percent confidence interval.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments are ignored.</p></td>
+      <td><p>Additional arguments are pushed forward to <code><a href='https://rdrr.io/r/stats/predict.html'>predict()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -156,15 +156,15 @@ function.</p>
     <pre class="examples"><div class='input'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span> <span class='op'>*</span> <span class='va'>wt</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>gear</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
 <span class='va'>mfx</span> <span class='op'>&lt;-</span> <span class='fu'><a href='marginaleffects.html'>marginaleffects</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
 <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 × 8</span>
-#&gt; <span style='color: #949494;'># Groups:   term [3]</span>
-#&gt;   term  contrast estimate std.error statistic   p.value conf.low conf.high
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> hp    <span style='color: #BB0000;'>NA</span>        -<span style='color: #BB0000;'>0.035</span><span style='color: #BB0000; text-decoration: underline;'>3</span>    0.012<span style='text-decoration: underline;'>4</span>    -<span style='color: #BB0000;'>2.84</span>  0.004<span style='text-decoration: underline;'>50</span>    -<span style='color: #BB0000;'>0.059</span><span style='color: #BB0000; text-decoration: underline;'>7</span>   -<span style='color: #BB0000;'>0.011</span><span style='color: #BB0000; text-decoration: underline;'>0</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> wt    <span style='color: #BB0000;'>NA</span>        -<span style='color: #BB0000;'>3.53</span>      0.877     -<span style='color: #BB0000;'>4.02</span>  0.000<span style='text-decoration: underline;'>058</span>0  -<span style='color: #BB0000;'>5.24</span>     -<span style='color: #BB0000;'>1.81</span>  
-#&gt; <span style='color: #BCBCBC;'>3</span> gear  4 - 3      0.829     1.12       0.741 0.741      -<span style='color: #BB0000;'>1.36</span>      3.02  
-#&gt; <span style='color: #BCBCBC;'>4</span> gear  5 - 3      1.82      1.55       1.17  0.479      -<span style='color: #BB0000;'>1.22</span>      4.85  
-#&gt; <span style='color: #BCBCBC;'>5</span> gear  5 - 4      0.987     1.60       0.617 0.812      -<span style='color: #BB0000;'>2.15</span>      4.12  </div></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 × 9</span>
+#&gt; <span style='color: #949494;'># Groups:   type [1]</span>
+#&gt;   type     term  contrast estimate std.error statistic p.value conf.low conf.high
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> response hp    <span style='color: #BB0000;'>NA</span>        -<span style='color: #BB0000;'>0.035</span><span style='color: #BB0000; text-decoration: underline;'>3</span>    0.012<span style='text-decoration: underline;'>4</span>    -<span style='color: #BB0000;'>2.84</span>  4.50<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span>  -<span style='color: #BB0000;'>0.059</span><span style='color: #BB0000; text-decoration: underline;'>7</span>   -<span style='color: #BB0000;'>0.011</span><span style='color: #BB0000; text-decoration: underline;'>0</span>
+#&gt; <span style='color: #BCBCBC;'>2</span> response wt    <span style='color: #BB0000;'>NA</span>        -<span style='color: #BB0000;'>3.53</span>      0.877     -<span style='color: #BB0000;'>4.02</span>  5.80<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span>  -<span style='color: #BB0000;'>5.24</span>     -<span style='color: #BB0000;'>1.81</span>  
+#&gt; <span style='color: #BCBCBC;'>3</span> response gear  4 - 3      0.829     1.12       0.741 7.41<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span>  -<span style='color: #BB0000;'>1.36</span>      3.02  
+#&gt; <span style='color: #BCBCBC;'>4</span> response gear  5 - 3      1.82      1.55       1.17  4.79<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span>  -<span style='color: #BB0000;'>1.22</span>      4.85  
+#&gt; <span style='color: #BCBCBC;'>5</span> response gear  5 - 4      0.987     1.60       0.617 8.12<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span>  -<span style='color: #BB0000;'>2.15</span>      4.12  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
