@@ -126,6 +126,7 @@
 <a href="#supported-models" class="anchor"></a>Supported models</h2>
 <p>This table shows the list of models supported by <code>marginaleffect</code>, and shows which numerical results have been checked against alternative software packages: Stata’s <code>margins</code> command and R’s <code>margins</code> package.</p>
 <p>I am <em>very</em> eager to add support for new models. Feel free to file a request on Github or – even better – submit some code.</p>
+<p>Warning: When using <code>marginaleffects</code> with different models, you will probably have to adjust the <code>prediction_type</code> argument. Refer to the documentation of your modeling package to see what <code>type</code> argument is allowed in the <code>predict</code> function.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Model</th>
@@ -199,42 +200,56 @@
 <td align="left"></td>
 </tr>
 <tr class="even">
+<td align="left">gam::gam</td>
+<td align="left">✓</td>
+<td align="left">✓</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
 <td align="left">ivreg::ivreg</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">lme4::lmer</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">lme4::glmer</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MASS::polr</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left">✓</td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ordinal::clm</td>
 <td align="left">✓</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">✓</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">pscl::hurdle</td>
+<td align="left">✓</td>
+<td align="left">✓</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rms::lrm</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left"></td>
@@ -672,11 +687,11 @@
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
 <span class="co">#&gt;        dydx truth</span>
-<span class="co">#&gt; 1 -6.989555    -7</span>
-<span class="co">#&gt; 2 -2.992098    -3</span>
-<span class="co">#&gt; 3  1.005359     1</span>
-<span class="co">#&gt; 4  5.002816     5</span>
-<span class="co">#&gt; 5  9.000273     9</span></code></pre></div>
+<span class="co">#&gt; 1 -7.006585    -7</span>
+<span class="co">#&gt; 2 -3.002953    -3</span>
+<span class="co">#&gt; 3  1.000680     1</span>
+<span class="co">#&gt; 4  5.004312     5</span>
+<span class="co">#&gt; 5  9.007944     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
