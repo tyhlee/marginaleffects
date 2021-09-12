@@ -224,11 +224,11 @@ space in memory.</p></td>
 <span class='co'># typical marginal effects</span>
 <span class='fu'>marginaleffects</span><span class='op'>(</span><span class='va'>mod</span>, 
                 newdata <span class='op'>=</span> <span class='fu'><a href='typical.html'>typical</a></span><span class='op'>(</span>hp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>110</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   rowid     type term          dydx    std.error predicted_response    wt  hp
-#&gt; 1     1 response   hp  0.0004318229 0.0008216888        0.009245724 3.325 100
-#&gt; 2     1 response   wt -0.0790665586 0.1554274605        0.009245724 3.325 100
-#&gt; 3     2 response   hp  0.0006842470 0.0011556819        0.014731932 3.325 110
-#&gt; 4     2 response   wt -0.1313277736 0.2268135899        0.014731932 3.325 110</div><div class='input'>
+</div><div class='output co'>#&gt;   rowid     type term         dydx   std.error predicted_response      wt  hp
+#&gt; 1     1 response   hp  0.001165863 0.001753306         0.02311544 3.21725 100
+#&gt; 2     1 response   wt -0.194911082 0.307492808         0.02311544 3.21725 100
+#&gt; 3     2 response   hp  0.001894129 0.002415076         0.03814134 3.21725 110
+#&gt; 4     2 response   wt -0.331939457 0.436422720         0.03814134 3.21725 110</div><div class='input'>
 <span class='co'># counterfactual average marginal effects</span>
 <span class='fu'>marginaleffects</span><span class='op'>(</span><span class='va'>mod</span>, 
                 newdata <span class='op'>=</span> <span class='fu'><a href='counterfactual.html'>counterfactual</a></span><span class='op'>(</span>hp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>110</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>

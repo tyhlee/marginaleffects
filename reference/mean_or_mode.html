@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate "typical" datasets for use in marginaleffects's newdata argument — typical • marginaleffects</title>
+<title>Compute the mode or mean of x — mean_or_mode • marginaleffects</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Generate "typical" datasets for use in marginaleffects's newdata argument — typical" />
-<meta property="og:description" content="Generate &quot;typical&quot; datasets for use in marginaleffects's newdata argument" />
+<meta property="og:title" content="Compute the mode or mean of x — mean_or_mode" />
+<meta property="og:description" content="Compute the mode or mean of x" />
 
 
 
@@ -111,61 +111,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate "typical" datasets for use in <code>marginaleffects</code>'s <code>newdata</code> argument</h1>
-    <small class="dont-index">Source: <a href='https://github.com/vincentarelbundock/marginaleffects/blob/master/R/counterfactual_typical.R'><code>R/counterfactual_typical.R</code></a></small>
-    <div class="hidden name"><code>typical.Rd</code></div>
+    <h1>Compute the mode or mean of <code>x</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/vincentarelbundock/marginaleffects/blob/master/R/mean_or_mode.R'><code>R/mean_or_mode.R</code></a></small>
+    <div class="hidden name"><code>mean_or_mode.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Generate "typical" datasets for use in <code>marginaleffects</code>'s <code>newdata</code> argument</p>
+    <p>Compute the mode or mean of <code>x</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>typical</span><span class='op'>(</span><span class='va'>...</span>, model <span class='op'>=</span> <span class='cn'>NULL</span>, data <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mean_or_mode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>mean_or_mode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+
+<span class='co'># S3 method for factor</span>
+<span class='fu'>mean_or_mode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+
+<span class='co'># S3 method for logical</span>
+<span class='fu'>mean_or_mode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>mean_or_mode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>named arguments with vectors of values for the typical variables to construct (see Examples below.)</p></td>
-    </tr>
-    <tr>
-      <th>model</th>
-      <td><p>Model object</p></td>
-    </tr>
-    <tr>
-      <th>data</th>
-      <td><p>data.frame (one and only one of the <code>model</code> and <code>data</code> arguments
-must be true).</p></td>
+      <th>x</th>
+      <td><p>extract the mean or the mode of vector or data.frame x depending on its type</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>data.frame</code> with the values specified in the <code>at</code> list, and where each of the other variables is set at its mean or mode.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># The output only has 2 rows, and all the variables except `hp` are at their</span>
-<span class='co'># mean or mode.</span>
-<span class='fu'>typical</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>mtcars</span>, hp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>110</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;        mpg    cyl     disp     drat      wt     qsec     vs      am   gear
-#&gt; 1 20.09062 6.1875 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875
-#&gt; 2 20.09062 6.1875 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875
-#&gt;     carb  hp
-#&gt; 1 2.8125 100
-#&gt; 2 2.8125 110</div><div class='input'>
-<span class='co'># We get the same result by feeding a model instead of a data.frame</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span>, <span class='va'>mtcars</span><span class='op'>)</span>
-<span class='fu'>typical</span><span class='op'>(</span>model <span class='op'>=</span> <span class='va'>mod</span>, hp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>110</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    hp
-#&gt; 1 100
-#&gt; 2 110</div><div class='input'>
-<span class='co'># Use in `marginaleffects` to compute "Typical Marginal Effects"</span>
-<span class='fu'><a href='marginaleffects.html'>marginaleffects</a></span><span class='op'>(</span><span class='va'>mod</span>, newdata <span class='op'>=</span> <span class='fu'>typical</span><span class='op'>(</span>hp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>110</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   rowid     type term        dydx  std.error predicted_response  hp
-#&gt; 1     1 response   hp -0.06822828 0.01011930           23.27603 100
-#&gt; 2     2 response   hp -0.06822828 0.01011878           22.59375 110</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
