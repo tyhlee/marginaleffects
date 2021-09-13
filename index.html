@@ -367,18 +367,18 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
-<span class="co">#&gt;       type              Term           Contrast    Effect Std. Error  z value</span>
-<span class="co">#&gt; 1 response    bill_length_mm                      0.02757    0.00849  3.24819</span>
-<span class="co">#&gt; 2 response flipper_length_mm                      0.01058    0.00332  3.18766</span>
-<span class="co">#&gt; 3 response           species Chinstrap / Adelie   0.00547    0.00574 -4.96164</span>
-<span class="co">#&gt; 4 response           species    Gentoo / Adelie   2.19156    2.75319  0.62456</span>
-<span class="co">#&gt; 5 response           species Gentoo / Chinstrap 400.60647  522.34202  4.59627</span>
-<span class="co">#&gt;     Pr(&gt;|z|)      2.5 %     97.5 %</span>
-<span class="co">#&gt; 1  0.0011614    0.01093    0.04421</span>
-<span class="co">#&gt; 2  0.0014343    0.00408    0.01709</span>
-<span class="co">#&gt; 3 2.0906e-06   -0.00578    0.01673</span>
-<span class="co">#&gt; 4  0.8066373   -3.20459    7.58770</span>
-<span class="co">#&gt; 5 1.2828e-05 -623.16509 1424.37802</span>
+<span class="co">#&gt;       type              Term           Contrast   Effect Std. Error   z value</span>
+<span class="co">#&gt; 1 response    bill_length_mm                     0.02757    0.00849   3.24819</span>
+<span class="co">#&gt; 2 response flipper_length_mm                     0.01058    0.00332   3.18766</span>
+<span class="co">#&gt; 3 response           species Chinstrap - Adelie -0.80570    0.07713 -10.44590</span>
+<span class="co">#&gt; 4 response           species    Gentoo - Adelie  0.08359    0.11563   0.72294</span>
+<span class="co">#&gt; 5 response           species Gentoo - Chinstrap  0.88929    0.08534  10.42061</span>
+<span class="co">#&gt;     Pr(&gt;|z|)    2.5 %   97.5 %</span>
+<span class="co">#&gt; 1  0.0011614  0.01093  0.04421</span>
+<span class="co">#&gt; 2  0.0014343  0.00408  0.01709</span>
+<span class="co">#&gt; 3 2.9754e-14 -0.95687 -0.65453</span>
+<span class="co">#&gt; 4  0.7498870 -0.14304  0.31023</span>
+<span class="co">#&gt; 5 3.1086e-14  0.72203  1.05656</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
@@ -388,13 +388,13 @@
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 5 × 9</span>
 <span class="co">#&gt; # Groups:   type [1]</span>
-<span class="co">#&gt;   type     term  contrast estimate std.error statistic p.value conf.low conf.high</span>
-<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 response bill… &lt;NA&gt;      2.76e-2   0.00849     3.25  1.16e-3  1.09e-2    0.0442</span>
-<span class="co">#&gt; 2 response flip… &lt;NA&gt;      1.06e-2   0.00332     3.19  1.43e-3  4.08e-3    0.0171</span>
-<span class="co">#&gt; 3 response spec… Chinstr…  5.47e-3   0.00574    -4.96  2.09e-6 -5.78e-3    0.0167</span>
-<span class="co">#&gt; 4 response spec… Gentoo …  2.19e+0   2.75        0.625 8.07e-1 -3.20e+0    7.59  </span>
-<span class="co">#&gt; 5 response spec… Gentoo …  4.01e+2 522.          4.60  1.28e-5 -6.23e+2 1424.</span>
+<span class="co">#&gt;   type     term  contrast estimate std.error statistic  p.value conf.low conf.high</span>
+<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 response bill… &lt;NA&gt;       0.0276   0.00849     3.25  1.16e- 3  0.0109     0.0442</span>
+<span class="co">#&gt; 2 response flip… &lt;NA&gt;       0.0106   0.00332     3.19  1.43e- 3  0.00408    0.0171</span>
+<span class="co">#&gt; 3 response spec… Chinstr…  -0.806    0.0771    -10.4   2.98e-14 -0.957     -0.655 </span>
+<span class="co">#&gt; 4 response spec… Gentoo …   0.0836   0.116       0.723 7.50e- 1 -0.143      0.310 </span>
+<span class="co">#&gt; 5 response spec… Gentoo …   0.889    0.0853     10.4   3.11e-14  0.722      1.06</span>
 <span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt;   null.deviance df.null    logLik      AIC      BIC deviance df.residual nobs</span>
 <span class="co">#&gt; 1      473.8202     341 -84.92257 179.8451 199.0192 169.8451         337  342</span></code></pre></div>
@@ -682,12 +682,12 @@
 <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="reference/typical.html">typical</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
-<span class="co">#&gt;         dydx truth</span>
-<span class="co">#&gt; 1 -7.0057960    -7</span>
-<span class="co">#&gt; 2 -3.0041201    -3</span>
-<span class="co">#&gt; 3  0.9975558     1</span>
-<span class="co">#&gt; 4  4.9992317     5</span>
-<span class="co">#&gt; 5  9.0009076     9</span></code></pre></div>
+<span class="co">#&gt;        dydx truth</span>
+<span class="co">#&gt; 1 -6.991206    -7</span>
+<span class="co">#&gt; 2 -2.992002    -3</span>
+<span class="co">#&gt; 3  1.007202     1</span>
+<span class="co">#&gt; 4  5.006407     5</span>
+<span class="co">#&gt; 5  9.005611     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
