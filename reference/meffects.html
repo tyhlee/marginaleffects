@@ -228,12 +228,12 @@ space in memory.</p></td>
 #&gt; 
 #&gt; Model type:  glm 
 #&gt; Prediction type:  response </div><div class='input'><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 × 8</span>
-#&gt; <span style='color: #949494;'># Groups:   type [1]</span>
-#&gt;   type     term  estimate std.error statistic p.value conf.low conf.high
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> response hp     0.002<span style='text-decoration: underline;'>65</span>   0.003<span style='text-decoration: underline;'>56</span>     0.745   0.456 -<span style='color: #BB0000;'>0.004</span><span style='color: #BB0000; text-decoration: underline;'>33</span>   0.009<span style='text-decoration: underline;'>63</span>
-#&gt; <span style='color: #BCBCBC;'>2</span> response wt    -<span style='color: #BB0000;'>0.436</span>     0.490      -<span style='color: #BB0000;'>0.890</span>   0.374 -<span style='color: #BB0000;'>1.40</span>      0.524  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       type term     estimate   std.error  statistic   p.value    conf.low
+#&gt; 1 response   hp  0.002653558 0.003561243  0.7451212 0.4561984 -0.00432635
+#&gt; 2 response   wt -0.435726799 0.489846031 -0.8895179 0.3737248 -1.39580738
+#&gt;     conf.high
+#&gt; 1 0.009633466
+#&gt; 2 0.524353780</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   rowid     type term         dydx   std.error predicted_response am  hp    wt
 #&gt; 1     1 response   hp  0.006989229 0.005882349          0.8983110  1 110 2.620
 #&gt; 2     1 response   wt -0.827161739 0.819043730          0.8983110  1 110 2.620
