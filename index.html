@@ -240,132 +240,139 @@
 <td align="left"></td>
 </tr>
 <tr class="even">
+<td align="left">glmx::glmx</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
 <td align="left">ivreg::ivreg</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left">x</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">lme4::lmer</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">lme4::glmer</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left">dydx only</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MASS::glm.nb</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left">x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">MASS::polr</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left">x</td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MASS::rlm</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">nlme::gls</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ordinal::clm</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">plm::plm</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">pscl::hurdle</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pscl::zeroinfl</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rms::lrm</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">robustbase::glmrob</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">robustbase::lmrob</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">speedglm::speedglm</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">speedglm::speedlm</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">survey::svyglm</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left">x</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">survival::coxph</td>
 <td align="left">x</td>
 <td align="left">x</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">truncreg::truncreg</td>
 <td align="left">x</td>
 <td align="left">x</td>
@@ -743,11 +750,11 @@
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
 <span class="co">#&gt;        dydx truth</span>
-<span class="co">#&gt; 1 -7.001682    -7</span>
-<span class="co">#&gt; 2 -2.998943    -3</span>
-<span class="co">#&gt; 3  1.003796     1</span>
-<span class="co">#&gt; 4  5.006535     5</span>
-<span class="co">#&gt; 5  9.009274     9</span></code></pre></div>
+<span class="co">#&gt; 1 -7.017656    -7</span>
+<span class="co">#&gt; 2 -3.008645    -3</span>
+<span class="co">#&gt; 3  1.000367     1</span>
+<span class="co">#&gt; 4  5.009378     5</span>
+<span class="co">#&gt; 5  9.018389     9</span></code></pre></div>
 <p>We can also plot the result with the <code>plot_cme</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
