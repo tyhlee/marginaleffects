@@ -174,9 +174,9 @@ must be true).</p></td>
 #&gt; 2 110</div><div class='input'>
 <span class='co'># Use in `marginaleffects` to compute "Typical Marginal Effects"</span>
 <span class='fu'><a href='marginaleffects.html'>marginaleffects</a></span><span class='op'>(</span><span class='va'>mod</span>, newdata <span class='op'>=</span> <span class='fu'>typical</span><span class='op'>(</span>hp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>110</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   rowid     type term        dydx  std.error predicted_response  hp
-#&gt; 1     1 response   hp -0.06822828 0.01011930           23.27603 100
-#&gt; 2     2 response   hp -0.06822828 0.01011878           22.59375 110</div><div class='input'>
+</div><div class='output co'>#&gt;   rowid     type term        dydx  std.error  hp predicted
+#&gt; 1     1 response   hp -0.06822828 0.01011930 100  23.27603
+#&gt; 2     2 response   hp -0.06822828 0.01011878 110  22.59375</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

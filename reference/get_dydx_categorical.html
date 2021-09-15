@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tidy a marginaleffects object — tidy.marginaleffects • marginaleffects</title>
+<title>Compute marginal effects using differences in predicted values between categorical variables (internal function) — get_dydx_categorical • marginaleffects</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Tidy a marginaleffects object — tidy.marginaleffects" />
-<meta property="og:description" content="Tidy a marginaleffects object" />
+<meta property="og:title" content="Compute marginal effects using differences in predicted values between categorical variables (internal function) — get_dydx_categorical" />
+<meta property="og:description" content="Compute marginal effects using differences in predicted values between categorical variables (internal function)" />
 
 
 
@@ -123,34 +123,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tidy a <code>marginaleffects</code> object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/vincentarelbundock/marginaleffects/blob/master/R/tidy.R'><code>R/tidy.R</code></a></small>
-    <div class="hidden name"><code>tidy.marginaleffects.Rd</code></div>
+    <h1>Compute marginal effects using differences in predicted values between categorical variables (internal function)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/vincentarelbundock/marginaleffects/blob/master/R/get_dydx_categorical.R'><code>R/get_dydx_categorical.R</code></a></small>
+    <div class="hidden name"><code>get_dydx_categorical.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Tidy a <code>marginaleffects</code> object</p>
+    <p>Compute marginal effects using differences in predicted values between categorical variables (internal function)</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for marginaleffects</span>
-<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>x</span>, conf.int <span class='op'>=</span> <span class='cn'>TRUE</span>, conf.level <span class='op'>=</span> <span class='fl'>0.95</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_dydx_categorical</span><span class='op'>(</span><span class='va'>model</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>An object produced by the <code>marginaleffects</code> function.</p></td>
-    </tr>
-    <tr>
-      <th>conf.int</th>
-      <td><p>Logical indicating whether or not to include a confidence interval.</p></td>
-    </tr>
-    <tr>
-      <th>conf.level</th>
-      <td><p>The confidence level to use for the confidence interval if
-<code>conf.int=TRUE</code>. Must be strictly greater than 0 and less than 1. Defaults
-to 0.95, which corresponds to a 95 percent confidence interval.</p></td>
+      <th>model</th>
+      <td><p>Model object</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -158,26 +147,7 @@ to 0.95, which corresponds to a 95 percent confidence interval.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The <code>tidy</code> function calculates average marginal effects by taking the mean
-of all the unit-level marginal effects computed by the <code>marginaleffects</code>
-function.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>hp</span> <span class='op'>*</span> <span class='va'>wt</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>gear</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
-<span class='va'>mfx</span> <span class='op'>&lt;-</span> <span class='fu'><a href='marginaleffects.html'>marginaleffects</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
-<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       type          term    estimate  std.error  statistic      p.value
-#&gt; 1 response factor(gear)4  0.82900152 1.11804097  0.7414769 4.584043e-01
-#&gt; 2 response factor(gear)5  1.81649741 1.54760505  1.1737474 2.404962e-01
-#&gt; 3 response            hp -0.03533001 0.01243602 -2.8409418 4.498052e-03
-#&gt; 4 response            wt -3.52592595 0.87695566 -4.0206434 5.803941e-05
-#&gt;      conf.low   conf.high
-#&gt; 1 -1.36231851  3.02032155
-#&gt; 2 -1.21675276  4.84974757
-#&gt; 3 -0.05970417 -0.01095586
-#&gt; 4 -5.24472745 -1.80712444</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
