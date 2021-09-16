@@ -222,18 +222,18 @@ space in memory.</p></td>
 <span class='va'>mfx</span> <span class='op'>&lt;-</span> <span class='fu'><a href='marginaleffects.html'>marginaleffects</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Average marginal effects 
-#&gt;       type Term   Effect Std. Error  z value Pr(&gt;|z|)    2.5 %  97.5 %
-#&gt; 1 response   hp  0.00265    0.00356  0.74512  0.45620 -0.00433 0.00963
-#&gt; 2 response   wt -0.43573    0.48985 -0.88952  0.37372 -1.39581 0.52435
+#&gt;       type Term   Effect Std. Error  z value   Pr(&gt;|z|)    2.5 %   97.5 %
+#&gt; 1 response   hp  0.00265    0.00194  1.36715    0.17158 -0.00115  0.00646
+#&gt; 2 response   wt -0.43573    0.10202 -4.27084 1.9474e-05 -0.63569 -0.23576
 #&gt; 
 #&gt; Model type:  glm 
 #&gt; Prediction type:  response </div><div class='input'><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       type term     estimate   std.error  statistic   p.value    conf.low
-#&gt; 1 response   hp  0.002653558 0.003561243  0.7451212 0.4561984 -0.00432635
-#&gt; 2 response   wt -0.435726799 0.489846031 -0.8895179 0.3737248 -1.39580738
-#&gt;     conf.high
-#&gt; 1 0.009633466
-#&gt; 2 0.524353780</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       type term     estimate   std.error statistic      p.value    conf.low
+#&gt; 1 response   hp  0.002653558 0.001940937  1.367153 1.715775e-01 -0.00115061
+#&gt; 2 response   wt -0.435726799 0.102023796 -4.270835 1.947425e-05 -0.63568977
+#&gt;      conf.high
+#&gt; 1  0.006457725
+#&gt; 2 -0.235763833</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   rowid     type term         dydx    std.error am  hp    wt   predicted
 #&gt; 1     1 response   hp 0.0069892293 0.0058823494  1 110 2.620 0.898311019
 #&gt; 2     2 response   hp 0.0164031413 0.0133879375  1 110 2.875 0.467644655
