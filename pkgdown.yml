@@ -3,8 +3,8 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   benchmark: benchmark.html
-  constrasts: constrasts.html
+  contrasts: contrasts.html
   marginalmeans: marginalmeans.html
   mfx: mfx.html
-last_built: 2021-09-16T19:39Z
+last_built: 2021-09-16T20:33Z
 
