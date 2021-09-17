@@ -394,36 +394,60 @@
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h2>
-<p>First, we load the library, download the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguins</a> data from the <a href="https://vincentarelbundock.github.io/Rdatasets/articles/data.html"><code>Rdatasets</code> archive</a>, and estimate a GLM model:</p>
+<p>First, we estimate a linear regression model with multiplicative interactions:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span>
 
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/palmerpenguins/penguins.csv"</span><span class="op">)</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">large_penguin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">body_mass_g</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>
-
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">large_penguin</span> <span class="op">~</span> <span class="va">bill_length_mm</span> <span class="op">+</span> <span class="va">flipper_length_mm</span> <span class="op">+</span> <span class="va">species</span>, 
-           data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></code></pre></div>
-<p>A “marginal effect” is a unit-specific measure of association between a change in a regressor and a change in the regressand. In most cases, its value will depend on the values of all the other variables in the model for that specific unit.</p>
-<p>The <code>marginaleffects</code> function thus computes a distinct estimate of the marginal effect and of the standard error for each regressor (“term”), for each unit of observation (“rowid”). You can view and manipulate the full results with functions like <code>head</code>, as you would with any other <code>data.frame</code>:</p>
+<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">*</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></code></pre></div>
+<p>A “marginal effect” is a unit-specific measure of association between a change in a regressor and a change in the regressand. The <code>marginaleffects</code> function thus computes a distinct estimate of the marginal effect and of the standard error for each regressor (“term”), for each unit of observation (“rowid”). You can view and manipulate the full results with functions like <code>head</code>, as you would with any other <code>data.frame</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type           term       dydx   std.error large_penguin</span>
-<span class="co">#&gt; 1     1 response bill_length_mm 0.01762275 0.007837288             0</span>
-<span class="co">#&gt; 2     2 response bill_length_mm 0.03584665 0.011917159             0</span>
-<span class="co">#&gt; 3     3 response bill_length_mm 0.08443344 0.021119186             0</span>
-<span class="co">#&gt; 4     4 response bill_length_mm 0.03471401 0.006506804             0</span>
-<span class="co">#&gt; 5     5 response bill_length_mm 0.05087500 0.013407802             0</span>
-<span class="co">#&gt; 6     6 response bill_length_mm 0.01650827 0.007252823             0</span>
-<span class="co">#&gt;   bill_length_mm flipper_length_mm species  predicted</span>
-<span class="co">#&gt; 1           39.1               181  Adelie 0.05123266</span>
-<span class="co">#&gt; 2           39.5               186  Adelie 0.11125087</span>
-<span class="co">#&gt; 3           40.3               195  Adelie 0.36919834</span>
-<span class="co">#&gt; 4           36.7               193  Adelie 0.10725326</span>
-<span class="co">#&gt; 5           39.3               190  Adelie 0.16882994</span>
-<span class="co">#&gt; 6           38.9               181  Adelie 0.04782069</span></code></pre></div>
-<p>Notice that the results are presented in “tidy” long format: each row of the original dataset gets a unique <code>rowid</code> value, each unit-level marginal effect appears on a distinct row, and metadata appears neatly in separate columns. This makes it easy to operate on the results programmatically.</p>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mfx</span>, <span class="fl">4</span><span class="op">)</span>
+<span class="co">#&gt;   rowid     type term       dydx std.error  mpg  hp    wt am predicted</span>
+<span class="co">#&gt; 1     1 response   am  0.3251736  1.682202 21.0 110 2.620  1  22.48857</span>
+<span class="co">#&gt; 2     2 response   am -0.5438639  1.568211 21.0 110 2.875  1  20.80186</span>
+<span class="co">#&gt; 3     3 response   am  1.2007132  2.347558 22.8  93 2.320  1  25.26465</span>
+<span class="co">#&gt; 4     4 response   am -1.7025805  1.867130 21.4 110 3.215  0  20.25549</span></code></pre></div>
+<p>The function <code>summary</code> calculates the “Average Marginal Effect,” that is, the average of all unit-specific marginal effects:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
+<span class="co">#&gt; Average marginal effects </span>
+<span class="co">#&gt;       type Term   Effect Std. Error  z value   Pr(&gt;|z|)    2.5 %   97.5 %</span>
+<span class="co">#&gt; 1 response   am -0.04811    1.85260 -0.02597 0.97928233 -3.67913  3.58291</span>
+<span class="co">#&gt; 2 response   hp -0.03807    0.01279 -2.97717 0.00290923 -0.06314 -0.01301</span>
+<span class="co">#&gt; 3 response   wt -3.93909    1.08596 -3.62728 0.00028642 -6.06754 -1.81065</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Model type:  lm </span>
+<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<p>The <code>plot_cme</code> plots “Conditional Marginal Effects,” that is, it plots the value of a marginal effect for different values of a regressor (often an interaction):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"wt"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="100%"></p>
+<p>Beyond marginal effects, we can also use the <code>marginalmeans</code> function to estimate – you guessed it – marginal means. We use the <code>variables</code> argument to select the categorical variables that will form the “grid”:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"am"</span>, <span class="st">"wt"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;        type predicted std.error  conf.low conf.high       hp am     wt</span>
+<span class="co">#&gt; 1  response 23.259500 2.7059342 17.674726  28.84427 146.6875  0 1.5130</span>
+<span class="co">#&gt; 2  response 27.148334 2.8518051 21.262498  33.03417 146.6875  1 1.5130</span>
+<span class="co">#&gt; 3  response 20.504387 1.3244556 17.770845  23.23793 146.6875  0 2.5425</span>
+<span class="co">#&gt; 4  response 21.555612 1.0723852 19.342318  23.76891 146.6875  1 2.5425</span>
+<span class="co">#&gt; 5  response 18.410286 0.6151016 17.140779  19.67979 146.6875  0 3.3250</span>
+<span class="co">#&gt; 6  response 17.304709 1.5528055 14.099876  20.50954 146.6875  1 3.3250</span>
+<span class="co">#&gt; 7  response 17.540532 0.7293676 16.035192  19.04587 146.6875  0 3.6500</span>
+<span class="co">#&gt; 8  response 15.539158 2.1453449 11.111383  19.96693 146.6875  1 3.6500</span>
+<span class="co">#&gt; 9  response 12.793013 2.9784942  6.645703  18.94032 146.6875  0 5.4240</span>
+<span class="co">#&gt; 10 response  5.901966 5.8149853 -6.099574  17.90351 146.6875  1 5.4240</span></code></pre></div>
+<p>The <a href="https://vincentarelbundock.github.io/marginaleffects/reference/typical.html"><code>typical</code> function gives us an even more powerful way</a> to customize the grid:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="reference/typical.html">typical</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span>, wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;       type predicted std.error conf.low conf.high       hp am wt</span>
+<span class="co">#&gt; 1 response  21.95621  2.038630 17.74868  26.16373 146.6875  0  2</span>
+<span class="co">#&gt; 2 response  16.60387  1.083201 14.36826  18.83949 146.6875  0  4</span></code></pre></div>
+<p>We can plot the estimated means (a.k.a. regression-adjusted predictions) with the <code>plot_cmm</code> function:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/plot_cmm.html">plot_cmm</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"wt"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-10-1.png" width="100%"></p>
 </div>
 </div>
   </div>
