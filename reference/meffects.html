@@ -207,9 +207,9 @@ space in memory.</p></td>
 <span class='va'>mfx</span> <span class='op'>&lt;-</span> <span class='fu'><a href='marginaleffects.html'>marginaleffects</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Average marginal effects 
-#&gt;       type Term   Effect Std. Error  z value   Pr(&gt;|z|)    2.5 %   97.5 %
-#&gt; 1 response   hp  0.00265    0.00194  1.36715    0.17158 -0.00115  0.00646
-#&gt; 2 response   wt -0.43573    0.10202 -4.27084 1.9474e-05 -0.63569 -0.23576
+#&gt;       type Term    Effect Std. Error z value   Pr(&gt;|z|)     2.5 %    97.5 %
+#&gt; 1 response   hp  0.002654   0.001941   1.367    0.17158 -0.001151  0.006458
+#&gt; 2 response   wt -0.435727   0.102024  -4.271 1.9474e-05 -0.635690 -0.235764
 #&gt; 
 #&gt; Model type:  glm 
 #&gt; Prediction type:  response </div><div class='input'><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>mfx</span><span class='op'>)</span>
