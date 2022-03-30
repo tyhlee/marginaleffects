@@ -2,6 +2,7 @@ pandoc: 2.7.3
 pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
+  alternative_software: alternative_software.html
   benchmark: benchmark.html
   brms: brms.html
   case_studies: case_studies.html
@@ -10,7 +11,6 @@ articles:
   marginalmeans: marginalmeans.html
   mfx: mfx.html
   predictions: predictions.html
-  stata: stata.html
   supported_models: supported_models.html
-last_built: 2022-03-30T02:58Z
+last_built: 2022-03-30T03:20Z
 
