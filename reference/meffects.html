@@ -139,6 +139,23 @@ be found on the package website:</p>
 
 <p>Some model types allow model-specific arguments to modify the nature of
 marginal effects, predictions, marginal means, and contrasts.</p><table class="table table"><tr><td>Package</td><td>Class</td><td>Argument</td><td>Documentation</td></tr><tr><td><code>brms</code></td><td><code>brmsfit</code></td><td><code>ndraws</code></td><td><a href="https://rdrr.io/pkg/brms/man/posterior_predict.brmsfit.html" class="external-link">brms::posterior_predict</a></td></tr><tr><td></td><td></td><td><code>re_formula</code></td><td></td></tr><tr><td><code>lme4</code></td><td><code>merMod</code></td><td><code>include_random</code></td><td><a href="https://easystats.github.io/insight/reference/get_predicted.html" class="external-link">insight::get_predicted</a></td></tr><tr><td></td><td></td><td><code>re.form</code></td><td><a href="https://rdrr.io/pkg/lme4/man/predict.merMod.html" class="external-link">lme4::predict.merMod</a></td></tr><tr><td></td><td></td><td><code>allow.new.levels</code></td><td><a href="https://rdrr.io/pkg/lme4/man/predict.merMod.html" class="external-link">lme4::predict.merMod</a></td></tr><tr><td></td><td></td><td><code>random.only</code></td><td><a href="https://rdrr.io/pkg/lme4/man/predict.merMod.html" class="external-link">lme4::predict.merMod</a></td></tr><tr><td><code>mgcv</code></td><td><code>bam</code></td><td><code>exclude</code></td><td><a href="https://rdrr.io/pkg/mgcv/man/predict.bam.html" class="external-link">mgcv::predict.bam</a></td></tr></table></div>
+    <div id="parallel-computation">
+    <h2>Parallel computation</h2>
+    
+
+
+<p>The <code><a href="marginaleffects.html">marginaleffects()</a></code> and <code><a href="comparisons.html">comparisons()</a></code> functions can use parallelism to
+speed up computation. Operations are parallelized at the "term" or
+"variable" level. This means that no speed gain is available when the user
+computes marginal effects for only one right-hand side variable. There is
+always some overhead when using parallel computation. Thus, parallel
+computation is most likely to be useful when:</p><ol><li><p>The model includes many right-hand side variables.</p></li>
+<li><p><code>marginaleffects</code> must compute pairwise contrasts for multiple factor variables.</p></li>
+</ol><p>To activate parallel computation, users must load the <code>future.apply</code> package
+and call <code><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan()</a></code> function. For example:</p><div class="sourceCode r"><pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://future.apply.futureverse.org" class="external-link">future.apply</a></span><span class="op">)</span>
+<span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre><p></p></div>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
