@@ -7,11 +7,12 @@ articles:
   brms: brms.html
   case_studies: case_studies.html
   contrasts: contrasts.html
+  gam: gam.html
   lme4: lme4.html
   marginalmeans: marginalmeans.html
   mfx: mfx.html
   parallel: parallel.html
   predictions: predictions.html
   supported_models: supported_models.html
-last_built: 2022-04-05T18:16Z
+last_built: 2022-04-05T18:59Z
 
