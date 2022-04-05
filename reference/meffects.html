@@ -109,7 +109,7 @@ mixed-effects or bayesian models (see the online vignettes on the
 <code>marginaleffects</code> website). Available arguments can vary from model to
 model, depending on the range of supported arguments by each modeling
 package. See the "Model-Specific Arguments" section of the
-<code><a href="marginaleffects.html">?marginaleffects</a></code> document for a non-exhaustive list of available
+<code><a href="marginaleffects.html">?marginaleffects</a></code> documentation for a non-exhaustive list of available
 arguments.</p></dd>
 </dl></div>
     <div id="value">
@@ -193,6 +193,7 @@ and call <code><a href="https://future.futureverse.org/reference/plan.html" clas
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="meffects-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
+<span class="r-in"></span>
 <span class="r-in"><span class="co"># Marginal Effect at the Mean (MEM)</span></span>
 <span class="r-in"><span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error       hp      wt</span>
@@ -208,6 +209,22 @@ and call <code><a href="https://future.futureverse.org/reference/plan.html" clas
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp  0.001894129 0.002415076 3.21725 110</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3     1 response   wt -0.194911082 0.307492808 3.21725 100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     2 response   wt -0.331939457 0.436422720 3.21725 110</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Group-Average Marginal Effects (G-AME)</span></span>
+<span class="r-in"><span class="co"># Calculate marginal effects for each observation, and then take the average</span></span>
+<span class="r-in"><span class="co"># marginal effect within each subset of observations with different observed</span></span>
+<span class="r-in"><span class="co"># values for the `cyl` variable:</span></span>
+<span class="r-in"><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">mfx2</span> <span class="op">&lt;-</span> <span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod2</span>, variables <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx2</span>, by <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Average marginal effects </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term cyl   Effect Std. Error z value  Pr(&gt;|z|)    2.5 %   97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp   4 -0.09173    0.03533 -2.5964 0.0094216 -0.16098 -0.02248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp   6 -0.05226    0.02041 -2.5608 0.0104442 -0.09225 -0.01226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp   8 -0.01278    0.01434 -0.8912 0.3727993 -0.04089  0.01533</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Marginal Effects at User-Specified Values (counterfactual)</span></span>
 <span class="r-in"><span class="co"># Variables not explicitly included in `datagrid()` are held at their</span></span>
