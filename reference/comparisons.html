@@ -175,72 +175,84 @@ and call <code>plan()</code> function. For example:</p><div class="sourceCode r"
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">tmp</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_factor <span class="op">=</span> <span class="st">"reference"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `cyl` variable is treated as a categorical (factor) variable, but the original data is of class numeric. It is safer and faster to convert such variables to factor before fitting the model and calling `marginaleffects` functions. This warning appears once per session.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term     contrast   estimate std.error statistic      p.value     conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   am TRUE - FALSE   2.559954  1.297579  1.972869 4.851044e-02   0.01674586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl        6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.16607927</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  cyl        8 - 4 -10.067560  1.452082 -6.933187 4.114709e-12 -12.91358877</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5.103162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.146156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -7.221530</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term     contrast   estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   am TRUE - FALSE   2.559954  1.297579  1.972869 4.851044e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl        6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response  cyl        8 - 4 -10.067560  1.452082 -6.933187 4.114709e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.01674586  5.103162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -9.16607927 -3.146156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -12.91358877 -7.221530</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_factor <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term     contrast  estimate std.error statistic      p.value    conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   am TRUE - FALSE  2.559954  1.297579  1.972869 4.851044e-02  0.01674586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl        6 - 4 -6.156118  1.535723 -4.008612 6.107658e-05 -9.16607927</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  cyl        8 - 6 -3.911442  1.470254 -2.660385 7.805144e-03 -6.79308707</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5.103162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.146156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.029797</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term     contrast  estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   am TRUE - FALSE  2.559954  1.297579  1.972869 4.851044e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl        6 - 4 -6.156118  1.535723 -4.008612 6.107658e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response  cyl        8 - 6 -3.911442  1.470254 -2.660385 7.805144e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.01674586  5.103162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -9.16607927 -3.146156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -6.79308707 -1.029797</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_factor <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term     contrast   estimate std.error statistic      p.value     conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   am TRUE - FALSE   2.559954  1.297579  1.972869 4.851044e-02   0.01674586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl        6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.16607927</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  cyl        8 - 4 -10.067560  1.452082 -6.933187 4.114709e-12 -12.91358877</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  cyl        8 - 6  -3.911442  1.470254 -2.660385 7.805144e-03  -6.79308707</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5.103162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.146156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -7.221530</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -1.029797</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term     contrast   estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   am TRUE - FALSE   2.559954  1.297579  1.972869 4.851044e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl        6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response  cyl        8 - 4 -10.067560  1.452082 -6.933187 4.114709e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 response  cyl        8 - 6  -3.911442  1.470254 -2.660385 7.805144e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.01674586  5.103162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -9.16607927 -3.146156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -12.91358877 -7.221530</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -6.79308707 -1.029797</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># GLM with different scale types</span></span>
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term contrast  estimate std.error statistic      p.value  conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear    4 - 3 0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806 0.8968528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852 1.3069148</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast  estimate std.error statistic      p.value  conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response gear    4 - 3 0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term contrast  estimate std.error statistic      p.value  conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear    4 - 3 0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806 0.8968528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852 1.3069148</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   type term contrast  estimate std.error statistic      p.value  conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 link gear    4 - 3 0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 link gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Numeric contrasts</span></span>
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term contrast    estimate std.error statistic      p.value    conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp       +1 -0.06822828 0.0101193 -6.742389 1.558043e-11 -0.08806175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.04839481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast    estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558043e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term contrast   estimate  std.error statistic      p.value   conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp       +5 -0.3411414 0.05059652 -6.742389 1.558043e-11 -0.4403087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.241974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast   estimate  std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       +5 -0.3411414 0.05059652 -6.742389 1.558043e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.4403087 -0.241974</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term contrast   estimate std.error statistic      p.value   conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp 100 - 90 -0.6822828  0.101193 -6.742389 1.558043e-11 -0.8806175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast   estimate std.error statistic      p.value   conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp 100 - 90 -0.6822828  0.101193 -6.742389 1.558043e-11 -0.8806175</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.4839481</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="st">"iqr"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term contrast  estimate std.error statistic      p.value  conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp      IQR -5.697061 0.8449619 -6.742389 1.558043e-11 -7.353156 -4.040966</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast  estimate std.error statistic      p.value  conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp      IQR -5.697061 0.8449619 -6.742389 1.558043e-11 -7.353156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -4.040966</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term contrast  estimate std.error statistic      p.value  conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp       sd -4.677926 0.6938085 -6.742389 1.558043e-11 -6.037766 -3.318087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast  estimate std.error statistic      p.value  conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       sd -4.677926 0.6938085 -6.742389 1.558043e-11 -6.037766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.318087</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="st">"minmax"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term  contrast estimate std.error statistic      p.value  conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp Max - Min -19.3086  2.863763 -6.742389 1.558043e-11 -24.92147 -13.69573</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term  contrast estimate std.error statistic      p.value  conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp Max - Min -19.3086  2.863763 -6.742389 1.558043e-11 -24.92147</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -13.69573</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
