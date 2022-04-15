@@ -78,6 +78,7 @@ the <code>marginaleffects</code> website.</p>
   newdata <span class="op">=</span> <span class="cn">NULL</span>,
   variables <span class="op">=</span> <span class="cn">NULL</span>,
   vcov <span class="op">=</span> <span class="cn">TRUE</span>,
+  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
@@ -98,6 +99,10 @@ calculates marginal effects for all terms in the model object.</p></dd>
 <li><p>TRUE: computes unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
 <li><p>Named square matrix: computes standard errors with a user-supplied variance-covariance matrix. This matrix must be square and have dimensions equal to the number of coefficients in <code>get_coef(model)</code>.</p></li>
 </ul></dd>
+<dt>conf.level</dt>
+<dd><p>The confidence level to use for the confidence interval if
+<code>conf.int=TRUE</code>. Must be strictly greater than 0 and less than 1. Defaults
+to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
 <dt>type</dt>
 <dd><p>Type(s) of prediction as string or character vector. This can
 differ based on the model type, but will typically be a string such as:
@@ -138,7 +143,7 @@ be found on the package website:</p>
 
 
 <p>Some model types allow model-specific arguments to modify the nature of
-marginal effects, predictions, marginal means, and contrasts.</p><table class="table table"><tr><td>Package</td><td>Class</td><td>Argument</td><td>Documentation</td></tr><tr><td><code>brms</code></td><td><code>brmsfit</code></td><td><code>ndraws</code></td><td><a href="https://rdrr.io/pkg/brms/man/posterior_predict.brmsfit.html" class="external-link">brms::posterior_predict</a></td></tr><tr><td></td><td></td><td><code>re_formula</code></td><td></td></tr><tr><td><code>lme4</code></td><td><code>merMod</code></td><td><code>include_random</code></td><td><a href="https://easystats.github.io/insight/reference/get_predicted.html" class="external-link">insight::get_predicted</a></td></tr><tr><td></td><td></td><td><code>re.form</code></td><td><a href="https://rdrr.io/pkg/lme4/man/predict.merMod.html" class="external-link">lme4::predict.merMod</a></td></tr><tr><td></td><td></td><td><code>allow.new.levels</code></td><td><a href="https://rdrr.io/pkg/lme4/man/predict.merMod.html" class="external-link">lme4::predict.merMod</a></td></tr><tr><td><code>glmmTMB</code></td><td><code>glmmTMB</code></td><td><code>re.form</code></td><td><a href="https://rdrr.io/pkg/glmmTMB/man/predict.glmmTMB.html" class="external-link">glmmTMB::predict.glmmTMB</a></td></tr><tr><td><code>glmmTMB</code></td><td><code>glmmTMB</code></td><td><code>allow.new.levels</code></td><td><a href="https://rdrr.io/pkg/glmmTMB/man/predict.glmmTMB.html" class="external-link">glmmTMB::predict.glmmTMB</a></td></tr><tr><td><code>glmmTMB</code></td><td><code>glmmTMB</code></td><td><code>zitype</code></td><td><a href="https://rdrr.io/pkg/glmmTMB/man/predict.glmmTMB.html" class="external-link">glmmTMB::predict.glmmTMB</a></td></tr><tr><td><code>mgcv</code></td><td><code>bam</code></td><td><code>exclude</code></td><td><a href="https://rdrr.io/pkg/mgcv/man/predict.bam.html" class="external-link">mgcv::predict.bam</a></td></tr></table></div>
+marginal effects, predictions, marginal means, and contrasts.</p><table class="table table"><tr><td>Package</td><td>Class</td><td>Argument</td><td>Documentation</td></tr><tr><td><code>brms</code></td><td><code>brmsfit</code></td><td><code>ndraws</code></td><td><a href="https://rdrr.io/pkg/brms/man/posterior_predict.brmsfit.html" class="external-link">brms::posterior_predict</a></td></tr><tr><td></td><td></td><td><code>re_formula</code></td><td></td></tr><tr><td><code>lme4</code></td><td><code>merMod</code></td><td><code>include_random</code></td><td><a href="https://easystats.github.io/insight/reference/get_predicted.html" class="external-link">insight::get_predicted</a></td></tr><tr><td></td><td></td><td><code>re.form</code></td><td><a href="https://rdrr.io/pkg/lme4/man/predict.merMod.html" class="external-link">lme4::predict.merMod</a></td></tr><tr><td></td><td></td><td><code>allow.new.levels</code></td><td><a href="https://rdrr.io/pkg/lme4/man/predict.merMod.html" class="external-link">lme4::predict.merMod</a></td></tr><tr><td><code>glmmTMB</code></td><td><code>glmmTMB</code></td><td><code>re.form</code></td><td><a href="https://rdrr.io/pkg/glmmTMB/man/predict.glmmTMB.html" class="external-link">glmmTMB::predict.glmmTMB</a></td></tr><tr><td><code>glmmTMB</code></td><td><code>glmmTMB</code></td><td><code>allow.new.levels</code></td><td><a href="https://rdrr.io/pkg/glmmTMB/man/predict.glmmTMB.html" class="external-link">glmmTMB::predict.glmmTMB</a></td></tr><tr><td><code>glmmTMB</code></td><td><code>glmmTMB</code></td><td><code>zitype</code></td><td><a href="https://rdrr.io/pkg/glmmTMB/man/predict.glmmTMB.html" class="external-link">glmmTMB::predict.glmmTMB</a></td></tr><tr><td><code>mgcv</code></td><td><code>bam</code></td><td><code>exclude</code></td><td><a href="https://rdrr.io/pkg/mgcv/man/predict.bam.html" class="external-link">mgcv::predict.bam</a></td></tr><tr><td><code>robustlmm</code></td><td><code>rlmerMod</code></td><td><code>re.form</code></td><td><a href="https://rdrr.io/pkg/robustlmm/man/rlmerMod-class.html" class="external-link">robustlmm::predict.rlmerMod</a></td></tr><tr><td><code>robustlmm</code></td><td><code>rlmerMod</code></td><td><code>allow.new.levels</code></td><td><a href="https://rdrr.io/pkg/robustlmm/man/rlmerMod-class.html" class="external-link">robustlmm::predict.rlmerMod</a></td></tr></table></div>
     <div id="parallel-computation">
     <h2>Parallel computation</h2>
     
@@ -166,13 +171,20 @@ and call <code><a href="https://future.futureverse.org/reference/plan.html" clas
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx    std.error am  hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp 0.0069892293 0.0058823494  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp 0.0164031413 0.0133879375  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp 0.0028317695 0.0037551909  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0019335745 0.0024498352  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0029913468 0.0033764304  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001475603 0.0003451131  0 105 3.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx    std.error     conf.low    conf.high am</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp 0.0069892293 0.0058823494 -0.004539964 0.0185184223  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp 0.0164031413 0.0133879375 -0.009836734 0.0426430165  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp 0.0028317695 0.0037551909 -0.004528270 0.0101918085  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0019335745 0.0024498352 -0.002868014 0.0067351633  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0029913468 0.0033764304 -0.003626335 0.0096090288  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001475603 0.0003451131 -0.000528849 0.0008239696  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 110 2.620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 110 2.875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  93 2.320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 110 3.215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 175 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 105 3.460</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Average Marginal Effect (AME)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -196,19 +208,27 @@ and call <code><a href="https://future.futureverse.org/reference/plan.html" clas
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Marginal Effect at the Mean (MEM)</span></span>
 <span class="r-in"><span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error       hp      wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.008523328 0.007847339 146.6875 3.21725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response   wt -1.746094406 1.587749850 146.6875 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error     conf.low  conf.high       hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.008523328 0.007847339 -0.006857175 0.02390383 146.6875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response   wt -1.746094406 1.587749850 -4.858026928 1.36583812 146.6875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 3.21725</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Marginal Effect at User-Specified Values</span></span>
 <span class="r-in"><span class="co"># Variables not explicitly included in `datagrid()` are held at their means</span></span>
 <span class="r-in"><span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span class="r-in">                newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error      wt  hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.001165863 0.001753306 3.21725 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp  0.001894129 0.002415076 3.21725 110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1 response   wt -0.194911082 0.307492808 3.21725 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     2 response   wt -0.331939457 0.436422720 3.21725 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error     conf.low   conf.high      wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.001165863 0.001753306 -0.002270554 0.004602281 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp  0.001894129 0.002415076 -0.002839334 0.006627591 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1 response   wt -0.194911082 0.307492808 -0.797585912 0.407763748 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     2 response   wt -0.331939457 0.436422720 -1.187312269 0.523433356 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 110</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Group-Average Marginal Effects (G-AME)</span></span>
 <span class="r-in"><span class="co"># Calculate marginal effects for each observation, and then take the average</span></span>
@@ -219,8 +239,8 @@ and call <code><a href="https://future.futureverse.org/reference/plan.html" clas
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx2</span>, by <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average marginal effects </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term cyl   Effect Std. Error z value  Pr(&gt;|z|)    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp   4 -0.09173    0.03533 -2.5964 0.0094216 -0.16098 -0.02248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp   6 -0.05226    0.02041 -2.5608 0.0104442 -0.09225 -0.01226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp   6 -0.05226    0.02041 -2.5608 0.0104442 -0.09225 -0.01226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp   4 -0.09173    0.03533 -2.5964 0.0094216 -0.16098 -0.02248</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp   8 -0.01278    0.01434 -0.8912 0.3727993 -0.04089  0.01533</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
@@ -234,81 +254,153 @@ and call <code><a href="https://future.futureverse.org/reference/plan.html" clas
 <span class="r-in">                       newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span>,</span>
 <span class="r-in">                                          grid.type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx    std.error rowid_original    wt  hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp 0.0120424494 0.0099959936              1 2.620 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp 0.0141555831 0.0108024804              2 2.875 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp 0.0015660741 0.0022045708              3 2.320 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0011898154 0.0017796204              4 3.215 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0001453976 0.0003409128              5 3.440 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001200600 0.0002909609              6 3.460 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx    std.error      conf.low    conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp 0.0120424494 0.0099959936 -0.0075493381 0.0316342368</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp 0.0141555831 0.0108024804 -0.0070168894 0.0353280556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp 0.0015660741 0.0022045708 -0.0027548053 0.0058869535</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0011898154 0.0017796204 -0.0022981765 0.0046778073</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0001453976 0.0003409128 -0.0005227791 0.0008135744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001200600 0.0002909609 -0.0004502129 0.0006903328</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid_counterfactual    wt  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    1 2.620 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    2 2.875 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    3 2.320 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    4 3.215 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                    5 3.440 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                    6 3.460 100</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Heteroskedasticity robust standard errors</span></span>
 <span class="r-in"><span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="fu">sandwich</span><span class="fu">::</span><span class="fu"><a href="https://sandwich.R-Forge.R-project.org//reference/vcovHC.html" class="external-link">vcovHC</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    rowid     type term          dydx    std.error am  hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 response   hp  6.989229e-03 9.188426e-03  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 response   hp  1.640314e-02 1.340865e-02  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      3 response   hp  2.831769e-03 4.916395e-03  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      4 response   hp  1.933575e-03 1.842493e-03  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      5 response   hp  2.991347e-03 2.781261e-03  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      6 response   hp  1.475603e-04 2.544284e-04  0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      7 response   hp  5.738829e-03 8.191035e-03  0 245 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      8 response   hp  2.110144e-04 3.884630e-04  0  62 3.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      9 response   hp  1.645791e-03 1.726980e-03  0  95 3.150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    10 response   hp  3.807685e-04 5.148223e-04  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11    11 response   hp  3.807685e-04 5.148223e-04  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12    12 response   hp  8.758474e-07 6.572651e-06  0 180 4.070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13    13 response   hp  9.571749e-05 3.218446e-04  0 180 3.730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14    14 response   hp  4.913415e-05 1.903042e-04  0 180 3.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15    15 response   hp -5.789952e-13 8.597919e-12  0 205 5.250</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16    16 response   hp -4.904969e-14 8.740137e-13  0 215 5.424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17    17 response   hp -7.467144e-14 1.373822e-12  0 230 5.345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18    18 response   hp  1.108683e-02 1.422135e-02  1  66 2.200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19    19 response   hp  1.405293e-03 4.020638e-03  1  52 1.615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20    20 response   hp  1.348054e-03 2.935489e-03  1  65 1.835</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21    21 response   hp  5.801587e-03 7.810194e-03  0  97 2.465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22    22 response   hp  4.641522e-04 6.989948e-04  0 150 3.520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23    23 response   hp  1.215176e-03 1.226520e-03  0 150 3.435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24    24 response   hp  1.153078e-04 6.933458e-04  0 245 3.840</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25    25 response   hp  1.799896e-05 8.051093e-05  0 175 3.845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26    26 response   hp  2.342925e-03 4.557330e-03  1  66 1.935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27    27 response   hp  8.707316e-04 1.977080e-03  1  91 2.140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28    28 response   hp  4.274703e-07 2.710374e-06  1 113 1.513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29    29 response   hp  2.273419e-04 1.131595e-03  1 264 3.170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30    30 response   hp  3.182868e-04 1.378430e-03  1 175 2.770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31    31 response   hp  4.212583e-03 7.657185e-03  1 335 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32    32 response   hp  1.568764e-02 7.585714e-03  1 109 2.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33     1 response   wt -8.271617e-01 1.279010e+00  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34     2 response   wt -2.253399e+00 1.360905e+00  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35     3 response   wt -2.655446e-01 5.253557e-01  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36     4 response   wt -3.382383e-01 3.505055e-01  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37     5 response   wt -8.302249e-01 6.823524e-01  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38     6 response   wt -3.141797e-02 5.517898e-02  0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39     7 response   wt -2.279347e+00 2.474881e+00  0 245 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40     8 response   wt -2.819198e-02 5.701635e-02  0  62 3.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41     9 response   wt -2.546923e-01 2.860002e-01  0  95 3.150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42    10 response   wt -8.621334e-02 1.158666e-01  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43    11 response   wt -8.621334e-02 1.158666e-01  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44    12 response   wt -6.505458e-04 3.315794e-03  0 180 4.070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45    13 response   wt -3.782430e-02 9.184598e-02  0 180 3.730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46    14 response   wt -2.085110e-02 5.870368e-02  0 180 3.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47    15 response   wt -2.277157e-10 3.866959e-09  0 205 5.250</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48    16 response   wt -1.632782e-11 3.223634e-10  0 215 5.424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49    17 response   wt -2.832600e-11 5.807088e-10  0 230 5.345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50    18 response   wt -8.515432e-01 8.227415e-01  1  66 2.200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51    19 response   wt -7.879409e-02 1.840977e-01  1  52 1.615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52    20 response   wt -8.861724e-02 1.767656e-01  1  65 1.835</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53    21 response   wt -5.952843e-01 9.374444e-01  0  97 2.465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54    22 response   wt -1.274388e-01 1.579215e-01  0 150 3.520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55    23 response   wt -3.058856e-01 2.816151e-01  0 150 3.435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56    24 response   wt -6.583631e-02 2.836171e-01  0 245 3.840</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57    25 response   wt -8.303109e-03 2.718630e-02  0 175 3.845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58    26 response   wt -1.610539e-01 2.839053e-01  1  66 1.935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59    27 response   wt -7.455609e-02 1.882778e-01  1  91 2.140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60    28 response   wt -3.200338e-05 2.157386e-04  1 113 1.513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61    29 response   wt -6.565758e-02 3.314830e-01  1 264 3.170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62    30 response   wt -5.330220e-02 2.398867e-01  1 175 2.770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63    31 response   wt -2.103001e+00 4.578801e+00  1 335 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64    32 response   wt -2.023983e+00 7.493504e-01  1 109 2.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    rowid     type term          dydx    std.error      conf.low     conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 response   hp  6.989229e-03 9.188426e-03 -1.101976e-02  2.499821e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 response   hp  1.640314e-02 1.340865e-02 -9.877337e-03  4.268362e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      3 response   hp  2.831769e-03 4.916395e-03 -6.804188e-03  1.246773e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      4 response   hp  1.933575e-03 1.842493e-03 -1.677646e-03  5.544795e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      5 response   hp  2.991347e-03 2.781261e-03 -2.459824e-03  8.442518e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      6 response   hp  1.475603e-04 2.544284e-04 -3.511103e-04  6.462309e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      7 response   hp  5.738829e-03 8.191035e-03 -1.031531e-02  2.179296e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      8 response   hp  2.110144e-04 3.884630e-04 -5.503591e-04  9.723879e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      9 response   hp  1.645791e-03 1.726980e-03 -1.739027e-03  5.030609e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    10 response   hp  3.807685e-04 5.148223e-04 -6.282648e-04  1.389802e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11    11 response   hp  3.807685e-04 5.148223e-04 -6.282648e-04  1.389802e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12    12 response   hp  8.758474e-07 6.572651e-06 -1.200631e-05  1.375801e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    13 response   hp  9.571749e-05 3.218446e-04 -5.350864e-04  7.265214e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14    14 response   hp  4.913415e-05 1.903042e-04 -3.238552e-04  4.221235e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15    15 response   hp -5.789952e-13 8.597919e-12 -1.743061e-11  1.627262e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16    16 response   hp -4.904969e-14 8.740137e-13 -1.762085e-12  1.663986e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17    17 response   hp -7.467144e-14 1.373822e-12 -2.767313e-12  2.617970e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18    18 response   hp  1.108683e-02 1.422135e-02 -1.678651e-02  3.896016e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19    19 response   hp  1.405293e-03 4.020638e-03 -6.475013e-03  9.285599e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20    20 response   hp  1.348054e-03 2.935489e-03 -4.405398e-03  7.101506e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21    21 response   hp  5.801587e-03 7.810194e-03 -9.506112e-03  2.110929e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22    22 response   hp  4.641522e-04 6.989948e-04 -9.058525e-04  1.834157e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23    23 response   hp  1.215176e-03 1.226520e-03 -1.188758e-03  3.619111e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24    24 response   hp  1.153078e-04 6.933458e-04 -1.243625e-03  1.474241e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25    25 response   hp  1.799896e-05 8.051093e-05 -1.397996e-04  1.757975e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26    26 response   hp  2.342925e-03 4.557330e-03 -6.589277e-03  1.127513e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27    27 response   hp  8.707316e-04 1.977080e-03 -3.004273e-03  4.745736e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28    28 response   hp  4.274703e-07 2.710374e-06 -4.884765e-06  5.739706e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29    29 response   hp  2.273419e-04 1.131595e-03 -1.990543e-03  2.445227e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30    30 response   hp  3.182868e-04 1.378430e-03 -2.383386e-03  3.019960e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31    31 response   hp  4.212583e-03 7.657185e-03 -1.079522e-02  1.922039e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32    32 response   hp  1.568764e-02 7.585714e-03  8.199095e-04  3.055536e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33     1 response   wt -8.271617e-01 1.279010e+00 -3.333976e+00  1.679652e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34     2 response   wt -2.253399e+00 1.360905e+00 -4.920724e+00  4.139262e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35     3 response   wt -2.655446e-01 5.253557e-01 -1.295223e+00  7.641338e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36     4 response   wt -3.382383e-01 3.505055e-01 -1.025217e+00  3.487398e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37     5 response   wt -8.302249e-01 6.823524e-01 -2.167611e+00  5.071613e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38     6 response   wt -3.141797e-02 5.517898e-02 -1.395668e-01  7.673084e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39     7 response   wt -2.279347e+00 2.474881e+00 -7.130024e+00  2.571331e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40     8 response   wt -2.819198e-02 5.701635e-02 -1.399420e-01  8.355801e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41     9 response   wt -2.546923e-01 2.860002e-01 -8.152424e-01  3.058577e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42    10 response   wt -8.621334e-02 1.158666e-01 -3.133078e-01  1.408811e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43    11 response   wt -8.621334e-02 1.158666e-01 -3.133078e-01  1.408811e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44    12 response   wt -6.505458e-04 3.315794e-03 -7.149383e-03  5.848291e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45    13 response   wt -3.782430e-02 9.184598e-02 -2.178391e-01  1.421905e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46    14 response   wt -2.085110e-02 5.870368e-02 -1.359082e-01  9.420600e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47    15 response   wt -2.277157e-10 3.866959e-09 -7.806816e-09  7.351385e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48    16 response   wt -1.632782e-11 3.223634e-10 -6.481484e-10  6.154928e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49    17 response   wt -2.832600e-11 5.807088e-10 -1.166494e-09  1.109842e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50    18 response   wt -8.515432e-01 8.227415e-01 -2.464087e+00  7.610005e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51    19 response   wt -7.879409e-02 1.840977e-01 -4.396189e-01  2.820307e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52    20 response   wt -8.861724e-02 1.767656e-01 -4.350714e-01  2.578369e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53    21 response   wt -5.952843e-01 9.374444e-01 -2.432642e+00  1.242073e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54    22 response   wt -1.274388e-01 1.579215e-01 -4.369592e-01  1.820817e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55    23 response   wt -3.058856e-01 2.816151e-01 -8.578410e-01  2.460699e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56    24 response   wt -6.583631e-02 2.836171e-01 -6.217157e-01  4.900430e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57    25 response   wt -8.303109e-03 2.718630e-02 -6.158728e-02  4.498106e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58    26 response   wt -1.610539e-01 2.839053e-01 -7.174980e-01  3.953903e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59    27 response   wt -7.455609e-02 1.882778e-01 -4.435737e-01  2.944616e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60    28 response   wt -3.200338e-05 2.157386e-04 -4.548432e-04  3.908365e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61    29 response   wt -6.565758e-02 3.314830e-01 -7.153523e-01  5.840372e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62    30 response   wt -5.330220e-02 2.398867e-01 -5.234714e-01  4.168670e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63    31 response   wt -2.103001e+00 4.578801e+00 -1.107729e+01  6.871285e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64    32 response   wt -2.023983e+00 7.493504e-01 -3.492683e+00 -5.552830e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    am  hp    wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 110 2.620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   1 110 2.875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   1  93 2.320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0 110 3.215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   0 175 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   0 105 3.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0 245 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   0  62 3.190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   0  95 3.150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  0 180 4.070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  0 180 3.730</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  0 180 3.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  0 205 5.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  0 215 5.424</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  0 230 5.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  1  66 2.200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  1  52 1.615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  1  65 1.835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  0  97 2.465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  0 150 3.520</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  0 150 3.435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  0 245 3.840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  0 175 3.845</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  1  66 1.935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  1  91 2.140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  1 113 1.513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29  1 264 3.170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30  1 175 2.770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  1 335 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  1 109 2.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33  1 110 2.620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34  1 110 2.875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35  1  93 2.320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36  0 110 3.215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37  0 175 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38  0 105 3.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39  0 245 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40  0  62 3.190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41  0  95 3.150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44  0 180 4.070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45  0 180 3.730</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46  0 180 3.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47  0 205 5.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48  0 215 5.424</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49  0 230 5.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50  1  66 2.200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51  1  52 1.615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52  1  65 1.835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53  0  97 2.465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54  0 150 3.520</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55  0 150 3.435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56  0 245 3.840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57  0 175 3.845</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58  1  66 1.935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59  1  91 2.140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60  1 113 1.513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61  1 264 3.170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62  1 175 2.770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63  1 335 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64  1 109 2.780</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
