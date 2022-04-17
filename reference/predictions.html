@@ -22,7 +22,7 @@ sections below."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9000</span>
       </span>
     </div>
 
@@ -73,6 +73,7 @@ sections below.</p>
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="cn">NULL</span>,
   variables <span class="op">=</span> <span class="cn">NULL</span>,
+  vcov <span class="op">=</span> <span class="cn">TRUE</span>,
   conf.level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
@@ -91,6 +92,17 @@ the original data used to fit the model.</p></dd>
 combinations of each of these variables. Factor levels are considered at
 each of their levels. Numeric variables variables are considered at Tukey's
 Five-Number Summaries. <code>NULL</code> uses the original data used to fit the model.</p></dd>
+<dt>vcov</dt>
+<dd><p>Variance-covariance matrix used to compute uncertainty estimates (e.g., for robust standard errors). Acceptable values are:</p><ul><li><p>TRUE: Default uncertainty estimates of the model object.</p></li>
+<li><p>FALSE: Omit uncertainty estimates.</p></li>
+<li><p>A string which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: ``"HC"<code>, </code>"HC0"`, `"HC1"`, `"HC2"`, `"HC3"`, `"HC4"`, `"HC4m"`, `"HC5"`. See `?sandwich::vcovHC`</p></li>
+<li><p>Heteroskedasticity and autocorrelation consistent: <code>"HAC"</code></p></li>
+<li><p>Other: <code>"NeweyWest"</code>, <code>"HerHAC"</code>, <code>"OPG"</code>. See the <code>sandwich</code> package documentation.</p></li>
+</ul></li>
+<li><p>A one-sided formula which indicates the name of cluster variables (e.g., <code>~unitid</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
+<li><p>A square covariance matrix</p></li>
+<li><p>A function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
+</ul></dd>
 <dt>conf.level</dt>
 <dd><p>The confidence level to use for the confidence interval.
 No interval is computed if <code>conf.int=NULL</code>.  Must be strictly greater than 0

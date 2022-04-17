@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9000</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get a named variance-covariance matrix from a model object (internal function)</h1>
-    <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/get_vcov.R" class="external-link"><code>R/get_vcov.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_MASS.R" class="external-link"><code>R/methods_MASS.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_aod.R" class="external-link"><code>R/methods_aod.R</code></a>, and 4 more</small>
+    <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/get_vcov.R" class="external-link"><code>R/get_vcov.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_scam.R" class="external-link"><code>R/methods_scam.R</code></a></small>
     <div class="hidden name"><code>get_vcov.Rd</code></div>
     </div>
 
@@ -62,25 +62,10 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="co"># S3 method for default</span>
-<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for polr</span>
-<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for glimML</span>
-<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for multinom</span>
-<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for crch</span>
-<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for selection</span>
-<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
+<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, vcov <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="co"># S3 method for scam</span>
-<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, vcov <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -96,6 +81,17 @@ model, depending on the range of supported arguments by each modeling
 package. See the "Model-Specific Arguments" section of the
 <code><a href="marginaleffects.html">?marginaleffects</a></code> documentation for a non-exhaustive list of available
 arguments.</p></dd>
+<dt>vcov</dt>
+<dd><p>Variance-covariance matrix used to compute uncertainty estimates (e.g., for robust standard errors). Acceptable values are:</p><ul><li><p>TRUE: Default uncertainty estimates of the model object.</p></li>
+<li><p>FALSE: Omit uncertainty estimates.</p></li>
+<li><p>A string which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: ``"HC"<code>, </code>"HC0"`, `"HC1"`, `"HC2"`, `"HC3"`, `"HC4"`, `"HC4m"`, `"HC5"`. See `?sandwich::vcovHC`</p></li>
+<li><p>Heteroskedasticity and autocorrelation consistent: <code>"HAC"</code></p></li>
+<li><p>Other: <code>"NeweyWest"</code>, <code>"HerHAC"</code>, <code>"OPG"</code>. See the <code>sandwich</code> package documentation.</p></li>
+</ul></li>
+<li><p>A one-sided formula which indicates the name of cluster variables (e.g., <code>~unitid</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
+<li><p>A square covariance matrix</p></li>
+<li><p>A function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
+</ul></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
