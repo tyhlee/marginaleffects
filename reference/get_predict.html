@@ -247,8 +247,12 @@
     <dl><dt>model</dt>
 <dd><p>Model object</p></dd>
 <dt>newdata</dt>
-<dd><p>A dataset over which to compute marginal effects. <code>NULL</code> uses
-the original data used to fit the model.</p></dd>
+<dd><p>A data frame over which to compute quantities of interest.</p><ul><li><p><code>NULL</code>: marginal effects for each observed value in the original dataset.</p></li>
+<li><p>The <code><a href="datagrid.html">datagrid()</a></code> function can be used to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid()</code>: marginal effect at the mean</p></li>
+<li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation for more.</p></li>
+</ul></li>
+</ul></dd>
 <dt>vcov</dt>
 <dd><p>Variance-covariance matrix used to compute uncertainty estimates (e.g., for robust standard errors). Acceptable values are:</p><ul><li><p>TRUE: Default uncertainty estimates of the model object.</p></li>
 <li><p>FALSE: Omit uncertainty estimates.</p></li>
