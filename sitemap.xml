@@ -13,9 +13,6 @@
     <loc>/articles/brms.html</loc>
   </url>
   <url>
-    <loc>/articles/case_studies.html</loc>
-  </url>
-  <url>
     <loc>/articles/gam.html</loc>
   </url>
   <url>
@@ -37,6 +34,12 @@
     <loc>/articles/mfx04_marginalmeans.html</loc>
   </url>
   <url>
+    <loc>/articles/mfx05_case_studies.html</loc>
+  </url>
+  <url>
+    <loc>/articles/mfx06_supported_models.html</loc>
+  </url>
+  <url>
     <loc>/articles/modelsummary.html</loc>
   </url>
   <url>
@@ -44,9 +47,6 @@
   </url>
   <url>
     <loc>/articles/sandwich.html</loc>
-  </url>
-  <url>
-    <loc>/articles/supported_models.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
