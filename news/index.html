@@ -65,10 +65,21 @@
 </ul><p>Misc:</p>
 <ul><li>
 <code>by</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> computes group-average marginal effects and comparisons.</li>
+<li>Robust standard errors with the <code>vcov</code> argument
+<ul><li>
+<code>sandwich</code> package shortcuts: <code>vcov = "HC3"</code>, <code>"HC2"</code>, <code>"NeweyWest"</code>, and more.</li>
+<li>Mixed effects models: <code>vcov = "satterthwaite"</code> or <code>"kenward-roger"</code>
+</li>
+<li>One-sided formula to clusters: <code>vcov = ~cluster_variable</code>
+</li>
+<li>Variance-covariance matrix</li>
+<li>Function which returns a named squared matrix</li>
+</ul></li>
 <li>
 <code>marginaleffects</code> and <code>comparisons</code> now report confidence intervals by default.</li>
 <li>New dependency on the <code>data.table</code> yields substantial performance improvements.</li>
 <li>New vignette on alternative software packages.</li>
+<li>New vignette on performance.</li>
 <li>Bug fixes and performance improvements</li>
 </ul></div>
     <div class="section level2">
