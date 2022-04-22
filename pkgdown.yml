@@ -2,18 +2,18 @@ pandoc: 2.7.3
 pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
-  1_predictions: 1_predictions.html
-  2_mfx: 2_mfx.html
-  3_contrasts: 3_contrasts.html
-  4_marginalmeans: 4_marginalmeans.html
   alternative_software: alternative_software.html
   brms: brms.html
   case_studies: case_studies.html
   gam: gam.html
   lme4: lme4.html
+  mfx01_predictions: mfx01_predictions.html
+  mfx02_mfx: mfx02_mfx.html
+  mfx03_contrasts: mfx03_contrasts.html
+  mfx04_marginalmeans: mfx04_marginalmeans.html
   modelsummary: modelsummary.html
   performance: performance.html
   sandwich: sandwich.html
   supported_models: supported_models.html
-last_built: 2022-04-22T21:34Z
+last_built: 2022-04-22T22:55Z
 
