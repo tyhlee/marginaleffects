@@ -7,19 +7,25 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/articles/alternative_software.html</loc>
+    <loc>/articles/1_predictions.html</loc>
   </url>
   <url>
-    <loc>/articles/benchmark.html</loc>
+    <loc>/articles/2_mfx.html</loc>
+  </url>
+  <url>
+    <loc>/articles/3_contrasts.html</loc>
+  </url>
+  <url>
+    <loc>/articles/4_marginalmeans.html</loc>
+  </url>
+  <url>
+    <loc>/articles/alternative_software.html</loc>
   </url>
   <url>
     <loc>/articles/brms.html</loc>
   </url>
   <url>
     <loc>/articles/case_studies.html</loc>
-  </url>
-  <url>
-    <loc>/articles/contrasts.html</loc>
   </url>
   <url>
     <loc>/articles/gam.html</loc>
@@ -31,16 +37,13 @@
     <loc>/articles/lme4.html</loc>
   </url>
   <url>
-    <loc>/articles/marginalmeans.html</loc>
-  </url>
-  <url>
-    <loc>/articles/mfx.html</loc>
+    <loc>/articles/modelsummary.html</loc>
   </url>
   <url>
     <loc>/articles/performance.html</loc>
   </url>
   <url>
-    <loc>/articles/predictions.html</loc>
+    <loc>/articles/sandwich.html</loc>
   </url>
   <url>
     <loc>/articles/supported_models.html</loc>

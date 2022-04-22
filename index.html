@@ -86,10 +86,10 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#getting-started" class="external-link">Getting started</a></li>
 <li>Vignettes:
 <ul>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">Adjusted predictions</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx.html" class="external-link">Marginal effects</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">Contrasts</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">Marginal means</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/1_predictions.html" class="external-link">Adjusted predictions</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/2_mfx.html" class="external-link">Marginal effects</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/3_contrasts.html" class="external-link">Contrasts</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/4_marginalmeans.html" class="external-link">Marginal means</a></li>
 </ul>
 </li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html" class="external-link">60 supported models</a></li>
@@ -99,6 +99,8 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html" class="external-link">Bayesian analyses with <code>brms</code></a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/lme4.html" class="external-link">Mixed effects models</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gam.html" class="external-link">Generalized Additive Models</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/modelsummary.html" class="external-link">Tables and plots</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/sandwich.html" class="external-link">Robust standard errors and more</a></li>
 </ul>
 </li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html" class="external-link">Alternative software</a></li>
@@ -110,16 +112,7 @@
 <p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot four principal quantities of interest for <a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html" class="external-link">60 different types of models:</a></p>
 <ul>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx.html" class="external-link"><em>Marginal Effect</em></a>
-<ul>
-<li>A partial derivative (slope) of the regression equation with respect to a regressor of interest.</li>
-<li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginaleffects.html" class="external-link"><code>marginaleffects(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot.marginaleffects.html" class="external-link"><code>plot(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot_cme.html" class="external-link"><code>plot_cme()</code></a>
-</li>
-</ul>
-</li>
-<li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link"><em>Adjusted Prediction</em></a>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/1_predictions.html" class="external-link"><em>Adjusted Prediction</em></a>
 <ul>
 <li>The outcome predicted by a model for some combination of the regressors’ values, such as their observed values, their means, or factor levels (a.k.a. “reference grid”).</li>
 <li>
@@ -128,14 +121,23 @@
 </ul>
 </li>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link"><em>Contrast</em></a>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/2_mfx.html" class="external-link"><em>Marginal Effect</em></a>
+<ul>
+<li>A partial derivative (slope) of the regression equation with respect to a regressor of interest.</li>
+<li>
+<a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginaleffects.html" class="external-link"><code>marginaleffects(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot.marginaleffects.html" class="external-link"><code>plot(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot_cme.html" class="external-link"><code>plot_cme()</code></a>
+</li>
+</ul>
+</li>
+<li>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/3_contrasts.html" class="external-link"><em>Contrast</em></a>
 <ul>
 <li>The difference between two adjusted predictions, calculated for meaningfully different regressor values (e.g., College graduates vs. Others).</li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/reference/comparisons.html" class="external-link"><code>comparisons()</code></a></li>
 </ul>
 </li>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link"><em>Marginal Mean</em></a>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/4_marginalmeans.html" class="external-link"><em>Marginal Mean</em></a>
 <ul>
 <li>Adjusted predictions of a model, averaged across a “reference grid” of categorical predictors.</li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginalmeans.html" class="external-link"><code>marginalmeans()</code></a></li>
@@ -308,13 +310,7 @@
 <div class="section level4">
 <h4 id="more">More<a class="anchor" aria-label="anchor" href="#more"></a>
 </h4>
-<p>There is <em>much</em> more you can do with <code>marginaleffects</code>. Please read the other articles on this website to learn how to report marginal effects and means in <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">nice tables with the <code>modelsummary</code> package</a>, how to define your own prediction “grid”, and more:</p>
-<ul>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx.html" class="external-link"><em>Marginal Effect</em> (Vignette)</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link"><em>Adjusted Prediction</em> (Vignette)</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link"><em>Contrast</em> (Vignette)</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link"><em>Marginal Mean</em> (Vignette)</a></li>
-</ul>
+<p>There is <em>much</em> more you can do with <code>marginaleffects</code>. Return to the <a href="https://vincentarelbundock.github.io/marginaleffects/#getting-started" class="external-link">Table of Contents</a> to read the vignettes, learn how to report marginal effects and means in <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">nice tables with the <code>modelsummary</code> package</a>, how to define your own prediction “grid”, and much more.</p>
 </div>
 </div>
 </div>
