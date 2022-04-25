@@ -75,7 +75,6 @@
 <div class="page-header"><h1 id="the-marginaleffects-package-for-r-">The <code>marginaleffects</code> package for <code>R</code> <img src="https://user-images.githubusercontent.com/987057/134899484-e3392510-2e94-4c39-9830-53356fa5feed.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#the-marginaleffects-package-for-r-"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p><code>marginaleffects</code> is an R package to compute and plot adjusted predictions, marginal effects, contrasts, and marginal means for a <em>wide</em> variety of models.</p>
 <div class="section level2">
 <h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
@@ -84,8 +83,7 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#what" class="external-link">What?</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#why" class="external-link">Why?</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#getting-started" class="external-link">Getting started</a></li>
-<li>Vignettes:
-<ul>
+<li>Vignettes:<ul>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link">Marginal effects</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link">Contrasts</a></li>
@@ -94,8 +92,7 @@
 </li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">60 supported models</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/performance.html" class="external-link">Performance tips</a></li>
-<li>Case studies:
-<ul>
+<li>Case studies:<ul>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html" class="external-link">Bayesian analyses with <code>brms</code></a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/lme4.html" class="external-link">Mixed effects models</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gam.html" class="external-link">Generalized Additive Models</a></li>
@@ -112,8 +109,7 @@
 <p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot four principal quantities of interest for <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">60 different types of models:</a></p>
 <ul>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link"><em>Adjusted Prediction</em></a>
-<ul>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link"><em>Adjusted Prediction</em></a><ul>
 <li>The outcome predicted by a model for some combination of the regressors’ values, such as their observed values, their means, or factor levels (a.k.a. “reference grid”).</li>
 <li>
 <a href="https://vincentarelbundock.github.io/marginaleffects/reference/predictions.html" class="external-link"><code>predictions(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/predictions.html" class="external-link"><code>plot_cap()</code></a>
@@ -121,8 +117,7 @@
 </ul>
 </li>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link"><em>Marginal Effect</em></a>
-<ul>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link"><em>Marginal Effect</em></a><ul>
 <li>A partial derivative (slope) of the regression equation with respect to a regressor of interest.</li>
 <li>
 <a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginaleffects.html" class="external-link"><code>marginaleffects(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot.marginaleffects.html" class="external-link"><code>plot(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot_cme.html" class="external-link"><code>plot_cme()</code></a>
@@ -130,15 +125,13 @@
 </ul>
 </li>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link"><em>Contrast</em></a>
-<ul>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link"><em>Contrast</em></a><ul>
 <li>The difference between two adjusted predictions, calculated for meaningfully different regressor values (e.g., College graduates vs. Others).</li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/reference/comparisons.html" class="external-link"><code>comparisons()</code></a></li>
 </ul>
 </li>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link"><em>Marginal Mean</em></a>
-<ul>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link"><em>Marginal Mean</em></a><ul>
 <li>Adjusted predictions of a model, averaged across a “reference grid” of categorical predictors.</li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginalmeans.html" class="external-link"><code>marginalmeans()</code></a></li>
 </ul>
@@ -182,6 +175,8 @@
 <ul>
 <li>Functions to estimate contrasts and marginal means are considerably less flexible than <code>emmeans</code>.</li>
 <li>Simulation-based inference is not supported.</li>
+<li>Lack of multiplicity adjustements.</li>
+<li>Limited support for custom contrasts (but see the <code><a href="reference/comparisons.html">comparisons()</a></code> function documentation).</li>
 <li>Newer package with a smaller user base.</li>
 </ul>
 </div>
@@ -365,7 +360,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
