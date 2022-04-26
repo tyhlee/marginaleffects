@@ -57,15 +57,15 @@
 <h2 class="page-header" data-toc-text="0.4.1.9000" id="marginaleffects-0419000">marginaleffects 0.4.1.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0419000"></a></h2>
 <p>Breaking change:</p>
 <ul><li>
-<code>type</code> no longer accepts a character vector. Must be a single string.</li></ul><p>Supported packages:</p>
+<code>type</code> no longer accepts a character vector. Must be a single string.</li></ul><p>New supported packages and models:</p>
 <ul><li><code>mhurdle</code></li>
 <li><code>tobit1</code></li>
 <li><code>glmmTMB</code></li>
-</ul><p>Misc:</p>
+</ul><p>New features:</p>
 <ul><li>
 <code>by</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> computes group-average marginal effects and comparisons.</li>
 <li>
-<code>by</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> to compute mean, median, or arbitrary summaries of unit-level marginal effects.</li>
+<code>FUN</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> to compute mean, median, or arbitrary summaries of unit-level marginal effects.</li>
 <li>Robust standard errors with the <code>vcov</code> argument<ul><li>
 <code>sandwich</code> package shortcuts: <code>vcov = "HC3"</code>, <code>"HC2"</code>, <code>"NeweyWest"</code>, and more.</li>
 <li>Mixed effects models: <code>vcov = "satterthwaite"</code> or <code>"kenward-roger"</code>
@@ -77,14 +77,16 @@
 </ul></li>
 <li>
 <code>marginaleffects</code> and <code>comparisons</code> now report confidence intervals by default.</li>
-<li>New dependency on the <code>data.table</code> yields substantial performance improvements.</li>
-<li>New vignette on alternative software packages.</li>
-<li>New vignette on performance.</li>
+<li>New dependency on the <code>data.table</code> package yields substantial performance improvements.</li>
 <li>Bug fixes and performance improvements</li>
+</ul><p>New vignettes</p>
+<ul><li>Alternative software packages.</li>
+<li>Robust standard errors (and more)</li>
+<li>Performance.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.1" id="marginaleffects-041">marginaleffects 0.4.1<small>2022-03-27</small><a class="anchor" aria-label="anchor" href="#marginaleffects-041"></a></h2>
-<p>Supported models:</p>
+<p>New supported packages and models:</p>
 <ul><li><code><a href="https://rdrr.io/r/stats/loess.html" class="external-link">stats::loess</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/sampleSelection/man/selection.html" class="external-link">sampleSelection::selection</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/sampleSelection/man/selection.html" class="external-link">sampleSelection::heckit</a></code></li>
@@ -111,7 +113,7 @@
 <ul><li>Bug fixes</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.3" id="marginaleffects-033">marginaleffects 0.3.3<small>2022-01-26</small><a class="anchor" aria-label="anchor" href="#marginaleffects-033"></a></h2>
-<p>Supported models:</p>
+<p>New supported models:</p>
 <ul><li><code><a href="https://rdrr.io/pkg/mclogit/man/mclogit.html" class="external-link">mclogit::mclogit</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/robust/man/lmRob.html" class="external-link">robust::lmRob</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/robustlmm/man/rlmer.html" class="external-link">robustlmm::rlmer</a></code></li>
@@ -149,7 +151,7 @@
 <code>predictions</code> returns predictions for every observation in the original dataset instead of <code>newdata=datagrid()</code>.</li>
 <li>
 <code>marginalmeans</code> objects have new column names, as do the corresponding <code>tidy</code> and <code>summary</code> outputs.</li>
-</ul><p>Support for new models and packages:</p>
+</ul><p>New supported packages and models:</p>
 <ul><li><code><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brms::brm</a></code></li>
 <li><code>rstanarm::stanglm</code></li>
 <li><code><a href="https://rdrr.io/pkg/brglm2/man/brmultinom.html" class="external-link">brglm2::brmultinom</a></code></li>
@@ -180,15 +182,11 @@
 <h2 class="page-header" data-toc-text="0.2.0" id="marginaleffects-020">marginaleffects 0.2.0<small>2021-10-18</small><a class="anchor" aria-label="anchor" href="#marginaleffects-020"></a></h2>
 <p>Breaking change:</p>
 <ul><li>
-<code>data</code> argument becomes <code>newdata</code> in all functions.</li></ul><p><code>marginaleffects</code>:</p>
-<ul><li>Support <code>lme4:glmer.nb</code>
-</li>
-<li>Support <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam</a></code>
-</li>
-<li>Support <code><a href="https://rdrr.io/pkg/ordinal/man/clm.html" class="external-link">ordinal::clm</a></code>
-</li>
-<li>Support <code>mgcv</code>
-</li>
+<code>data</code> argument becomes <code>newdata</code> in all functions.</li></ul><p>New supported packages and models:</p>
+<ul><li><code>lme4:glmer.nb</code></li>
+<li><code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/ordinal/man/clm.html" class="external-link">ordinal::clm</a></code></li>
+<li><code>mgcv</code></li>
 </ul><p><code>marginalmeans</code>:</p>
 <ul><li>New <code>variables_grid</code> argument</li></ul><p><code>predictions</code>:</p>
 <ul><li>Support <code>mgcv</code>
