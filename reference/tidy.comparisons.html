@@ -62,7 +62,7 @@ unit-level contrasts computed by the <code>predictions</code> function.</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for comparisons</span>
-<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, FUN <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,6 +77,10 @@ unit-level contrasts computed by the <code>predictions</code> function.</p>
 to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
 <dt>by</dt>
 <dd><p>Character vector of variable names over which to compute group-averaged contrasts.</p></dd>
+<dt>FUN</dt>
+<dd><p>function used to summarize unit-level marginal effects. <code>NULL</code>
+(default) computes the median of the posterior distribution in bayesian
+models and the average marginal effects in all other models.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
 compute adjusted predictions. These arguments are particularly useful for
