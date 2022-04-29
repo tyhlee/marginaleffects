@@ -164,20 +164,20 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu">marginaleffects</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx    std.error     conf.low    conf.high am</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp 0.0069892293 0.0058823494 -0.004539964 0.0185184223  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp 0.0164031413 0.0133879375 -0.009836734 0.0426430165  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp 0.0028317695 0.0037551909 -0.004528270 0.0101918085  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0019335745 0.0024498352 -0.002868014 0.0067351633  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0029913468 0.0033764304 -0.003626335 0.0096090288  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001475603 0.0003451131 -0.000528849 0.0008239696  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 105 3.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx    std.error     conf.low    conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp 0.0069892293 0.0058823494 -0.004539964 0.0185184223</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp 0.0164031413 0.0133879375 -0.009836734 0.0426430165</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp 0.0028317695 0.0037551909 -0.004528270 0.0101918085</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0019335745 0.0024498352 -0.002868014 0.0067351633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0029913468 0.0033764304 -0.003626335 0.0096090288</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001475603 0.0003451131 -0.000528849 0.0008239696</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   statistic   p.value am  hp    wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.1881697 0.2347666  1 110 2.620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.2252179 0.2204931  1 110 2.875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.7540947 0.4507924  1  93 2.320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.7892672 0.4299559  0 110 3.215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.8859495 0.3756448  0 175 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.4275708 0.6689636  0 105 3.460</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Average Marginal Effect (AME)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -201,27 +201,27 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Marginal Effect at the Mean (MEM)</span></span>
 <span class="r-in"><span class="fu">marginaleffects</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error     conf.low  conf.high       hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.008523328 0.007847339 -0.006857175 0.02390383 146.6875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response   wt -1.746094406 1.587749850 -4.858026928 1.36583812 146.6875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 3.21725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error     conf.low  conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.008523328 0.007847339 -0.006857175 0.02390383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response   wt -1.746094406 1.587749850 -4.858026928 1.36583812</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   statistic   p.value       hp      wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1.086142 0.2774160 146.6875 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -1.099729 0.2714503 146.6875 3.21725</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Marginal Effect at User-Specified Values</span></span>
 <span class="r-in"><span class="co"># Variables not explicitly included in `datagrid()` are held at their means</span></span>
 <span class="r-in"><span class="fu">marginaleffects</span><span class="op">(</span><span class="va">mod</span>,</span>
 <span class="r-in">                newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error     conf.low   conf.high      wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.001165863 0.001753306 -0.002270554 0.004602281 3.21725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp  0.001894129 0.002415076 -0.002839334 0.006627591 3.21725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1 response   wt -0.194911082 0.307492808 -0.797585912 0.407763748 3.21725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     2 response   wt -0.331939457 0.436422720 -1.187312269 0.523433356 3.21725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error     conf.low   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.001165863 0.001753306 -0.002270554 0.004602281</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp  0.001894129 0.002415076 -0.002839334 0.006627591</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1 response   wt -0.194911082 0.307492808 -0.797585912 0.407763748</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     2 response   wt -0.331939457 0.436422720 -1.187312269 0.523433356</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    statistic   p.value      wt  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.6649514 0.5060816 3.21725 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.7842934 0.4328679 3.21725 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.6338720 0.5261644 3.21725 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.7605916 0.4469010 3.21725 110</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Group-Average Marginal Effects (G-AME)</span></span>
 <span class="r-in"><span class="co"># Calculate marginal effects for each observation, and then take the average</span></span>
@@ -254,13 +254,13 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0011898154 0.0017796204 -0.0022981765 0.0046778073</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0001453976 0.0003409128 -0.0005227791 0.0008135744</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001200600 0.0002909609 -0.0004502129 0.0006903328</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid_counterfactual    wt  hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    1 2.620 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    2 2.875 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    3 2.320 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    4 3.215 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                    5 3.440 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                    6 3.460 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid_counterfactual statistic   p.value    wt  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    1 1.2047276 0.2283085 2.620 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    2 1.3104012 0.1900602 2.875 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    3 0.7103759 0.4774710 2.320 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    4 0.6685782 0.5037646 3.215 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                    5 0.4264951 0.6697471 3.440 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                    6 0.4126328 0.6798757 3.460 100</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Heteroskedasticity robust standard errors</span></span>
 <span class="r-in"><span class="fu">marginaleffects</span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="fu">sandwich</span><span class="fu">::</span><span class="fu"><a href="https://sandwich.R-Forge.R-project.org//reference/vcovHC.html" class="external-link">vcovHC</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span>
@@ -329,71 +329,71 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 62    30 response   wt -5.330220e-02 2.398867e-01 -5.234714e-01  4.168670e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 63    31 response   wt -2.103001e+00 4.578801e+00 -1.107729e+01  6.871285e+00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 64    32 response   wt -2.023983e+00 7.493504e-01 -3.492683e+00 -5.552830e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    am  hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0 245 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   0  62 3.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   0  95 3.150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  0 180 4.070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  0 180 3.730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  0 180 3.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  0 205 5.250</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16  0 215 5.424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  0 230 5.345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18  1  66 2.200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  1  52 1.615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  1  65 1.835</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21  0  97 2.465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22  0 150 3.520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  0 150 3.435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24  0 245 3.840</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25  0 175 3.845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26  1  66 1.935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27  1  91 2.140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28  1 113 1.513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29  1 264 3.170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30  1 175 2.770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31  1 335 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32  1 109 2.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38  0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39  0 245 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40  0  62 3.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41  0  95 3.150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44  0 180 4.070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45  0 180 3.730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46  0 180 3.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47  0 205 5.250</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48  0 215 5.424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49  0 230 5.345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50  1  66 2.200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51  1  52 1.615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52  1  65 1.835</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53  0  97 2.465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54  0 150 3.520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55  0 150 3.435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56  0 245 3.840</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57  0 175 3.845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58  1  66 1.935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59  1  91 2.140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60  1 113 1.513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61  1 264 3.170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62  1 175 2.770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63  1 335 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64  1 109 2.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      statistic     p.value am  hp    wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.76065574 0.446862719  1 110 2.620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   1.22332500 0.221206968  1 110 2.875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.57598492 0.564625374  1  93 2.320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   1.04943368 0.293978562  0 110 3.215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   1.07553627 0.282134701  0 175 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   0.57996779 0.561936337  0 105 3.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0.70062314 0.483538235  0 245 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   0.54320334 0.586989810  0  62 3.190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   0.95298798 0.340596161  0  95 3.150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  0.73961140 0.459535821  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  0.73961140 0.459535821  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  0.13325635 0.893990648  0 180 4.070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  0.29740278 0.766159023  0 180 3.730</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  0.25818744 0.796262253  0 180 3.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 -0.06734132 0.946309985  0 205 5.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 -0.05612005 0.955246171  0 215 5.424</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 -0.05435307 0.956653870  0 230 5.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  0.77959025 0.435632097  1  66 2.200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  0.34951995 0.726698998  1  52 1.615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  0.45922658 0.646071464  1  65 1.835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  0.74282238 0.457589224  0  97 2.465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  0.66402809 0.506672335  0 150 3.520</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  0.99075138 0.321806995  0 150 3.435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  0.16630632 0.867915895  0 245 3.840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  0.22355918 0.823100331  0 175 3.845</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  0.51410049 0.607181735  1  66 1.935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  0.44041302 0.659637997  1  91 2.140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  0.15771634 0.874680323  1 113 1.513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29  0.20090398 0.840773653  1 264 3.170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30  0.23090532 0.817388357  1 175 2.770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  0.55014770 0.582218070  1 335 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  2.06804998 0.038635324  1 109 2.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33 -0.64672021 0.517813039  1 110 2.620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34 -1.65580892 0.097760521  1 110 2.875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35 -0.50545669 0.613238113  1  93 2.320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36 -0.96500154 0.334544038  0 110 3.215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37 -1.21670979 0.223714652  0 175 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38 -0.56938289 0.569096325  0 105 3.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39 -0.92099249 0.357054349  0 245 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40 -0.49445432 0.620985361  0  62 3.190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 -0.89053201 0.373180290  0  95 3.150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 -0.74407388 0.456831778  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43 -0.74407388 0.456831778  0 123 3.440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44 -0.19619609 0.844456688  0 180 4.070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45 -0.41182317 0.680469037  0 180 3.730</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46 -0.35519236 0.722445488  0 180 3.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47 -0.05888753 0.953041687  0 205 5.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48 -0.05065035 0.959604139  0 215 5.424</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49 -0.04877832 0.961095962  0 230 5.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50 -1.03500699 0.300665646  1  66 2.200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51 -0.42800152 0.668650014  1  52 1.615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52 -0.50132636 0.616141460  1  65 1.835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53 -0.63500761 0.525423454  0  97 2.465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54 -0.80697550 0.419680598  0 150 3.520</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55 -1.08618312 0.277397984  0 150 3.435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56 -0.23213096 0.816436301  0 245 3.840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57 -0.30541519 0.760049951  0 175 3.845</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58 -0.56728027 0.570523780  1  66 1.935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59 -0.39598986 0.692112511  1  91 2.140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60 -0.14834335 0.882071805  1 113 1.513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61 -0.19807223 0.842988550  1 264 3.170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62 -0.22219744 0.824160185  1 175 2.770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63 -0.45929065 0.646025459  1 335 3.570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64 -2.70098315 0.006913484  1 109 2.780</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
