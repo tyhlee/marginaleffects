@@ -83,6 +83,7 @@ sections below, and in the vignette on the <code>marginaleffects</code> website.
   contrast_factor <span class="op">=</span> <span class="st">"reference"</span>,
   contrast_numeric <span class="op">=</span> <span class="fl">1</span>,
   interaction <span class="op">=</span> <span class="cn">FALSE</span>,
+  eps <span class="op">=</span> <span class="fl">1e-04</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -139,6 +140,11 @@ to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
 <dd><p>boolean</p><ul><li><p>FALSE: Contrasts represent the change in adjusted predictions when one predictor changes and all other variables are held constant.</p></li>
 <li><p>TRUE: Contrasts represent the changes in adjusted predictions when several predictors are manipulated simultaneously. When <code>interaction=TRUE</code>, the <code>newdata</code> argument must either be <code>NULL</code> or be a 1-row data frame, otherwise contrast interactions could be too costly to compute.</p></li>
 </ul></dd>
+<dt>eps</dt>
+<dd><p>A numeric value specifying the “step” to use when calculating
+numerical derivatives. See the Details section below. Note
+that the marginal effects computed for certain models can be especially
+sensitive to the choice of step value (e.g., Bayesian mixed effects).</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
 compute adjusted predictions. These arguments are particularly useful for
