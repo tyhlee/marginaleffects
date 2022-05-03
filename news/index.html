@@ -58,7 +58,8 @@
 <p>Breaking change:</p>
 <ul><li>
 <code>type</code> no longer accepts a character vector. Must be a single string.</li></ul><p>New supported packages and models:</p>
-<ul><li><code>mhurdle</code></li>
+<ul><li><code>mlogit</code></li>
+<li><code>mhurdle</code></li>
 <li><code>tobit1</code></li>
 <li><code>glmmTMB</code></li>
 </ul><p>New features:</p>
@@ -68,7 +69,8 @@
 <code>by</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> computes group-average marginal effects and comparisons.</li>
 <li>
 <code>FUN</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> to compute mean, median, or arbitrary summaries of unit-level marginal effects.</li>
-<li>Robust standard errors with the <code>vcov</code> argument<ul><li>
+<li>The <code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function accepts a named list to specify variable-specific contrast types.</li>
+<li>Robust standard errors with the <code>vcov</code> argument (requires {insight} &gt; 0.17.0)<ul><li>
 <code>sandwich</code> package shortcuts: <code>vcov = "HC3"</code>, <code>"HC2"</code>, <code>"NeweyWest"</code>, and more.</li>
 <li>Mixed effects models: <code>vcov = "satterthwaite"</code> or <code>"kenward-roger"</code>
 </li>
@@ -125,7 +127,7 @@
 <code>fixest</code> confidence intervals in <code>predictions</code>
 </li>
 </ul><p>Misc:</p>
-<ul><li>Support <code>modelbased::visualisation_matrix</code> in <code>newdata</code> without having to specify <code>x</code> explicitly.</li>
+<ul><li>Support <code><a href="https://easystats.github.io/modelbased/reference/visualisation_matrix.html" class="external-link">modelbased::visualisation_matrix</a></code> in <code>newdata</code> without having to specify <code>x</code> explicitly.</li>
 <li>
 <code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> and <code><a href="../reference/summary.predictions.html">summary.predictions()</a></code> methods.</li>
 <li>Documentation improvements.</li>
