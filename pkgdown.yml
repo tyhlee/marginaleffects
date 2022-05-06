@@ -12,9 +12,10 @@ articles:
   mfx04_marginalmeans: mfx04_marginalmeans.html
   mfx05_case_studies: mfx05_case_studies.html
   mfx06_supported_models: mfx06_supported_models.html
+  mlogit: mlogit.html
   modelsummary: modelsummary.html
   performance: performance.html
   sandwich: sandwich.html
   technical_notes: technical_notes.html
-last_built: 2022-05-05T02:30Z
+last_built: 2022-05-06T14:30Z
 

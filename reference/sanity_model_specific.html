@@ -50,7 +50,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Method to raise model-specific warnings and errors</h1>
-    <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/sanity_model.R" class="external-link"><code>R/sanity_model.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_nnet.R" class="external-link"><code>R/methods_nnet.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_brms.R" class="external-link"><code>R/methods_brms.R</code></a>, and 3 more</small>
+    <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/sanity_model.R" class="external-link"><code>R/sanity_model.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_nnet.R" class="external-link"><code>R/methods_nnet.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_brms.R" class="external-link"><code>R/methods_brms.R</code></a>, and 4 more</small>
     <div class="hidden name"><code>sanity_model_specific.Rd</code></div>
     </div>
 
@@ -73,6 +73,9 @@
 <span class="co"># S3 method for mblogit</span>
 <span class="fu">sanity_model_specific</span><span class="op">(</span><span class="va">model</span>, calling_function <span class="op">=</span> <span class="st">"marginaleffects"</span>, <span class="va">...</span><span class="op">)</span>
 
+<span class="co"># S3 method for mlogit</span>
+<span class="fu">sanity_model_specific</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span>
+
 <span class="co"># S3 method for plm</span>
 <span class="fu">sanity_model_specific</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span>
 
@@ -93,6 +96,13 @@ model, depending on the range of supported arguments by each modeling
 package. See the "Model-Specific Arguments" section of the
 <code><a href="marginaleffects.html">?marginaleffects</a></code> documentation for a non-exhaustive list of available
 arguments.</p></dd>
+<dt>newdata</dt>
+<dd><p>A data frame over which to compute quantities of interest.</p><ul><li><p><code>NULL</code>: marginal effects for each observed value in the original dataset.</p></li>
+<li><p>The <code><a href="datagrid.html">datagrid()</a></code> function can be used to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid()</code>: marginal effect at the mean</p></li>
+<li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation for more.</p></li>
+</ul></li>
+</ul></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
