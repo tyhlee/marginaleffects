@@ -73,7 +73,8 @@ interactions, where the values of marginal effects depend on the values of
   vcov <span class="op">=</span> <span class="cn">NULL</span>,
   conf.int <span class="op">=</span> <span class="cn">TRUE</span>,
   conf.level <span class="op">=</span> <span class="fl">0.95</span>,
-  draw <span class="op">=</span> <span class="cn">TRUE</span>
+  draw <span class="op">=</span> <span class="cn">TRUE</span>,
+  <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -110,6 +111,15 @@ differ based on the model type, but will typically be a string such as:
 to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
 <dt>draw</dt>
 <dd><p><code>TRUE</code> returns a <code>ggplot2</code> plot. <code>FALSE</code> returns a <code>data.frame</code> of the underlying data.</p></dd>
+<dt>...</dt>
+<dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
+compute adjusted predictions. These arguments are particularly useful for
+mixed-effects or bayesian models (see the online vignettes on the
+<code>marginaleffects</code> website). Available arguments can vary from model to
+model, depending on the range of supported arguments by each modeling
+package. See the "Model-Specific Arguments" section of the
+<code><a href="marginaleffects.html">?marginaleffects</a></code> documentation for a non-exhaustive list of available
+arguments.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
