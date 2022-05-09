@@ -117,19 +117,19 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># The output only has 2 rows, and all the variables except `hp` are at their</span></span>
 <span class="r-in"><span class="co"># mean or mode.</span></span>
 <span class="r-in"><span class="fu">datagrid</span><span class="op">(</span>newdata <span class="op">=</span> <span class="va">mtcars</span>, hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        mpg    cyl     disp     drat      wt     qsec     vs      am   gear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 20.09062 6.1875 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 20.09062 6.1875 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     carb  hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.8125 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2.8125 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         mpg    cyl     disp     drat      wt     qsec     vs      am   gear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 20.09062 6.1875 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2: 20.09062 6.1875 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      carb  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 2.8125 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2: 2.8125 110</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># We get the same result by feeding a model instead of a data.frame</span></span>
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">datagrid</span><span class="op">(</span>model <span class="op">=</span> <span class="va">mod</span>, hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2: 110</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Use in `marginaleffects` to compute "Typical Marginal Effects". When used</span></span>
 <span class="r-in"><span class="co"># in `marginaleffects()` or `predictions()` we do not need to specify the</span></span>
