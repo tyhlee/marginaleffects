@@ -62,7 +62,7 @@ unit-level contrasts computed by the <code>predictions</code> function.</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for comparisons</span>
-<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, FUN <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,10 +77,6 @@ unit-level contrasts computed by the <code>predictions</code> function.</p>
 to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
 <dt>by</dt>
 <dd><p>Character vector of variable names over which to compute group-averaged contrasts.</p></dd>
-<dt>FUN</dt>
-<dd><p>function used to summarize unit-level contrasts (e.g., <code>mean</code> or
-<code>median</code>). The default value <code>NULL</code> uses the <code>mean</code> function. See Details
-below.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
 compute adjusted predictions. These arguments are particularly useful for
@@ -98,20 +94,15 @@ arguments.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>In frequentist models, the <code>FUN</code> function is applied to the unit-level
-marginal effects. If <code>FUN</code> is the mean function (or <code>NULL</code> default), this
-yields an "Average Marginal Effect". If <code>FUN</code> is the median function, this
-yields a "Median Marginal Effect".</p>
-<p>To compute standard errors around those quantities, we begin by applying the
-<code>FUN</code> function to each column of the Jacobian. When <code>FUN</code> is the mean, this
-yields a "Jacobian at the mean". Then, we use this matrix in the Delta
+    <p>To compute standard errors around the average marginaleffects, we begin by applying the
+mean function to each column of the Jacobian. Then, we use this matrix in the Delta
 method to obtained standard errors.</p>
-<p>In Bayesian models (e.g., <code>brms</code>), we compute Average (or Median) Marginal
-Effects by applying the <code>FUN</code> function twice. First, we apply <code>FUN</code> to all
+<p>In Bayesian models (e.g., <code>brms</code>), we compute Average Marginal
+Effects by applying the mean function twice. First, we apply it to all
 marginal effects for each posterior draw, thereby estimating one Average (or
-Median) Marginal Effect per iteration of the MCMC chain. Second, we apply
-<code>FUN</code> and the <code>quantile</code> function to the results of Step 1 to obtain the
-Average (or Median) Marginal Effect and its associated interval.</p>
+Median) Marginal Effect per iteration of the MCMC chain. Second, we
+calculate the mean and the <code>quantile</code> function to the results of Step 1 to
+obtain the Average Marginal Effect and its associated interval.</p>
     </div>
 
     <div id="ref-examples">
