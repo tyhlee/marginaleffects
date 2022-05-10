@@ -81,7 +81,7 @@ found in the Details and Examples sections below, and in the vignette on the
   variables <span class="op">=</span> <span class="cn">NULL</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   vcov <span class="op">=</span> <span class="cn">TRUE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   contrast_function <span class="op">=</span> <span class="st">"difference"</span>,
   contrast_factor <span class="op">=</span> <span class="st">"reference"</span>,
   contrast_numeric <span class="op">=</span> <span class="fl">1</span>,
@@ -103,7 +103,7 @@ found in the Details and Examples sections below, and in the vignette on the
 <li><p>"marginalmeans": Contrasts at Marginal Means. See Details section below.</p></li>
 </ul></li>
 <li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
-<li><p>See the Examples section and the ?datagrid documentation.</p></li>
+<li><p>See the Examples section and the <a href="datagrid.html">datagrid</a> documentation.</p></li>
 </ul></li>
 </ul></dd>
 <dt>variables</dt>
@@ -129,10 +129,8 @@ differ based on the model type, but will typically be a string such as:
 <li><p>Square covariance matrix</p></li>
 <li><p>Function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
 </ul></dd>
-<dt>conf.level</dt>
-<dd><p>The confidence level to use for the confidence interval if
-<code>conf.int=TRUE</code>. Must be strictly greater than 0 and less than 1. Defaults
-to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
+<dt>conf_level</dt>
+<dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
 <dt>contrast_function</dt>
 <dd><p>string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
 <li><p>"differenceavg": <code>function(hi, lo) mean(hi) - mean(lo)</code></p></li>

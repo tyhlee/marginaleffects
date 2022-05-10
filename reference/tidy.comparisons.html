@@ -62,19 +62,15 @@ unit-level contrasts computed by the <code>predictions</code> function.</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for comparisons</span>
-<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf_level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>An object produced by the <code>comparisons</code> function.</p></dd>
-<dt>conf.int</dt>
-<dd><p>Logical indicating whether or not to include a confidence interval.</p></dd>
-<dt>conf.level</dt>
-<dd><p>The confidence level to use for the confidence interval if
-<code>conf.int=TRUE</code>. Must be strictly greater than 0 and less than 1. Defaults
-to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
+<dt>conf_level</dt>
+<dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
 <dt>by</dt>
 <dd><p>Character vector of variable names over which to compute group-averaged contrasts.</p></dd>
 <dt>...</dt>

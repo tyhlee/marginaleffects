@@ -55,9 +55,12 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.1.9000" id="marginaleffects-0419000">marginaleffects 0.4.1.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0419000"></a></h2>
-<p>Breaking change:</p>
+<p>Breaking changes:</p>
 <ul><li>
-<code>type</code> no longer accepts a character vector. Must be a single string.</li></ul><p>New supported packages and models:</p>
+<code>type</code> no longer accepts a character vector. Must be a single string.</li>
+<li>
+<code>conf.int</code> argument deprecated. Use <code>vcov = FALSE</code> instead.</li>
+</ul><p>New supported packages and models:</p>
 <ul><li><code>mlogit</code></li>
 <li><code>mhurdle</code></li>
 <li><code>tobit1</code></li>
@@ -83,6 +86,8 @@
 <li>
 <code>marginaleffects</code> and <code>comparisons</code> now report confidence intervals by default.</li>
 <li>New dependency on the <code>data.table</code> package yields substantial performance improvements.</li>
+<li>Argument name change: <code>conf.level</code> -&gt; <code>conf_level</code>
+</li>
 <li>Bug fixes and performance improvements</li>
 </ul><p>New pages on the <code>marginaleffects</code> website: <a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link uri">https://vincentarelbundock.github.io/marginaleffects/</a></p>
 <ul><li>Alternative software packages</li>

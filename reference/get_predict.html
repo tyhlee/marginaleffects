@@ -59,14 +59,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">vcov</span>, <span class="va">conf.level</span>, <span class="va">type</span>, <span class="va">...</span><span class="op">)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">vcov</span>, <span class="va">conf_level</span>, <span class="va">type</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="co"># S3 method for default</span>
 <span class="fu">get_predict</span><span class="op">(</span>
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -76,7 +76,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"probs"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -86,7 +86,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -96,7 +96,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -109,7 +109,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"probs"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -119,7 +119,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"probs"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -129,7 +129,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -139,7 +139,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="cn">NULL</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="cn">NULL</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"location"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -149,7 +149,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -159,7 +159,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -169,7 +169,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -179,7 +179,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -189,7 +189,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"probs"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -199,7 +199,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">NULL</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -212,7 +212,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -222,7 +222,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">NULL</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -232,7 +232,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -242,7 +242,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -252,7 +252,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf.level <span class="op">=</span> <span class="cn">NULL</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"lp"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -262,7 +262,7 @@
   <span class="va">model</span>,
   newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
   vcov <span class="op">=</span> <span class="cn">NULL</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
   type <span class="op">=</span> <span class="st">"response"</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
@@ -294,10 +294,8 @@
 <li><p>Square covariance matrix</p></li>
 <li><p>Function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
 </ul></dd>
-<dt>conf.level</dt>
-<dd><p>The confidence level to use for the confidence interval if
-<code>conf.int=TRUE</code>. Must be strictly greater than 0 and less than 1. Defaults
-to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
+<dt>conf_level</dt>
+<dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
 <dt>type</dt>
 <dd><p>Type(s) of prediction as string or character vector. This can
 differ based on the model type, but will typically be a string such as:
