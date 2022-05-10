@@ -82,6 +82,7 @@ found in the Details and Examples sections below, and in the vignette on the
   type <span class="op">=</span> <span class="st">"response"</span>,
   vcov <span class="op">=</span> <span class="cn">TRUE</span>,
   conf.level <span class="op">=</span> <span class="fl">0.95</span>,
+  contrast_function <span class="op">=</span> <span class="st">"difference"</span>,
   contrast_factor <span class="op">=</span> <span class="st">"reference"</span>,
   contrast_numeric <span class="op">=</span> <span class="fl">1</span>,
   interaction <span class="op">=</span> <span class="cn">NULL</span>,
@@ -95,17 +96,18 @@ found in the Details and Examples sections below, and in the vignette on the
     <dl><dt>model</dt>
 <dd><p>Model object</p></dd>
 <dt>newdata</dt>
-<dd><p><code>NULL</code>, a data frame or a string which determines the predictor values for which to compute contrasts.</p><ul><li><p><code>NULL</code> (default): Unit-level contrasts for each observed value in the original dataset.</p></li>
-<li><p>A data frame: Unit-level contrasts for each row of the <code>newdata</code> data frame.</p></li>
-<li><p>"mean": Contrasts at the Mean. Contrasts when each predictor is held at its mean or mode.</p></li>
+<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute contrasts.</p><ul><li><p><code>NULL</code> (default): Unit-level contrasts for each observed value in the original dataset.</p></li>
+<li><p>data frame: Unit-level contrasts for each row of the <code>newdata</code> data frame.</p></li>
+<li><p>string:</p><ul><li><p>"mean": Contrasts at the Mean. Contrasts when each predictor is held at its mean or mode.</p></li>
 <li><p>"median": Contrasts at the Median. Contrasts when each predictor is held at its mean or mode.</p></li>
-<li><p>"marginalmeans": Contrasts in Marginal Means. See Details section below.</p></li>
-<li><p>The <code><a href="datagrid.html">datagrid()</a></code> function can be used to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
-<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
+<li><p>"marginalmeans": Contrasts at Marginal Means. See Details section below.</p></li>
+</ul></li>
+<li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+<li><p>See the Examples section and the ?datagrid documentation.</p></li>
 </ul></li>
 </ul></dd>
 <dt>variables</dt>
-<dd><ul><li><p><code>NULL</code>: compute contrasts for all the variables in the model object (can be slow).</p></li>
+<dd><p><code>NULL</code>, character vector, or named list. The subset of variables for which to compute contrasts.</p><ul><li><p><code>NULL</code>: compute contrasts for all the variables in the model object (can be slow).</p></li>
 <li><p>Character vector: subset of variables (usually faster).</p></li>
 <li><p>Named list: subset of variables with the type of contrasts to use, following the conventions in the <code>contrast_factor</code> and <code>contrast_numeric</code> arguments. Examples:</p><ul><li><p><code>variables = list(gear = "pairwise", hp = 10)</code></p></li>
 <li><p><code>variables = list(gear = "sequential", hp = c(100, 120))</code></p></li>
@@ -117,28 +119,38 @@ found in the Details and Examples sections below, and in the vignette on the
 differ based on the model type, but will typically be a string such as:
 "response", "link", "probs", or "zero".</p></dd>
 <dt>vcov</dt>
-<dd><p>Variance-covariance matrix used to compute uncertainty estimates (e.g., for robust standard errors). Acceptable values are:</p><ul><li><p>TRUE: Default uncertainty estimates of the model object.</p></li>
-<li><p>FALSE: Omit uncertainty estimates.</p></li>
-<li><p>A string which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: <code>"HC"</code>, <code>"HC0"</code>, <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC3"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. See <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovHC.html" class="external-link">?sandwich::vcovHC</a></code></p></li>
+<dd><p>Type of uncertainty estimates to report (e.g., for robust standard errors). Acceptable values:</p><ul><li><p>FALSE: Do not compute standard errors. This can speed up computation considerably.</p></li>
+<li><p>TRUE: Unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
+<li><p>String which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: <code>"HC"</code>, <code>"HC0"</code>, <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC3"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. See <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovHC.html" class="external-link">?sandwich::vcovHC</a></code></p></li>
 <li><p>Heteroskedasticity and autocorrelation consistent: <code>"HAC"</code></p></li>
 <li><p>Other: <code>"NeweyWest"</code>, <code>"KernHAC"</code>, <code>"OPG"</code>. See the <code>sandwich</code> package documentation.</p></li>
 </ul></li>
-<li><p>A one-sided formula which indicates the name of cluster variables (e.g., <code>~unit_id</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
-<li><p>A square covariance matrix</p></li>
-<li><p>A function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
+<li><p>One-sided formula which indicates the name of cluster variables (e.g., <code>~unit_id</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
+<li><p>Square covariance matrix</p></li>
+<li><p>Function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
 </ul></dd>
 <dt>conf.level</dt>
 <dd><p>The confidence level to use for the confidence interval if
 <code>conf.int=TRUE</code>. Must be strictly greater than 0 and less than 1. Defaults
 to 0.95, which corresponds to a 95 percent confidence interval.</p></dd>
+<dt>contrast_function</dt>
+<dd><p>string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
+<li><p>"differenceavg": <code>function(hi, lo) mean(hi) - mean(lo)</code></p></li>
+<li><p>"ratio": <code>function(hi, lo) hi / lo</code></p></li>
+<li><p>"lnratio": <code>function(hi, lo) log(hi / lo)</code></p></li>
+<li><p>"ratioavg": <code>function(hi, lo) mean(hi) / mean(lo)</code></p></li>
+<li><p>"lnratioavg": <code>function(hi, lo) log(mean(hi) / mean(lo))</code></p></li>
+</ul></li>
+<li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p></li>
+</ul></dd>
 <dt>contrast_factor</dt>
-<dd><p>string</p><ul><li><p>"reference": Each factor level is compared to the factor reference (base) level</p></li>
+<dd><p>string. Which pairs of factors should be contrasted?</p><ul><li><p>"reference": Each factor level is compared to the factor reference (base) level</p></li>
 <li><p>"all": All combinations of observed levels</p></li>
 <li><p>"sequential": Each factor level is compared to the previous factor level</p></li>
 <li><p>"pairwise": Each factor level is compared to all other levels</p></li>
 </ul></dd>
 <dt>contrast_numeric</dt>
-<dd><p>string or numeric</p><ul><li><p>Numeric of length 1: Contrast for a gap of <code>contrast_numeric</code>, computed at the observed value plus and minus <code>contrast_numeric / 2</code></p></li>
+<dd><p>string or numeric. Which pairs of numeric values should be contrasted?</p><ul><li><p>Numeric of length 1: Contrast for a gap of <code>contrast_numeric</code>, computed at the observed value plus and minus <code>contrast_numeric / 2</code></p></li>
 <li><p>Numeric vector of length 2: Contrast between the 2nd element and the 1st element of the <code>contrast_numeric</code> vector.</p></li>
 <li><p>"iqr": Contrast across the interquartile range of the regressor.</p></li>
 <li><p>"sd": Contrast across one standard deviation around the regressor mean.</p></li>
@@ -241,6 +253,42 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148</span>
 <span class="r-in"></span>
+<span class="r-in"><span class="co"># Contrasts at the mean</span></span>
+<span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term contrast comparison std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high gear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148    3</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Contrasts between marginal means</span></span>
+<span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"marginalmeans"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast comparison std.error statistic      p.value  conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Contrasts at user-specified values</span></span>
+<span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span>, cyl <span class="op">=</span> <span class="va">tmp</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some of the variable names are missing from the model data: am, cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term contrast comparison std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     2 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     3 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high gear am cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528    3  0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4364806 0.8968528    3  0   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.4364806 0.8968528    3  0   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6930852 1.3069148    3  0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.6930852 1.3069148    3  0   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.6930852 1.3069148    3  0   8</span>
+<span class="r-in"></span>
 <span class="r-in"><span class="co"># Numeric contrasts</span></span>
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -275,27 +323,34 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -13.69573</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Interactions between contrasts</span></span>
-<span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"gear"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average contrasts </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Effect Std. Error z value  Pr(&gt;|z|)  2.5 %  97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  cyl    6 - 4 -4.079      1.676 -2.4331 0.0149703 -7.364 -0.7931</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl    8 - 4 -2.427      3.230 -0.7514 0.4524376 -8.757  3.9036</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 gear    4 - 3  2.387      1.735  1.3762 0.1687502 -1.012  5.7867</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 gear    5 - 3  5.679      2.155  2.6349 0.0084167  1.455  9.9028</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     cyl  gear  Effect Std. Error z value Pr(&gt;|z|)   2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 4 4 - 3  4.2194      3.238  1.3033 0.192489 -2.1262 10.565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 4 - 4 5 - 3  6.9870      3.700  1.8883 0.058987 -0.2652 14.239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 6 - 4 3 - 3 -1.1472      3.706 -0.3096 0.756898 -8.4109  6.116</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 6 - 4 4 - 3 -0.6306      3.405 -0.1852 0.853068 -7.3035  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 6 - 4 5 - 3  2.6778      4.617  0.5800 0.561933 -6.3715 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 8 - 4 3 - 3 -0.8719      3.829 -0.2277 0.819850 -8.3757  6.632</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7 8 - 4 4 - 3  3.3475      6.427  0.5208 0.602495 -9.2501 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8 8 - 4 5 - 3  5.5250      5.868  0.9416 0.346419 -5.9760 17.026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># variable-specific contrasts</span></span>
 <span class="r-in"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>gear <span class="op">=</span> <span class="st">"sequential"</span>, hp <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average contrasts </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast  Effect Std. Error z value  Pr(&gt;|z|)   2.5 %  97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear    4 - 3  2.3871     1.7345   1.376 0.1687502 -1.0125  5.7867</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear    5 - 4  3.2916     1.9681   1.672 0.0944262 -0.5658  7.1489</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp      +10 -0.5672     0.1909  -2.971 0.0029658 -0.9414 -0.1931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gear  hp Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 3 +10  2.835      2.625  1.0801  0.28010 -2.310  7.980</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5 - 4 +10  2.054      2.611  0.7866  0.43151 -3.063  7.171</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>

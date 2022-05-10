@@ -97,12 +97,13 @@ package. See the "Model-Specific Arguments" section of the
 <code><a href="marginaleffects.html">?marginaleffects</a></code> documentation for a non-exhaustive list of available
 arguments.</p></dd>
 <dt>newdata</dt>
-<dd><p><code>NULL</code>, a data frame or a string which determines the predictor values for which to compute marginaleffects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
-<li><p>A data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
-<li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
+<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute marginal effects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
+<li><p>data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
+<li><p>string:</p><ul><li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
 <li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its mean or mode.</p></li>
 <li><p>"marginalmeans": Marginal Effects at Marginal Means. See Details section below.</p></li>
-<li><p>The <code><a href="datagrid.html">datagrid()</a></code> function can be used to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+</ul></li>
+<li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
 <li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
 </ul></li>
 </ul></dd>

@@ -92,29 +92,30 @@ the <code>marginaleffects</code> website.</p>
     <dl><dt>model</dt>
 <dd><p>Model object</p></dd>
 <dt>newdata</dt>
-<dd><p><code>NULL</code>, a data frame or a string which determines the predictor values for which to compute marginaleffects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
-<li><p>A data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
-<li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
+<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute marginal effects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
+<li><p>data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
+<li><p>string:</p><ul><li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
 <li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its mean or mode.</p></li>
 <li><p>"marginalmeans": Marginal Effects at Marginal Means. See Details section below.</p></li>
-<li><p>The <code><a href="datagrid.html">datagrid()</a></code> function can be used to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+</ul></li>
+<li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
 <li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
 </ul></li>
 </ul></dd>
 <dt>variables</dt>
-<dd><p>Variables to consider (character vector). <code>NULL</code>
-considers all the terms in the model object. Computing quantities for a
-subset of terms is typically faster.</p></dd>
+<dd><p><code>NULL</code> or character vector. The subset of variables for which to compute marginal effects.</p><ul><li><p><code>NULL</code>: compute contrasts for all the variables in the model object (can be slow).</p></li>
+<li><p>Character vector: subset of variables (usually faster).</p></li>
+</ul></dd>
 <dt>vcov</dt>
-<dd><p>Variance-covariance matrix used to compute uncertainty estimates (e.g., for robust standard errors). Acceptable values are:</p><ul><li><p>TRUE: Default uncertainty estimates of the model object.</p></li>
-<li><p>FALSE: Omit uncertainty estimates.</p></li>
-<li><p>A string which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: <code>"HC"</code>, <code>"HC0"</code>, <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC3"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. See <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovHC.html" class="external-link">?sandwich::vcovHC</a></code></p></li>
+<dd><p>Type of uncertainty estimates to report (e.g., for robust standard errors). Acceptable values:</p><ul><li><p>FALSE: Do not compute standard errors. This can speed up computation considerably.</p></li>
+<li><p>TRUE: Unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
+<li><p>String which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: <code>"HC"</code>, <code>"HC0"</code>, <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC3"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. See <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovHC.html" class="external-link">?sandwich::vcovHC</a></code></p></li>
 <li><p>Heteroskedasticity and autocorrelation consistent: <code>"HAC"</code></p></li>
 <li><p>Other: <code>"NeweyWest"</code>, <code>"KernHAC"</code>, <code>"OPG"</code>. See the <code>sandwich</code> package documentation.</p></li>
 </ul></li>
-<li><p>A one-sided formula which indicates the name of cluster variables (e.g., <code>~unit_id</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
-<li><p>A square covariance matrix</p></li>
-<li><p>A function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
+<li><p>One-sided formula which indicates the name of cluster variables (e.g., <code>~unit_id</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
+<li><p>Square covariance matrix</p></li>
+<li><p>Function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
 </ul></dd>
 <dt>conf.level</dt>
 <dd><p>The confidence level to use for the confidence interval if
@@ -158,14 +159,14 @@ Uncertainty estimates are computed using the delta method.</p>
 <p>A detailed vignette on marginal effects and a list of supported models can
 be found on the package website:</p>
 <p>https://vincentarelbundock.github.io/marginaleffects/</p>
-<p>Numerical derivatives for the <code>marginaleffects</code> function are calculated using a simple epsilon difference approach: \(\partial Y / \partial X = (f(X + \varpesilon) - f(X)) / \varepsilon\), where f is the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method associated with the model class, and \(\varepsilon\) is determined by the <code>eps</code> argument.</p>
+<p>Numerical derivatives for the <code>marginaleffects</code> function are calculated
+using a simple epsilon difference approach: \(\partial Y / \partial X = (f(X + \varpesilon) - f(X)) / \varepsilon\),
+where f is the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method associated with the model class, and
+\(\varepsilon\) is determined by the <code>eps</code> argument.</p>
 <p>Warning: Some models are particularly sensitive to <code>eps</code>, so it is good
 practice to try different values of this argument.</p>
 <p>Standard errors for the marginal effects are obtained using the Delta
-method. First, we construct a Jacobian J with number of rows equal to the
-number of observations in <code>newdata</code> and number of columns equal to the
-number of coefficients. Then, we take the square root of the diagonal from JVJ',
-where V is the model's variance-covariance matrix.</p>
+method. See the "Technical Notes" vignette on the package website for details.</p>
     </div>
     <div id="model-specific-arguments">
     <h2>Model-Specific Arguments</h2>
