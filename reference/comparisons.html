@@ -290,13 +290,13 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"><span class="co"># Numeric contrasts</span></span>
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast    estimate std.error statistic      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558043e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term    contrast    estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558043e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast   estimate  std.error statistic      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       +5 -0.3411414 0.05059652 -6.742389 1.558043e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term    contrast   estimate  std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp (x + 5) - x -0.3411414 0.05059652 -6.742389 1.558043e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     conf.low conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.4403087 -0.241974</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -306,14 +306,14 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.4839481</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="st">"iqr"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast  estimate std.error statistic      p.value  conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp      IQR -5.697061 0.8449619 -6.742389 1.558043e-11 -7.353156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp  Q3 - Q1 -5.697061 0.8449619 -6.742389 1.558043e-11 -7.353156</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -4.040966</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast  estimate std.error statistic      p.value  conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       sd -4.677926 0.6938085 -6.742389 1.558043e-11 -6.037766</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.318087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term                contrast  estimate std.error statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp (x + sd/2) - (x - sd/2) -4.677926 0.6938085 -6.742389</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        p.value  conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.558043e-11 -6.037766 -3.318087</span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, contrast_numeric <span class="op">=</span> <span class="st">"minmax"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       type term  contrast estimate std.error statistic      p.value  conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp Max - Min -19.3086  2.863763 -6.742389 1.558043e-11 -24.92147</span>
@@ -346,9 +346,9 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average contrasts </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gear  hp Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 3 +10  2.835      2.625  1.0801  0.28010 -2.310  7.980</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5 - 4 +10  2.054      2.611  0.7866  0.43151 -3.063  7.171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gear           hp Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 3 (x + 10) - x  2.835      2.625  1.0801  0.28010 -2.310  7.980</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5 - 4 (x + 10) - x  2.054      2.611  0.7866  0.43151 -3.063  7.171</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
