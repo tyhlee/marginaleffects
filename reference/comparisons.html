@@ -86,6 +86,7 @@ found in the Details and Examples sections below, and in the vignette on the
   contrast_factor <span class="op">=</span> <span class="st">"reference"</span>,
   contrast_numeric <span class="op">=</span> <span class="fl">1</span>,
   interaction <span class="op">=</span> <span class="cn">NULL</span>,
+  transformation <span class="op">=</span> <span class="cn">NULL</span>,
   eps <span class="op">=</span> <span class="fl">1e-04</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
@@ -117,7 +118,8 @@ found in the Details and Examples sections below, and in the vignette on the
 <dt>type</dt>
 <dd><p>Type(s) of prediction as string or character vector. This can
 differ based on the model type, but will typically be a string such as:
-"response", "link", "probs", or "zero".</p></dd>
+"response", "link", "probs", or "zero". When an unsupported string is
+entered, the list of acceptable values is return in an error message.</p></dd>
 <dt>vcov</dt>
 <dd><p>Type of uncertainty estimates to report (e.g., for robust standard errors). Acceptable values:</p><ul><li><p>FALSE: Do not compute standard errors. This can speed up computation considerably.</p></li>
 <li><p>TRUE: Unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
@@ -132,7 +134,7 @@ differ based on the model type, but will typically be a string such as:
 <dt>conf_level</dt>
 <dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
 <dt>contrast_function</dt>
-<dd><p>string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
+<dd><p>experimental string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
 <li><p>"differenceavg": <code>function(hi, lo) mean(hi) - mean(lo)</code></p></li>
 <li><p>"ratio": <code>function(hi, lo) hi / lo</code></p></li>
 <li><p>"lnratio": <code>function(hi, lo) log(hi / lo)</code></p></li>
@@ -160,6 +162,8 @@ differ based on the model type, but will typically be a string such as:
 <li><p><code>TRUE</code>: Contrasts represent the changes in adjusted predictions when the predictors specified in the <code>variables</code> argument are manipulated simultaneously.</p></li>
 <li><p><code>NULL</code> (default): Behaves like <code>TRUE</code> when the <code>variables</code> argument is specified and the model formula includes interactions. Behaves like <code>FALSE</code> otherwise.</p></li>
 </ul></dd>
+<dt>transformation</dt>
+<dd><p>experimental A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transformation=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
 <dt>eps</dt>
 <dd><p>A numeric value specifying the “step” to use when calculating
 numerical derivatives. See the Details section below. Note

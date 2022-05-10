@@ -60,7 +60,7 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for comparisons</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, conf_level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, conf_level <span class="op">=</span> <span class="fl">0.95</span>, by <span class="op">=</span> <span class="cn">NULL</span>, transformation <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,6 +71,8 @@
 <dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
 <dt>by</dt>
 <dd><p>Character vector of variable names over which to compute group-averaged contrasts.</p></dd>
+<dt>transformation</dt>
+<dd><p>experimental A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transformation=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
 compute adjusted predictions. These arguments are particularly useful for

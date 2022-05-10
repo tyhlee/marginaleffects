@@ -112,7 +112,8 @@ Five-Number Summaries. <code>NULL</code> uses the original data used to fit the 
 <dt>type</dt>
 <dd><p>Type(s) of prediction as string or character vector. This can
 differ based on the model type, but will typically be a string such as:
-"response", "link", "probs", or "zero".</p></dd>
+"response", "link", "probs", or "zero". When an unsupported string is
+entered, the list of acceptable values is return in an error message.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
 compute adjusted predictions. These arguments are particularly useful for
