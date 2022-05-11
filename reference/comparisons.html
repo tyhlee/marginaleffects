@@ -5,8 +5,9 @@ by the tidy() or summary() functions, which compute Average Contrasts
 (see ?summary.marginaleffects). The newdata argument can be used to
 calculate a variety of contrasts, including "Contrasts at the Mean,"
 "Contrasts at User-Specified values" (aka Contrasts at Representative
-values), or "Contrasts in Marginal Means." Additional information can be
-found in the Details and Examples sections below, and in the vignette on the
+values), "Contrasts in Marginal Means", "Adjusted Risk Ratios", and much
+more. Additional information can be found in the Details and Examples
+sections below, and in an extensive series of vignettes on the
 marginaleffects website.'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -69,8 +70,9 @@ by the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="ext
 (see <code><a href="summary.marginaleffects.html">?summary.marginaleffects</a></code>). The <code>newdata</code> argument can be used to
 calculate a variety of contrasts, including "Contrasts at the Mean,"
 "Contrasts at User-Specified values" (aka Contrasts at Representative
-values), or "Contrasts in Marginal Means." Additional information can be
-found in the Details and Examples sections below, and in the vignette on the
+values), "Contrasts in Marginal Means", "Adjusted Risk Ratios", and much
+more. Additional information can be found in the Details and Examples
+sections below, and in an extensive series of vignettes on the
 <code>marginaleffects</code> website.</p>
     </div>
 
@@ -149,7 +151,7 @@ acceptable values is returned in an error message.</p></dd>
 <li><p>"minmax": Contrast between the maximum and the minimum values of the regressor.</p></li>
 </ul></dd>
 <dt>transform_pre</dt>
-<dd><p>experimental string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
+<dd><p>(experimental) string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
 <li><p>"differenceavg": <code>function(hi, lo) mean(hi) - mean(lo)</code></p></li>
 <li><p>"ratio": <code>function(hi, lo) hi / lo</code></p></li>
 <li><p>"lnratio": <code>function(hi, lo) log(hi / lo)</code></p></li>
@@ -159,7 +161,7 @@ acceptable values is returned in an error message.</p></dd>
 <li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p></li>
 </ul></dd>
 <dt>transform_post</dt>
-<dd><p>experimental A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transform_post=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
+<dd><p>(experimental) A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transform_post=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
 <dt>interaction</dt>
 <dd><p>TRUE, FALSE, or NULL</p><ul><li><p><code>FALSE</code>: Contrasts represent the change in adjusted predictions when one predictor changes and all other variables are held constant.</p></li>
 <li><p><code>TRUE</code>: Contrasts represent the changes in adjusted predictions when the predictors specified in the <code>variables</code> argument are manipulated simultaneously.</p></li>
@@ -172,7 +174,7 @@ the marginal effects computed for certain models can be sensitive to the
 choice of step (e.g., Bayesian mixed effects).</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method
-supplied by the modelling package.These arguments are particularly useful
+supplied by the modeling package.These arguments are particularly useful
 for mixed-effects or bayesian models (see the online vignettes on the
 <code>marginaleffects</code> website). Available arguments can vary from model to
 model, depending on the range of supported arguments by each modeling
@@ -325,6 +327,26 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -13.69573</span>
 <span class="r-in"></span>
+<span class="r-in"><span class="co"># Adjusted Risk Ratio (see Case Study vignette on the website)</span></span>
+<span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span>, transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Average contrasts </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term                  Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg ln(mean(x + 1) / mean(x))  1.135 2.3808e-10 1.091   1.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Adjusted Risk Ratio: Manual specification of the `transform_pre`</span></span>
+<span class="r-in"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span>, transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Average contrasts </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term   Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg (x + 1), x  1.135 2.3808e-10 1.091   1.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-in"><span class="co"># Interactions between contrasts</span></span>
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"gear"</span><span class="op">)</span><span class="op">)</span></span>
