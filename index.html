@@ -225,7 +225,7 @@
 <span class="co">#&gt; 4     4 response  20.35051 1.2526403 17.76518  22.93583 146.6875  0 2.6</span>
 <span class="co">#&gt; 5     5 response  19.81527 1.0144509 17.72155  21.90900 146.6875  0 2.8</span>
 <span class="co">#&gt; 6     6 response  19.28004 0.8063905 17.61573  20.94435 146.6875  0 3.0</span></code></pre></div>
-<p>We can plot how predictions change for different values of a variable – Conditional Adjusted Predictions – using the <code>plot_cap</code> function:</p>
+<p>We can plot how predictions change for different values of one or more variables – Conditional Adjusted Predictions – using the <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"wt"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="100%"></p>
@@ -238,8 +238,8 @@
 <li>Adjusted Predictions at User-Specified Values (aka Predictions at Representative Values)</li>
 <li>Adjusted Predictions at the Mean</li>
 <li>Average Predictions at the Mean</li>
-<li>Conditional Predictions at the Mean</li>
-<li>Adjusted predictions on different scales (e.g., link or response)</li>
+<li>Conditional Predictions</li>
+<li>Adjusted Predictions on different scales (e.g., link or response)</li>
 </ul>
 </div>
 <div class="section level4">
@@ -268,20 +268,28 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
-<p>What happens to the ratio of predicted probabilities for survival when <code>PClass</code> changes from one category to the next (“sequential”) and <code>Age</code> changes by 2 standard deviations simultaneously (i.e., Adjusted Risk Ratio with an interaction)?</p>
+<p>The contrast above used a simple difference between adjusted predictions. We can also used different functions to combine and contrast predictions in different ways. For instance, researchers often compute Adjusted Risk Ratios, which are ratios of predicted probabilities. We can compute such ratios by applying a transformation using the <code>transform_pre</code> argument. We can also present the results of “interactions” between contrasts. What happens to the ratio of predicted probabilities for survival when <code>PClass</code> changes between each pair of factor levels (“pairwise”) and <code>Age</code> changes by 2 standard deviations simultaneously:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span>
     <span class="va">mod3</span>,
     transform_pre <span class="op">=</span> <span class="st">"ratio"</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Age <span class="op">=</span> <span class="st">"2sd"</span>, PClass <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span><span class="op">)</span>
+    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Age <span class="op">=</span> <span class="st">"2sd"</span>, PClass <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
 <span class="co">#&gt; Average contrasts </span>
 <span class="co">#&gt;                   Age    PClass Effect Std. Error z value   Pr(&gt;|z|)  2.5 %</span>
-<span class="co">#&gt; 1 (x + sd) / (x - sd) 2nd / 1st 0.3185    0.05566   5.723 1.0442e-08 0.2095</span>
-<span class="co">#&gt; 2 (x + sd) / (x - sd) 3rd / 2nd 0.3162    0.07023   4.503 6.7096e-06 0.1786</span>
+<span class="co">#&gt; 1 (x + sd) / (x - sd) 1st / 1st 0.7043    0.05946  11.846 &lt; 2.22e-16 0.5878</span>
+<span class="co">#&gt; 2 (x + sd) / (x - sd) 2nd / 1st 0.3185    0.05566   5.723 1.0442e-08 0.2095</span>
+<span class="co">#&gt; 3 (x + sd) / (x - sd) 3rd / 1st 0.2604    0.05308   4.907 9.2681e-07 0.1564</span>
+<span class="co">#&gt; 4 (x + sd) / (x - sd) 2nd / 2nd 0.3926    0.08101   4.846 1.2588e-06 0.2338</span>
+<span class="co">#&gt; 5 (x + sd) / (x - sd) 3rd / 2nd 0.3162    0.07023   4.503 6.7096e-06 0.1786</span>
+<span class="co">#&gt; 6 (x + sd) / (x - sd) 3rd / 3rd 0.7053    0.20273   3.479 0.00050342 0.3079</span>
 <span class="co">#&gt;   97.5 %</span>
-<span class="co">#&gt; 1 0.4276</span>
-<span class="co">#&gt; 2 0.4539</span>
+<span class="co">#&gt; 1 0.8209</span>
+<span class="co">#&gt; 2 0.4276</span>
+<span class="co">#&gt; 3 0.3645</span>
+<span class="co">#&gt; 4 0.5514</span>
+<span class="co">#&gt; 5 0.4539</span>
+<span class="co">#&gt; 6 1.1026</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
