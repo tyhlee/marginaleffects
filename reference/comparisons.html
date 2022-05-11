@@ -100,8 +100,8 @@ found in the Details and Examples sections below, and in the vignette on the
 <dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute contrasts.</p><ul><li><p><code>NULL</code> (default): Unit-level contrasts for each observed value in the original dataset.</p></li>
 <li><p>data frame: Unit-level contrasts for each row of the <code>newdata</code> data frame.</p></li>
 <li><p>string:</p><ul><li><p>"mean": Contrasts at the Mean. Contrasts when each predictor is held at its mean or mode.</p></li>
-<li><p>"median": Contrasts at the Median. Contrasts when each predictor is held at its mean or mode.</p></li>
-<li><p>"marginalmeans": Contrasts at Marginal Means. See Details section below.</p></li>
+<li><p>"median": Contrasts at the Median. Contrasts when each predictor is held at its median or mode.</p></li>
+<li><p>"marginalmeans": Contrasts at Marginal Means.</p></li>
 </ul></li>
 <li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
 <li><p>See the Examples section and the <a href="datagrid.html">datagrid</a> documentation.</p></li>
@@ -116,10 +116,11 @@ found in the Details and Examples sections below, and in the vignette on the
 </ul></li>
 </ul></dd>
 <dt>type</dt>
-<dd><p>Type(s) of prediction as string or character vector. This can
-differ based on the model type, but will typically be a string such as:
-"response", "link", "probs", or "zero". When an unsupported string is
-entered, the list of acceptable values is return in an error message.</p></dd>
+<dd><p>string indicates the type (scale) of the predictions used to
+compute marginal effects or contrasts. This can differ based on the model
+type, but will typically be a string such as: "response", "link", "probs",
+or "zero". When an unsupported string is entered, the model-specific list of
+acceptable values is returned in an error message.</p></dd>
 <dt>vcov</dt>
 <dd><p>Type of uncertainty estimates to report (e.g., for robust standard errors). Acceptable values:</p><ul><li><p>FALSE: Do not compute standard errors. This can speed up computation considerably.</p></li>
 <li><p>TRUE: Unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
@@ -165,14 +166,14 @@ entered, the list of acceptable values is return in an error message.</p></dd>
 <dt>transformation</dt>
 <dd><p>experimental A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transformation=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
 <dt>eps</dt>
-<dd><p>A numeric value specifying the “step” to use when calculating
-numerical derivatives. See the Details section below. Note
-that the marginal effects computed for certain models can be especially
-sensitive to the choice of step value (e.g., Bayesian mixed effects).</p></dd>
+<dd><p>A numeric value specifying the “step” size to use when
+calculating numerical derivatives. See the Details section below. Warning:
+the marginal effects computed for certain models can be sensitive to the
+choice of step (e.g., Bayesian mixed effects).</p></dd>
 <dt>...</dt>
-<dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
-compute adjusted predictions. These arguments are particularly useful for
-mixed-effects or bayesian models (see the online vignettes on the
+<dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method
+supplied by the modelling package.These arguments are particularly useful
+for mixed-effects or bayesian models (see the online vignettes on the
 <code>marginaleffects</code> website). Available arguments can vary from model to
 model, depending on the range of supported arguments by each modeling
 package. See the "Model-Specific Arguments" section of the

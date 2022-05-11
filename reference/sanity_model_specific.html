@@ -88,9 +88,9 @@
     <dl><dt>model</dt>
 <dd><p>Model object</p></dd>
 <dt>...</dt>
-<dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
-compute adjusted predictions. These arguments are particularly useful for
-mixed-effects or bayesian models (see the online vignettes on the
+<dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method
+supplied by the modelling package.These arguments are particularly useful
+for mixed-effects or bayesian models (see the online vignettes on the
 <code>marginaleffects</code> website). Available arguments can vary from model to
 model, depending on the range of supported arguments by each modeling
 package. See the "Model-Specific Arguments" section of the
@@ -100,7 +100,7 @@ arguments.</p></dd>
 <dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute marginal effects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
 <li><p>data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
 <li><p>string:</p><ul><li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
-<li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its mean or mode.</p></li>
+<li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its median or mode.</p></li>
 <li><p>"marginalmeans": Marginal Effects at Marginal Means. See Details section below.</p></li>
 </ul></li>
 <li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>

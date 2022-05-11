@@ -81,10 +81,11 @@ more predictors (x-axis and colors).</p>
 name to be displayed on the x-axis. The second is a variable whose values
 will be displayed in different colors.</p></dd>
 <dt>type</dt>
-<dd><p>Type(s) of prediction as string or character vector. This can
-differ based on the model type, but will typically be a string such as:
-"response", "link", "probs", or "zero". When an unsupported string is
-entered, the list of acceptable values is return in an error message.</p></dd>
+<dd><p>string indicates the type (scale) of the predictions used to
+compute marginal effects or contrasts. This can differ based on the model
+type, but will typically be a string such as: "response", "link", "probs",
+or "zero". When an unsupported string is entered, the model-specific list of
+acceptable values is returned in an error message.</p></dd>
 <dt>vcov</dt>
 <dd><p>Type of uncertainty estimates to report (e.g., for robust standard errors). Acceptable values:</p><ul><li><p>FALSE: Do not compute standard errors. This can speed up computation considerably.</p></li>
 <li><p>TRUE: Unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
@@ -101,9 +102,9 @@ entered, the list of acceptable values is return in an error message.</p></dd>
 <dt>draw</dt>
 <dd><p><code>TRUE</code> returns a <code>ggplot2</code> plot. <code>FALSE</code> returns a <code>data.frame</code> of the underlying data.</p></dd>
 <dt>...</dt>
-<dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method used to
-compute adjusted predictions. These arguments are particularly useful for
-mixed-effects or bayesian models (see the online vignettes on the
+<dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method
+supplied by the modelling package.These arguments are particularly useful
+for mixed-effects or bayesian models (see the online vignettes on the
 <code>marginaleffects</code> website). Available arguments can vary from model to
 model, depending on the range of supported arguments by each modeling
 package. See the "Model-Specific Arguments" section of the
