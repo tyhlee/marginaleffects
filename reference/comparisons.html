@@ -82,11 +82,11 @@ found in the Details and Examples sections below, and in the vignette on the
   type <span class="op">=</span> <span class="st">"response"</span>,
   vcov <span class="op">=</span> <span class="cn">TRUE</span>,
   conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  contrast_function <span class="op">=</span> <span class="st">"difference"</span>,
   contrast_factor <span class="op">=</span> <span class="st">"reference"</span>,
   contrast_numeric <span class="op">=</span> <span class="fl">1</span>,
+  transform_pre <span class="op">=</span> <span class="st">"difference"</span>,
+  transform_post <span class="op">=</span> <span class="cn">NULL</span>,
   interaction <span class="op">=</span> <span class="cn">NULL</span>,
-  transformation <span class="op">=</span> <span class="cn">NULL</span>,
   eps <span class="op">=</span> <span class="fl">1e-04</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
@@ -134,16 +134,6 @@ acceptable values is returned in an error message.</p></dd>
 </ul></dd>
 <dt>conf_level</dt>
 <dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
-<dt>contrast_function</dt>
-<dd><p>experimental string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
-<li><p>"differenceavg": <code>function(hi, lo) mean(hi) - mean(lo)</code></p></li>
-<li><p>"ratio": <code>function(hi, lo) hi / lo</code></p></li>
-<li><p>"lnratio": <code>function(hi, lo) log(hi / lo)</code></p></li>
-<li><p>"ratioavg": <code>function(hi, lo) mean(hi) / mean(lo)</code></p></li>
-<li><p>"lnratioavg": <code>function(hi, lo) log(mean(hi) / mean(lo))</code></p></li>
-</ul></li>
-<li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p></li>
-</ul></dd>
 <dt>contrast_factor</dt>
 <dd><p>string. Which pairs of factors should be contrasted?</p><ul><li><p>"reference": Each factor level is compared to the factor reference (base) level</p></li>
 <li><p>"all": All combinations of observed levels</p></li>
@@ -158,13 +148,23 @@ acceptable values is returned in an error message.</p></dd>
 <li><p>"2sd": Contrast across two standard deviations around the regressor mean.</p></li>
 <li><p>"minmax": Contrast between the maximum and the minimum values of the regressor.</p></li>
 </ul></dd>
+<dt>transform_pre</dt>
+<dd><p>experimental string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>"difference" (default): <code>function(hi, lo) hi - lo</code></p></li>
+<li><p>"differenceavg": <code>function(hi, lo) mean(hi) - mean(lo)</code></p></li>
+<li><p>"ratio": <code>function(hi, lo) hi / lo</code></p></li>
+<li><p>"lnratio": <code>function(hi, lo) log(hi / lo)</code></p></li>
+<li><p>"ratioavg": <code>function(hi, lo) mean(hi) / mean(lo)</code></p></li>
+<li><p>"lnratioavg": <code>function(hi, lo) log(mean(hi) / mean(lo))</code></p></li>
+</ul></li>
+<li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p></li>
+</ul></dd>
+<dt>transform_post</dt>
+<dd><p>experimental A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transform_post=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
 <dt>interaction</dt>
 <dd><p>TRUE, FALSE, or NULL</p><ul><li><p><code>FALSE</code>: Contrasts represent the change in adjusted predictions when one predictor changes and all other variables are held constant.</p></li>
 <li><p><code>TRUE</code>: Contrasts represent the changes in adjusted predictions when the predictors specified in the <code>variables</code> argument are manipulated simultaneously.</p></li>
 <li><p><code>NULL</code> (default): Behaves like <code>TRUE</code> when the <code>variables</code> argument is specified and the model formula includes interactions. Behaves like <code>FALSE</code> otherwise.</p></li>
 </ul></dd>
-<dt>transformation</dt>
-<dd><p>experimental A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transformation=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
 <dt>eps</dt>
 <dd><p>A numeric value specifying the “step” size to use when
 calculating numerical derivatives. See the Details section below. Warning:
