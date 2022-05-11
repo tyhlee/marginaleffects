@@ -314,7 +314,8 @@
 <div class="section level4">
 <h4 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
 </h4>
-<p>A “marginal effect” is a unit-specific measure of association between a change in a regressor and a change in the regressand. The <code>marginaleffects</code> function thus computes a distinct estimate of the marginal effect and of the standard error for each regressor (“term”), for each unit of observation (“rowid”). You can view and manipulate the full results with functions like <code>head</code>, as you would with any other <code>data.frame</code>:</p>
+<p>A “marginal effect” is a partial derivative (slope) of the regression equation with respect to a regressor of interest. It is unit-specific measure of association between a change in a regressor and a change in the regressand. The <code><a href="reference/marginaleffects.html">marginaleffects()</a></code> function uses numerical derivatives to estimate the slope of the regression equation with respect to each of the variables in the model (or contrasts for cateogrical variables).</p>
+<p>By default, <code><a href="reference/marginaleffects.html">marginaleffects()</a></code> estimates the slope for each row of the original dataset that was used to fit the model:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
 
@@ -378,6 +379,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  lm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">The Marginal Means vignette</a> offers more detail.</p>
 </div>
 <div class="section level4">
 <h4 id="more">More<a class="anchor" aria-label="anchor" href="#more"></a>
