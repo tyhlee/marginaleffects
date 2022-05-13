@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
 <li>
 <code>transform_post</code> argument allows back transformation before returning the final results. Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>.</li>
 <li>The <code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function accepts a named list to specify variable-specific contrast types.</li>
-<li>Robust standard errors with the <code>vcov</code> argument. This requires version &gt; 0.17.0 of the <code>insight</code> package, which may only be available on github: <code>remotes::install_github("easystats/insight")</code><ul><li>
+<li>Robust standard errors with the <code>vcov</code> argument. This requires version 0.17.1 of the <code>insight</code> package.<ul><li>
 <code>sandwich</code> package shortcuts: <code>vcov = "HC3"</code>, <code>"HC2"</code>, <code>"NeweyWest"</code>, and more.</li>
 <li>Mixed effects models: <code>vcov = "satterthwaite"</code> or <code>"kenward-roger"</code>
 </li>
