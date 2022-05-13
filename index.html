@@ -85,8 +85,8 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#getting-started" class="external-link">Getting started</a></li>
 <li>Vignettes:<ul>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link">Marginal effects</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link">Contrasts</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link">Marginal effects</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a></li>
 </ul>
 </li>
@@ -314,7 +314,7 @@
 <div class="section level4">
 <h4 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
 </h4>
-<p>A “marginal effect” is a partial derivative (slope) of the regression equation with respect to a regressor of interest. It is unit-specific measure of association between a change in a regressor and a change in the regressand. The <code><a href="reference/marginaleffects.html">marginaleffects()</a></code> function uses numerical derivatives to estimate the slope of the regression equation with respect to each of the variables in the model (or contrasts for cateogrical variables).</p>
+<p>A “marginal effect” is a partial derivative (slope) of the regression equation with respect to a regressor of interest. It is unit-specific measure of association between a change in a regressor and a change in the regressand. The <code><a href="reference/marginaleffects.html">marginaleffects()</a></code> function uses numerical derivatives to estimate the slope of the regression equation with respect to each of the variables in the model (or contrasts for categorical variables).</p>
 <p>By default, <code><a href="reference/marginaleffects.html">marginaleffects()</a></code> estimates the slope for each row of the original dataset that was used to fit the model:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>

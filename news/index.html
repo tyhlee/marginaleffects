@@ -90,8 +90,6 @@
 <li>
 <code>marginaleffects</code> and <code>comparisons</code> now report confidence intervals by default.</li>
 <li>New dependency on the <code>data.table</code> package yields substantial performance improvements.</li>
-<li>Argument name change: <code>conf.level</code> -&gt; <code>conf_level</code>
-</li>
 <li>More informative error messages and warnings</li>
 <li>Bug fixes and performance improvements</li>
 </ul><p>New pages on the <code>marginaleffects</code> website: <a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link uri">https://vincentarelbundock.github.io/marginaleffects/</a></p>
@@ -99,9 +97,20 @@
 <li>Robust standard errors (and more)</li>
 <li>Performance tips</li>
 <li>Tables and plots</li>
-<li>Case studies<ul><li>Multinomial Logit and Discrete Choice Models</li>
+<li>Multinomial Logit and Discrete Choice Models</li>
 <li>Generalized Additive Models</li>
 <li>Mixed effects models (Bayesian and Frequentist)</li>
+<li>Transformations and Custom Contrasts: Adjusted Risk Ratio Example</li>
+</ul><p>Argument name changes (backward compatibility is preserved:</p>
+<ul><li>Everywhere:<ul><li>
+<code>conf.level</code> -&gt; <code>conf_level</code>
+</li></ul></li>
+<li>
+<code><a href="../reference/datagrid.html">datagrid()</a></code>:<ul><li>
+<code>FUN.factor</code> -&gt; <code>FUN_factor</code> (same for related arguments)</li>
+<li>
+<code>grid.type</code> -&gt; <code>grid_type</code>
+</li>
 </ul></li>
 </ul></div>
     <div class="section level2">
