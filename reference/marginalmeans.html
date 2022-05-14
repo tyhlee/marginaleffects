@@ -121,6 +121,8 @@ compute marginal effects or contrasts. This can differ based on the model
 type, but will typically be a string such as: "response", "link", "probs",
 or "zero". When an unsupported string is entered, the model-specific list of
 acceptable values is returned in an error message.</p></dd>
+<dt>transform_post</dt>
+<dd><p>(experimental) A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transform_post=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
 <dt>interaction</dt>
 <dd><p>TRUE, FALSE, or NULL</p><ul><li><p><code>FALSE</code>: Marginal means are computed for each predictor individually.</p></li>
 <li><p><code>TRUE</code>: Marginal means are computed for each combination of predictors specified in the <code>variables</code> argument.</p></li>
