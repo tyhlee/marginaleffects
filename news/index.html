@@ -73,7 +73,7 @@
 <li>
 <code>transform_pre</code> argument can define custom contrasts between adjusted predictions (e.g., log adjusted risk ratios). Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>.</li>
 <li>
-<code>transform_post</code> argument allows back transformation before returning the final results. Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>.</li>
+<code>transform_post</code> argument allows back transformation before returning the final results. Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>.</li>
 <li>The <code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function accepts a named list to specify variable-specific contrast types.</li>
 <li>Robust standard errors with the <code>vcov</code> argument. This requires version 0.17.1 of the <code>insight</code> package.<ul><li>
 <code>sandwich</code> package shortcuts: <code>vcov = "HC3"</code>, <code>"HC2"</code>, <code>"NeweyWest"</code>, and more.</li>
@@ -84,6 +84,8 @@
 <li>Variance-covariance matrix</li>
 <li>Function which returns a named squared matrix</li>
 </ul></li>
+<li>
+<code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> allows interactions</li>
 <li>Bayesian Model Averaging for <code>brms</code> models using <code>type = "average"</code>. See vignette on the <code>marginaleffects</code> website.</li>
 <li>
 <code>eps</code> argument for step size of numerical derivative</li>
