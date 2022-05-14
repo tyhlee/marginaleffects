@@ -184,7 +184,7 @@ Uncertainty estimates are computed using the delta method.</p>
 be found on the package website:</p>
 <p>https://vincentarelbundock.github.io/marginaleffects/</p>
 <p>Numerical derivatives for the <code>marginaleffects</code> function are calculated
-using a simple epsilon difference approach: \(\partial Y / \partial X = (f(X + \varpesilon) - f(X)) / \varepsilon\),
+using a simple epsilon difference approach: \(\partial Y / \partial X = (f(X + \varepsilon) - f(X)) / \varepsilon\),
 where f is the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method associated with the model class, and
 \(\varepsilon\) is determined by the <code>eps</code> argument.</p>
 <p>Warning: Some models are particularly sensitive to <code>eps</code>, so it is good
