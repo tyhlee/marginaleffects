@@ -90,7 +90,7 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a></li>
 </ul>
 </li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">62 supported models</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">62 supported classes of models</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/performance.html" class="external-link">Performance tips</a></li>
 <li>Case studies:<ul>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html" class="external-link">Bayesian analyses with <code>brms</code></a></li>
@@ -109,7 +109,7 @@
 <div class="section level2">
 <h2 id="what">What?<a class="anchor" aria-label="anchor" href="#what"></a>
 </h2>
-<p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot four principal quantities of interest for <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">62 different types of models:</a></p>
+<p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot four principal quantities of interest for <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">62 different classes of models:</a></p>
 <ul>
 <li>
 <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link"><em>Adjusted Prediction</em></a><ul>
@@ -151,7 +151,7 @@
 <p>So why did I write a clone?</p>
 <ul>
 <li>
-<em>Powerful:</em> Marginal effects and contrasts can be computed for about 62 different kinds of models. Adjusted predictions and marginal means can be computed for about 100 model types.</li>
+<em>Powerful:</em> Marginal effects and contrasts can be computed for 62 different classes of models. Adjusted predictions and marginal means can be computed for about 100 model types.</li>
 <li>
 <em>Extensible:</em> Adding support for new models is very easy, often requiring less than 10 lines of new code. Please submit <a href="https://github.com/vincentarelbundock/marginaleffects/issues" class="external-link">feature requests on Github.</a>
 </li>
@@ -176,10 +176,9 @@
 </ul>
 <p>Downsides of <code>marginaleffects</code> include:</p>
 <ul>
-<li>Functions to estimate contrasts and marginal means are considerably less flexible than <code>emmeans</code>.</li>
-<li>Simulation-based inference is not supported.</li>
-<li>Lack of multiplicity adjustments.</li>
-<li>Limited support for custom contrasts (but see the <code><a href="reference/comparisons.html">comparisons()</a></code> function documentation).</li>
+<li>No simulation-based inference.</li>
+<li>No multiplicity adjustments.</li>
+<li>No equivalence tests.</li>
 <li>Newer package with a smaller user base.</li>
 </ul>
 </div>
