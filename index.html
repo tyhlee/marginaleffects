@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9000</span>
       </span>
     </div>
 
@@ -43,10 +43,10 @@
   <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link">Marginal effects</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">Marginal effects</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link">Contrasts</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">Contrasts</a>
 </li>
 <li>
   <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a>
@@ -85,8 +85,8 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#getting-started" class="external-link">Getting started</a></li>
 <li>Vignettes:<ul>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link">Contrasts</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link">Marginal effects</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">Contrasts</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">Marginal effects</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a></li>
 </ul>
 </li>
@@ -120,7 +120,7 @@
 </ul>
 </li>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link"><em>Marginal Effect</em></a><ul>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link"><em>Marginal Effect</em></a><ul>
 <li>A partial derivative (slope) of the regression equation with respect to a regressor of interest.</li>
 <li>
 <a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginaleffects.html" class="external-link"><code>marginaleffects(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot.marginaleffects.html" class="external-link"><code>plot(),</code></a> <a href="https://vincentarelbundock.github.io/marginaleffects/reference/plot_cme.html" class="external-link"><code>plot_cme()</code></a>
@@ -128,7 +128,7 @@
 </ul>
 </li>
 <li>
-<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link"><em>Contrast</em></a><ul>
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link"><em>Contrast</em></a><ul>
 <li>The difference between two adjusted predictions, calculated for meaningfully different regressor values (e.g., College graduates vs. Others).</li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/reference/comparisons.html" class="external-link"><code>comparisons()</code></a></li>
 </ul>
@@ -293,7 +293,7 @@
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
 <p>The code above is explained in detail in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/transformation.html" class="external-link">vignette on Transformations and Custom Contrasts.</a></p>
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_contrasts.html" class="external-link">The Contrasts vignette</a> shows how to use the <code><a href="reference/comparisons.html">comparisons()</a></code> function to compute a wide variety of quantities of interest:</p>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">The Contrasts vignette</a> shows how to use the <code><a href="reference/comparisons.html">comparisons()</a></code> function to compute a wide variety of quantities of interest:</p>
 <ul>
 <li>Custom comparisons for:<ul>
 <li>Numeric variables (e.g., 1 standard deviation, interquartile range, custom values)</li>
@@ -344,7 +344,7 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wt"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-13-1.png" width="100%"></p>
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_mfx.html" class="external-link">The Marginal Effects vignette</a> shows how to use the <code><a href="reference/marginaleffects.html">marginaleffects()</a></code> function to compute a wide variety of quantities of interest:</p>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">The Marginal Effects vignette</a> shows how to use the <code><a href="reference/marginaleffects.html">marginaleffects()</a></code> function to compute a wide variety of quantities of interest:</p>
 <ul>
 <li>Unit-level Marginal Effects</li>
 <li>Average Marginal Effects</li>

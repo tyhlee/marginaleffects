@@ -7,8 +7,8 @@ articles:
   gam: gam.html
   lme4: lme4.html
   mfx01_predictions: mfx01_predictions.html
-  mfx02_mfx: mfx02_mfx.html
-  mfx03_contrasts: mfx03_contrasts.html
+  mfx02_contrasts: mfx02_contrasts.html
+  mfx03_mfx: mfx03_mfx.html
   mfx04_marginalmeans: mfx04_marginalmeans.html
   mfx05_case_studies: mfx05_case_studies.html
   mfx06_supported_models: mfx06_supported_models.html
@@ -18,5 +18,5 @@ articles:
   sandwich: sandwich.html
   technical_notes: technical_notes.html
   transformation: transformation.html
-last_built: 2022-05-16T23:18Z
+last_built: 2022-05-17T12:18Z
 
