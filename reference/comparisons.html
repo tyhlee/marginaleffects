@@ -179,6 +179,7 @@ acceptable values is returned in an error message.</p></dd>
 <li><p>"lnratio": <code>function(hi, lo) log(hi / lo)</code></p></li>
 <li><p>"ratioavg": <code>function(hi, lo) mean(hi) / mean(lo)</code></p></li>
 <li><p>"lnratioavg": <code>function(hi, lo) log(mean(hi) / mean(lo))</code></p></li>
+<li><p>"lnoravg": <code>function(hi, lo) log((mean(hi)/(1 - mean(hi))) / (mean(lo)/(1 - mean(lo))))</code></p></li>
 </ul></li>
 <li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p></li>
 </ul></dd>
