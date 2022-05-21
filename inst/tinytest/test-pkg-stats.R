@@ -154,3 +154,52 @@ expect_warning(predictions(mod))
 pred <- predictions(mod, vcov = FALSE)
 expect_predictions(pred, se = FALSE)
 
+
+# nls
+DNase1 <- subset(DNase, Run == 1)
+mod <- nls(
+    density ~ SSlogis(log(conc), Asym, xmid, scal), 
+    data = DNase1)
+get_predict(mod, newdata = head(DNase1))
+get_coef(mod)
+get_vcov(mod)
+
+b <- get_coef(mod)
+b <- setNames( rep(0, length(b)), names(b))
+mod2 <- copy(mod)
+
+
+mod2$m$setPars(b)
+    
+mod$m$getPars()
+
+library(minpack.lm)
+x <- rnorm(10000)
+y <- 3 + 2 * x^2 + rnorm(10000)
+dat <- data.frame(y, x)
+mod <- nlsLM(
+    y ~ a + b * x^2,
+    data = dat,
+    start = list(a = 0.12345, b = 0.54321))
+marginaleffects(mod, variables = "x", newdata = dat) |> summary()
+
+b <- get_coef(mod)
+b <- setNames(c(1, 0), names(b))
+
+k = mod
+k$m$setPars(b)
+
+predict(mod, newdata = tail(dat))
+
+z = list(mod)
+z = copy(mod)
+z[[1]]$m$setPars(b)
+
+
+
+
+## the coefficients only:
+## the coefficients only:
+coef(fm1DNase1)
+## including their SE, etc:
+coef(summary(fm1DNase1))

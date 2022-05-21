@@ -18,3 +18,12 @@ set_coef.lm <- function(model, coefs) {
     model[["coefficients"]][names(coefs)] <- coefs
     model
 }
+
+
+#' @include set_coef.R
+#' @rdname set_coef
+#' @export
+set_coef.nls <- function(model, coefs) {
+    suppressWarnings(model$m$setPars(coefs))
+    return(model)
+}
