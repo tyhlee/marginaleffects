@@ -5,6 +5,7 @@ articles:
   alternative_software: alternative_software.html
   brms: brms.html
   gam: gam.html
+  gformula: gformula.html
   lme4: lme4.html
   mfx01_predictions: mfx01_predictions.html
   mfx02_contrasts: mfx02_contrasts.html
@@ -18,5 +19,5 @@ articles:
   sandwich: sandwich.html
   technical_notes: technical_notes.html
   transformation: transformation.html
-last_built: 2022-05-21T15:33Z
+last_built: 2022-05-21T19:39Z
 

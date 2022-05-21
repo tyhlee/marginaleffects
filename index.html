@@ -90,13 +90,14 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a></li>
 </ul>
 </li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">62 supported classes of models</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">63 supported classes of models</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/performance.html" class="external-link">Performance tips</a></li>
 <li>Case studies:<ul>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html" class="external-link">Bayesian analyses with <code>brms</code></a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/lme4.html" class="external-link">Mixed effects models</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gam.html" class="external-link">Generalized Additive Models</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mlogit.html" class="external-link">Multinomial Logit and Discrete Choice Models</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html" class="external-link">Causal Inference with the g-Formula</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/modelsummary.html" class="external-link">Tables and plots</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/sandwich.html" class="external-link">Robust standard errors and more</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/articles/transformation.html" class="external-link">Transformations and Custom Contrasts: Adjusted Risk Ratio Example</a></li>
@@ -109,7 +110,7 @@
 <div class="section level2">
 <h2 id="what">What?<a class="anchor" aria-label="anchor" href="#what"></a>
 </h2>
-<p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot four principal quantities of interest for <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">62 different classes of models:</a></p>
+<p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot four principal quantities of interest for <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">63 different classes of models:</a></p>
 <ul>
 <li>
 <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link"><em>Adjusted Prediction</em></a><ul>
@@ -151,7 +152,7 @@
 <p>So why did I write a clone?</p>
 <ul>
 <li>
-<em>Powerful:</em> Marginal effects and contrasts can be computed for 62 different classes of models. Adjusted predictions and marginal means can be computed for about 100 model types.</li>
+<em>Powerful:</em> Marginal effects and contrasts can be computed for 63 different classes of models. Adjusted predictions and marginal means can be computed for about 100 model types.</li>
 <li>
 <em>Extensible:</em> Adding support for new models is very easy, often requiring less than 10 lines of new code. Please submit <a href="https://github.com/vincentarelbundock/marginaleffects/issues" class="external-link">feature requests on Github.</a>
 </li>
@@ -319,24 +320,24 @@
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span>, <span class="fl">4</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type term        dydx  std.error statistic    p.value    conf.low</span>
-<span class="co">#&gt; 1     1 response   hp -0.03690556 0.01850168 -1.994714 0.04607413 -0.07316818</span>
-<span class="co">#&gt; 2     2 response   hp -0.02868936 0.01562768 -1.835804 0.06638661 -0.05931905</span>
-<span class="co">#&gt; 3     3 response   hp -0.04657166 0.02259121 -2.061494 0.03925589 -0.09084963</span>
-<span class="co">#&gt; 4     4 response   hp -0.04227128 0.01328275 -3.182420 0.00146050 -0.06830499</span>
+<span class="co">#&gt;   rowid     type term        dydx  std.error statistic     p.value    conf.low</span>
+<span class="co">#&gt; 1     1 response   hp -0.03690556 0.01850168 -1.994714 0.046074078 -0.07316818</span>
+<span class="co">#&gt; 2     2 response   hp -0.02868936 0.01562783 -1.835787 0.066389187 -0.05931934</span>
+<span class="co">#&gt; 3     3 response   hp -0.04657166 0.02258719 -2.061862 0.039220870 -0.09084174</span>
+<span class="co">#&gt; 4     4 response   hp -0.04227128 0.01328278 -3.182411 0.001460543 -0.06830506</span>
 <span class="co">#&gt;       conf.high  mpg  hp    wt am</span>
-<span class="co">#&gt; 1 -0.0006429255 21.0 110 2.620  1</span>
-<span class="co">#&gt; 2  0.0019403284 21.0 110 2.875  1</span>
-<span class="co">#&gt; 3 -0.0022936972 22.8  93 2.320  1</span>
-<span class="co">#&gt; 4 -0.0162375732 21.4 110 3.215  0</span></code></pre></div>
+<span class="co">#&gt; 1 -0.0006429342 21.0 110 2.620  1</span>
+<span class="co">#&gt; 2  0.0019406190 21.0 110 2.875  1</span>
+<span class="co">#&gt; 3 -0.0023015909 22.8  93 2.320  1</span>
+<span class="co">#&gt; 4 -0.0162375041 21.4 110 3.215  0</span></code></pre></div>
 <p>The function <code>summary</code> calculates the “Average Marginal Effect,” that is, the average of all unit-specific marginal effects:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
 <span class="co">#&gt;   Term   Effect Std. Error  z value   Pr(&gt;|z|)    2.5 %   97.5 %</span>
-<span class="co">#&gt; 1   hp -0.03807    0.01279 -2.97717 0.00290923 -0.06314 -0.01301</span>
+<span class="co">#&gt; 1   hp -0.03807    0.01279 -2.97730 0.00290798 -0.06314 -0.01301</span>
 <span class="co">#&gt; 2   wt -3.93909    1.08596 -3.62728 0.00028642 -6.06754 -1.81065</span>
-<span class="co">#&gt; 3   am -0.04811    1.85260 -0.02597 0.97928233 -3.67913  3.58291</span>
+<span class="co">#&gt; 3   am -0.04811    1.85260 -0.02597 0.97928234 -3.67913  3.58292</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  lm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
