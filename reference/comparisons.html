@@ -111,6 +111,7 @@ in the vignettes on the <code>marginaleffects</code> website: <a href="https://v
   transform_pre <span class="op">=</span> <span class="st">"difference"</span>,
   transform_post <span class="op">=</span> <span class="cn">NULL</span>,
   interaction <span class="op">=</span> <span class="cn">NULL</span>,
+  weights <span class="op">=</span> <span class="cn">NULL</span>,
   eps <span class="op">=</span> <span class="fl">1e-04</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
@@ -190,6 +191,8 @@ acceptable values is returned in an error message.</p></dd>
 <li><p><code>TRUE</code>: Contrasts represent the changes in adjusted predictions when the predictors specified in the <code>variables</code> argument are manipulated simultaneously.</p></li>
 <li><p><code>NULL</code> (default): Behaves like <code>TRUE</code> when the <code>variables</code> argument is specified and the model formula includes interactions. Behaves like <code>FALSE</code> otherwise.</p></li>
 </ul></dd>
+<dt>weights</dt>
+<dd><p>column name of the weights variable in <code>newdata</code>, or numeric vector of length equal to the number of rows in the original data or in <code>newdata</code> (if supplied).</p></dd>
 <dt>eps</dt>
 <dd><p>A numeric value specifying the “step” size to use when
 calculating numerical derivatives. See the Details section below. Warning:
