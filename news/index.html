@@ -55,9 +55,15 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0.9000" id="marginaleffects-0509000">marginaleffects 0.5.0.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0509000"></a></h2>
+<p>New supported packages and models:</p>
+<ul><li>
+<code>tidymodels</code> objects of class <code>tidy_model</code> are supported if the fit engine is supported by <code>marginaleffects</code>.</li></ul><p>Misc:</p>
 <ul><li>
 <code><a href="../reference/comparisons.html">comparisons()</a></code> now supports “log of marginal odds ratio” in the <code>transform_pre</code> argument. Thanks to Noah Greifer.</li>
 <li>Vignette on “Causal Inference with the g-Formula.” Thanks to Rohan Kapre for the idea.</li>
+<li>
+<code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> can compute standard errors and confidence intervals for linear models or GLM on the link scale.</li>
+<li>The <code>transform_post</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> is renamed to <code>transform_avg</code> to disambiguate against the argument of the same name in <code><a href="../reference/comparisons.html">comparisons()</a></code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0" id="marginaleffects-050">marginaleffects 0.5.0<small>2022-05-17</small><a class="anchor" aria-label="anchor" href="#marginaleffects-050"></a></h2>

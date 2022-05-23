@@ -185,7 +185,7 @@ acceptable values is returned in an error message.</p></dd>
 <li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p></li>
 </ul></dd>
 <dt>transform_post</dt>
-<dd><p>(experimental) A function applied to the estimate and confidence interval just before returning the final results. For example, users can exponentiate their final results by setting <code>transform_post=exp</code> or transform contrasts made on the link scale for ease of interpretation.</p></dd>
+<dd><p>(experimental) A function applied to unit-level estimates and confidence intervals just before the function returns results.</p></dd>
 <dt>interaction</dt>
 <dd><p>TRUE, FALSE, or NULL</p><ul><li><p><code>FALSE</code>: Contrasts represent the change in adjusted predictions when one predictor changes and all other variables are held constant.</p></li>
 <li><p><code>TRUE</code>: Contrasts represent the changes in adjusted predictions when the predictors specified in the <code>variables</code> argument are manipulated simultaneously.</p></li>
@@ -357,6 +357,8 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span>, transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> The `transform_post` argument was replaced by the `transform_avg` argument.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average contrasts </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term                  Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg ln(mean(x + 1) / mean(x))  1.135 2.3808e-10 1.091   1.18</span>
@@ -367,6 +369,8 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"><span class="co"># Adjusted Risk Ratio: Manual specification of the `transform_pre`</span></span>
 <span class="r-in"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span>, transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> The `transform_post` argument was replaced by the `transform_avg` argument.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average contrasts </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term   Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg (x + 1), x  1.135 2.3808e-10 1.091   1.18</span>
