@@ -321,6 +321,9 @@ comparisons <- function(model,
 
     if (!is.null(transform_post)) {
         mfx <- backtransform(mfx, transform_post)
+        transform_post_original <- attr(mfx, "transform_post_original")
+    } else {
+        transform_post_original <- NULL
     }
 
     # clean columns
@@ -346,9 +349,11 @@ comparisons <- function(model,
     attr(out, "J") <- J
     attr(out, "vcov") <- vcov
     attr(out, "vcov.type") <- get_vcov_label(vcov)
-    attr(out, "transform_pre") <- transform_pre_label
-    attr(out, "transform_post") <- transform_post_label
     attr(out, "weights") <- weights
+    attr(out, "transform_pre_label") <- transform_pre_label
+    attr(out, "transform_post") <- transform_post
+    attr(out, "transform_post_label") <- transform_post_label
+    attr(out, "transform_post_original") <- transform_post_original
 
     # modelbased::visualisation_matrix attaches useful info for plotting
     for (a in names(attributes_newdata)) {

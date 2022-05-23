@@ -45,8 +45,12 @@ tidy.marginaleffects <- function(x,
                                  conf_level = 0.95,
                                  by = NULL,
                                  ...) {
+
+
     x_dt <- copy(x)
     setnames(x_dt, old = "dydx", new = "comparison")
+
+
     out <- tidy.comparisons(x_dt,
                             conf_level = conf_level,
                             by = by,
@@ -185,13 +189,33 @@ tidy.predictions <- function(x,
 tidy.comparisons <- function(x,
                              conf_level = 0.95,
                              by = NULL,
-                             transform_post = NULL,
                              ...) {
 
     dots <- list(...)
+
     conf_level <- sanitize_conf_level(conf_level, ...)
     checkmate::assert_character(by, null.ok = TRUE)
-    checkmate::assert_function(transform_post, null.ok = TRUE)
+
+    if ("transform_post" %in% names(dots)) {
+        msg <- format_msg(
+        "The `transform_post` argument is no longer available in `summary()` or
+        `tidy()`. Instead, the function supplied to the `transform_post` argument 
+        of `comparisons()` is automatically applied to the average contrasts computed 
+        by `tidy()` and `summary()` based on the pre-transformed estimates")
+        stop(msg, call. = FALSE)
+    }
+
+    # `transform_post` was already applied to `x`
+    # restore the original data before computing average contrasts
+    # then post-transform
+    # assign only after hard stop on user-supplied transform_post (deprecated)
+    transform_post_original <- attr(x, "transform_post_original")
+    transform_post <- attr(x, "transform_post")
+    if (!is.null(transform_post)) {
+        for (n in names(transform_post_original)) {
+            x[[n]] <- transform_post_original[[n]]
+        }
+    }
 
     # we only know the delta method formula for the average marginal effect,
     # not for arbitrary functions
@@ -317,10 +341,7 @@ tidy.comparisons <- function(x,
     out <- out[out$estimate != 0, ]
 
     # back transformation
-    if (!is.null(transform_post)) {
-        if (!is.null(attr(x, "transform_post"))) {
-            warning("Estimates were transformed twice: once during the initial computation, and once more when summarizing the results in `tidy()` or `summary()`.", call. = FALSE)
-        }
+    if (is.function(transform_post)) {
         out <- backtransform(out, transform_post)
     }
 
