@@ -76,6 +76,7 @@ predictions <- function(model,
                         vcov = TRUE,
                         conf_level = 0.95,
                         type = "response",
+                        transform_post = NULL,
                         ...) {
 
 
@@ -106,6 +107,13 @@ predictions <- function(model,
     sanity_model_specific(model = model, newdata = newdata, vcov = vcov, calling_function = "predictions", ...)
     conf_level <- sanitize_conf_level(conf_level, ...)
     levels_character <- attr(variables, "levels_character")
+    checkmate::assert_function(transform_post, null.ok = TRUE)
+
+    if (!is.null(transform_post)) {
+        transform_post_label <- deparse(substitute(transform_post))
+    } else {
+        transform_post_label <- NULL
+    }
 
     # modelbased::visualisation_matrix attaches useful info for plotting
     attributes_newdata <- attributes(newdata)
@@ -305,6 +313,14 @@ predictions <- function(model,
 
     setDF(out)
 
+    # transform
+    if (!is.null(transform_post)) {
+        out <- backtransform(out, transform_post)
+        transform_post_original <- attr(out, "transform_post_original")
+    } else {
+        transform_post_original <- NULL
+    }
+
     # clean columns
     stubcols <- c(
         "rowid", "type", "term", "group", "predicted", "std.error",
@@ -322,6 +338,9 @@ predictions <- function(model,
     attr(out, "vcov.type") <- get_vcov_label(vcov)
     attr(out, "J") <- J
     attr(out, "vcov") <- V
+    attr(out, "transform_post") <- transform_post
+    attr(out, "transform_post_label") <- transform_post_label
+    attr(out, "transform_post_original") <- transform_post_original
 
     # modelbased::visualisation_matrix attaches useful info for plotting
     for (a in names(attributes_newdata)) {

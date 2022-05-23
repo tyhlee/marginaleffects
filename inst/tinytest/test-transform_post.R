@@ -27,3 +27,18 @@ expect_equivalent(exp(tid1$estimate), tid2$estimate)
 expect_equivalent(exp(tid1$conf.low), tid2$conf.low)
 expect_equivalent(exp(tid1$conf.high), tid2$conf.high)
 
+
+# back transform link-scale predictions
+pre1 <- predictions(mod, type = "link")
+pre2 <- predictions(mod, type = "response")
+pre3 <- predictions(mod, type = "link", transform_post = insight::link_inverse(mod))
+expect_equivalent(pre2$predicted, pre3$predicted)
+expect_equivalent(pre2$conf.low, pre3$conf.low)
+expect_equivalent(pre2$conf.high, pre3$conf.high)
+expect_true(all(pre1$predicted != pre3$predicted))
+
+# averaging before or after the transform makes a big difference
+# I know this fails but I don't want to skip it because it is a critical question I need to understand better.
+tid2 <- tidy(pre2)
+tid3 <- tidy(pre3)
+expect_equivalent(tid2$estimate, tid3$estimate)
