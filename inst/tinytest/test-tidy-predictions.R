@@ -49,3 +49,51 @@ expect_equivalent(pre$predicted, ins$Predicted)
 expect_equivalent(pre$std.error, ins$SE)
 expect_equivalent(pre$conf.low, ins$CI_low)
 expect_equivalent(pre$conf.high, ins$CI_high)
+
+
+
+
+dat <- mtcars
+dat$am <- factor(dat$am)
+mod <- glm(vs ~ am, data = dat, family = binomial)
+pre <- predictions(mod)
+tidy(pre, by = "am")
+
+comparisons(
+    mod,
+    newdata = pre,
+    contrast_numeric = 0,
+    transform_pre = function(hi, lo) mean(hi),
+
+x <- pre
+model <- attr(x, "model")
+V <- attr(x, "vcov")
+type <- attr(x, "type")
+
+fun <- function(model, newdata, ...) {
+    out <- get_predict(
+        model,
+        newdata = x,
+        vcov = FALSE,
+        ...)
+    out <- mean(out[["predicted"]])
+    return(out)
+}
+
+se <- get_se_delta(
+    model,
+    newdata = x,
+    vcov = V,
+    type = type,
+    FUN = fun,
+    eps = 1e-4)
+
+    , # avoid pushing through ...
+    ...)
+
+
+pre <- predictions(
+    mod,
+    type = "link",
+    )
+tidy(pre, by = "am")
