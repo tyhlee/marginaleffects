@@ -94,8 +94,8 @@ arguments.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type estimate std.error statistic p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response 20.09062 0.3837791  52.34945       0 19.33843  20.84282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    estimate std.error statistic p.value conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 20.09062 0.3837791  52.34945       0 19.33843  20.84282</span>
 </code></pre></div>
     </div>
   </div>
