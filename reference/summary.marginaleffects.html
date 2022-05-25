@@ -94,6 +94,7 @@ arguments.</p></dd>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># average marginal effects</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>column(s) not removed because not found: [marginaleffects_weights_internal]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average marginal effects </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast   Effect Std. Error z value   Pr(&gt;|z|)    2.5 %   97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp    dY/dX -0.03533    0.01045 -3.3815 0.00072104 -0.05581 -0.01485</span>
@@ -106,6 +107,7 @@ arguments.</p></dd>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># average marginal effects by group</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span>, by <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>column(s) not removed because not found: [marginaleffects_weights_internal]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average marginal effects </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Term Contrast gear   Effect Std. Error z value   Pr(&gt;|z|)    2.5 %    97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    hp    dY/dX    4 -0.05181    0.01142 -4.5352 5.7561e-06 -0.07420 -0.029418</span>
