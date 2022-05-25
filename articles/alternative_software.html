@@ -121,23 +121,12 @@
 <li>Easier to compute marginal effects (slopes) for custom grids and continuous regressors.</li>
 <li>Common plots are easy with the <code><a href="../reference/plot_cap.html">plot_cap()</a></code> and <code><a href="../reference/plot_cme.html">plot_cme()</a></code> functions.</li>
 </ul>
-<p>Many of <code>marginaleffects</code> advantages come down to subjective preferences over user interface. Readers are thus encouraged to try both packages to see which interface they prefer. Please keep in mind that <code>emmeans</code> offers many features which are not yet available in <code>marginaleffects</code>, including:</p>
+<p>Many of <code>marginaleffects</code> advantages come down to subjective preferences over user interface. Readers are thus encouraged to try both packages to see which interface they prefer. Please keep in mind that <code>emmeans</code> offers several features which are not yet available in <code>marginaleffects</code>, including:</p>
 <ul>
-<li>Transformations and link functions
-<ul>
-<li>
-<code>marginaleffects</code> can compute quantities on different scales with the <code>type</code> argument, but <code>emmeans</code> offers a richer array of possibilities for back transforms.</li>
-</ul>
-</li>
-<li>Custom contrasts and linear functions
-<ul>
-<li>Compare to the <code>contrast_factor</code> and <code>contrast_numeric</code> arguments of the <code><a href="../reference/comparisons.html">marginaleffects::comparisons</a></code> function.</li>
-</ul>
-</li>
-<li>Multiplicity adjustments.</li>
-<li>Joint tests.</li>
 <li>Equivalence tests.</li>
-<li>Various plots.</li>
+<li>Multiplicity adjustments.</li>
+<li>Hypothesis tests on linear combinations of contrasts.</li>
+<li>Some plots.</li>
 </ul>
 <p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal Means Vignette</a> includes side-by-side comparisons of <code>emmeans</code> and <code>marginaleffects</code> to compute marginal means. The rest of this section compares the syntax for contrasts and marginaleffects.</p>
 <div class="section level3">
@@ -184,17 +173,15 @@
 <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>,
             type <span class="op">=</span> <span class="st">"link"</span>,
             newdata <span class="op">=</span> <span class="st">"mean"</span>,
-            contrast_factor <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span>
-<span class="co">#&gt;   rowid type term    contrast   comparison    std.error    statistic   p.value</span>
-<span class="co">#&gt; 1     1 link   hp (x + 1) - x  -0.03257475 3.388105e-02 -0.961444596 0.3363287</span>
-<span class="co">#&gt; 2     1 link  cyl       6 - 4  -0.90487411 1.630231e+00 -0.555058785 0.5788545</span>
-<span class="co">#&gt; 3     1 link  cyl       8 - 4 -19.54175662 4.367166e+03 -0.004474700 0.9964297</span>
-<span class="co">#&gt; 4     1 link  cyl       8 - 6 -18.63688250 4.367165e+03 -0.004267501 0.9965950</span>
-<span class="co">#&gt;        conf.low    conf.high       hp cyl</span>
-<span class="co">#&gt; 1 -9.898038e-02 3.383088e-02 146.6875   8</span>
-<span class="co">#&gt; 2 -4.100068e+00 2.290320e+00 146.6875   8</span>
-<span class="co">#&gt; 3 -8.579030e+03 8.539946e+03 146.6875   8</span>
-<span class="co">#&gt; 4 -8.578124e+03 8.540850e+03 146.6875   8</span></code></pre></div>
+            variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;   rowid type term contrast  comparison   std.error    statistic   p.value</span>
+<span class="co">#&gt; 1     1 link  cyl    6 - 4  -0.9048741    1.630231 -0.555058785 0.5788545</span>
+<span class="co">#&gt; 2     1 link  cyl    8 - 4 -19.5417566 4367.165924 -0.004474700 0.9964297</span>
+<span class="co">#&gt; 3     1 link  cyl    8 - 6 -18.6368825 4367.165407 -0.004267501 0.9965950</span>
+<span class="co">#&gt;       conf.low  conf.high       hp cyl</span>
+<span class="co">#&gt; 1    -4.100068    2.29032 146.6875   8</span>
+<span class="co">#&gt; 2 -8579.029682 8539.94617 146.6875   8</span>
+<span class="co">#&gt; 3 -8578.123795 8540.85003 146.6875   8</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="contrasts-by-group">Contrasts by group<a class="anchor" aria-label="anchor" href="#contrasts-by-group"></a>
@@ -265,9 +252,8 @@
 <p>Then we compute pairwise contrasts over this grid:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>,
-    variables <span class="op">=</span> <span class="st">"btype"</span>,
+    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"btype"</span> <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span>,
     newdata <span class="op">=</span> <span class="va">nd</span>,
-    contrast_factor <span class="op">=</span> <span class="st">"pairwise"</span>,
     type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
 <span class="co">#&gt; [1] 54</span></code></pre></div>
@@ -954,17 +940,16 @@ Expression   : Linear prediction, predict()
 <span class="co">#&gt; 1 4.901384 4.895236 4.404996 5.417512          NA         NA 0.95    ETI &lt;NA&gt;</span>
 <span class="co">#&gt;    MID   Label</span>
 <span class="co">#&gt; 1 &lt;NA&gt; AME grp</span></code></pre></div>
-<p>In <code>marginaleffects</code> we use the <code><a href="../reference/comparisons.html">comparisons()</a></code> function and the <code>contrast_numeric</code> argument:</p>
+<p>In <code>marginaleffects</code> we use the <code><a href="../reference/comparisons.html">comparisons()</a></code> function and the <code>variables</code> argument:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
   <span class="va">ls.fe</span>,
-  contrast_numeric <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,
+  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>grp <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,
   dpar <span class="op">=</span> <span class="st">"sigma"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
 <span class="co">#&gt; Average contrasts </span>
 <span class="co">#&gt;                 Group Term Contrast Effect 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1 main_marginaleffect    x    1 - 0  6.850 4.918  9.076</span>
-<span class="co">#&gt; 2 main_marginaleffect  grp    1 - 0  4.901 4.405  5.418</span>
+<span class="co">#&gt; 1 main_marginaleffect  grp    1 - 0  4.901 4.405  5.418</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  brmsfit </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
