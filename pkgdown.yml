@@ -15,9 +15,10 @@ articles:
   mfx06_supported_models: mfx06_supported_models.html
   mlogit: mlogit.html
   modelsummary: modelsummary.html
+  multiple_imputation: multiple_imputation.html
   performance: performance.html
   sandwich: sandwich.html
   technical_notes: technical_notes.html
   transformation: transformation.html
-last_built: 2022-05-24T20:15Z
+last_built: 2022-05-25T00:15Z
 
