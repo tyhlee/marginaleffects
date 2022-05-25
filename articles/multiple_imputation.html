@@ -121,8 +121,8 @@
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;   term    estimate  std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1   hp -0.06479819 0.01151898 -5.625342 27.49896 5.360172e-06</span></code></pre></div>
+<span class="co">#&gt;   term    estimate std.error statistic       df      p.value</span>
+<span class="co">#&gt; 1   hp -0.06515231 0.0117223 -5.557981 27.74731 6.235712e-06</span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>
@@ -135,10 +135,7 @@
     <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,
     <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span>
-<span class="co">#&gt; 'r2()' does not support models of class 'marginaleffects'.</span>
-<span class="co">#&gt; 'r2()' does not support models of class 'marginaleffects'.</span>
-<span class="co">#&gt; Objects of class 'try-error' are currently not supported.</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -218,7 +215,7 @@ R2
 0.602
 </td>
 <td style="text-align:center;">
-0.535
+0.529
 </td>
 </tr>
 <tr>
@@ -232,7 +229,7 @@ R2 Adj.
 0.589
 </td>
 <td style="text-align:center;">
-0.519
+0.513
 </td>
 </tr>
 <tr>
@@ -306,8 +303,8 @@ RMSE
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;   term   estimate  std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1  mpg 0.04845896 0.01058057  4.579993 21.16607 0.0001595869</span></code></pre></div>
+<span class="co">#&gt;   term   estimate std.error statistic       df      p.value</span>
+<span class="co">#&gt; 1  mpg 0.04979993 0.0101041  4.928684 25.13926 4.419334e-05</span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>
@@ -320,10 +317,7 @@ RMSE
     <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,
     <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span>
-<span class="co">#&gt; 'r2()' does not support models of class 'marginaleffects'.</span>
-<span class="co">#&gt; 'r2()' does not support models of class 'marginaleffects'.</span>
-<span class="co">#&gt; Objects of class 'try-error' are currently not supported.</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -350,7 +344,7 @@ mpg
 0.046
 </td>
 <td style="text-align:center;">
-0.048
+0.050
 </td>
 </tr>
 <tr>
@@ -363,7 +357,7 @@ mpg
 (0.009)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
+(0.010)
 </td>
 </tr>
 <tr>
@@ -490,10 +484,7 @@ RMSE
     <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,
     <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span>
-<span class="co">#&gt; 'r2()' does not support models of class 'marginaleffects'.</span>
-<span class="co">#&gt; 'r2()' does not support models of class 'marginaleffects'.</span>
-<span class="co">#&gt; Objects of class 'try-error' are currently not supported.</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
