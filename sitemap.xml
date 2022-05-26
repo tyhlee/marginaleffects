@@ -22,6 +22,15 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/links_external.html</loc>
+  </url>
+  <url>
+    <loc>/articles/links_internal.html</loc>
+  </url>
+  <url>
+    <loc>/articles/links_main.html</loc>
+  </url>
+  <url>
     <loc>/articles/lme4.html</loc>
   </url>
   <url>

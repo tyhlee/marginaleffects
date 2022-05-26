@@ -126,12 +126,12 @@
 <code class="sourceCode R"><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span>
 <span class="co">#&gt;   rowid     type predicted  conf.low conf.high survived woman     age</span>
-<span class="co">#&gt; 1     1 response 0.9369688 0.9061522 0.9591554        1     1 29.0000</span>
-<span class="co">#&gt; 2     2 response 0.8503133 0.7426554 0.9165413        1     0  0.9167</span>
-<span class="co">#&gt; 3     3 response 0.9430172 0.8903681 0.9708922        0     1  2.0000</span>
-<span class="co">#&gt; 4     4 response 0.5139300 0.4309695 0.5964818        0     0 30.0000</span>
-<span class="co">#&gt; 5     5 response 0.9378862 0.9066505 0.9599537        0     1 25.0000</span>
-<span class="co">#&gt; 6     6 response 0.2728637 0.2035348 0.3528494        1     0 48.0000</span>
+<span class="co">#&gt; 1     1 response 0.9369522 0.9067851 0.9587954        1     1 29.0000</span>
+<span class="co">#&gt; 2     2 response 0.8491850 0.7455732 0.9205602        1     0  0.9167</span>
+<span class="co">#&gt; 3     3 response 0.9422088 0.8925107 0.9713377        0     1  2.0000</span>
+<span class="co">#&gt; 4     4 response 0.5138722 0.4305853 0.5993483        0     0 30.0000</span>
+<span class="co">#&gt; 5     5 response 0.9376541 0.9062675 0.9597778        0     1 25.0000</span>
+<span class="co">#&gt; 6     6 response 0.2727592 0.2042144 0.3483927        1     0 48.0000</span>
 <span class="co">#&gt;   passengerClass</span>
 <span class="co">#&gt; 1            1st</span>
 <span class="co">#&gt; 2            1st</span>
@@ -150,23 +150,23 @@
                                        passengerClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">pred</span>
 <span class="co">#&gt;   rowid     type  predicted  conf.low conf.high      age woman passengerClass</span>
-<span class="co">#&gt; 1     1 response 0.51569826 0.4324178 0.5984779 29.88113     0            1st</span>
-<span class="co">#&gt; 2     2 response 0.20249946 0.1510167 0.2622690 29.88113     0            2nd</span>
-<span class="co">#&gt; 3     3 response 0.08724284 0.0659198 0.1156054 29.88113     0            3rd</span>
-<span class="co">#&gt; 4     4 response 0.93671203 0.9059142 0.9589741 29.88113     1            1st</span>
-<span class="co">#&gt; 5     5 response 0.77818646 0.7100787 0.8375397 29.88113     1            2nd</span>
-<span class="co">#&gt; 6     6 response 0.57030382 0.4953685 0.6429626 29.88113     1            3rd</span></code></pre></div>
+<span class="co">#&gt; 1     1 response 0.51551448 0.4320516 0.6010003 29.88113     0            1st</span>
+<span class="co">#&gt; 2     2 response 0.20150440 0.1514764 0.2644973 29.88113     0            2nd</span>
+<span class="co">#&gt; 3     3 response 0.08768608 0.0646409 0.1160717 29.88113     0            3rd</span>
+<span class="co">#&gt; 4     4 response 0.93672620 0.9066490 0.9586775 29.88113     1            1st</span>
+<span class="co">#&gt; 5     5 response 0.77942390 0.7083312 0.8364655 29.88113     1            2nd</span>
+<span class="co">#&gt; 6     6 response 0.57121287 0.4954516 0.6436379 29.88113     1            3rd</span></code></pre></div>
 <p>The <code>posteriordraws</code> function samples from the posterior distribution of the model, and produces a data frame with <code>drawid</code> and <code>draw</code> columns.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span>
 <span class="co">#&gt;   drawid       draw rowid     type  predicted  conf.low conf.high      age</span>
-<span class="co">#&gt; 1      1 0.57905318     1 response 0.51569826 0.4324178 0.5984779 29.88113</span>
-<span class="co">#&gt; 2      1 0.17915236     2 response 0.20249946 0.1510167 0.2622690 29.88113</span>
-<span class="co">#&gt; 3      1 0.09643222     3 response 0.08724284 0.0659198 0.1156054 29.88113</span>
-<span class="co">#&gt; 4      1 0.94104862     4 response 0.93671203 0.9059142 0.9589741 29.88113</span>
-<span class="co">#&gt; 5      1 0.71693184     5 response 0.77818646 0.7100787 0.8375397 29.88113</span>
-<span class="co">#&gt; 6      1 0.55326788     6 response 0.57030382 0.4953685 0.6429626 29.88113</span>
+<span class="co">#&gt; 1      1 0.48436777     1 response 0.51551448 0.4320516 0.6010003 29.88113</span>
+<span class="co">#&gt; 2      1 0.19441879     2 response 0.20150440 0.1514764 0.2644973 29.88113</span>
+<span class="co">#&gt; 3      1 0.08672368     3 response 0.08768608 0.0646409 0.1160717 29.88113</span>
+<span class="co">#&gt; 4      1 0.93828521     4 response 0.93672620 0.9066490 0.9586775 29.88113</span>
+<span class="co">#&gt; 5      1 0.79617060     5 response 0.77942390 0.7083312 0.8364655 29.88113</span>
+<span class="co">#&gt; 6      1 0.60581827     6 response 0.57121287 0.4954516 0.6436379 29.88113</span>
 <span class="co">#&gt;   woman passengerClass</span>
 <span class="co">#&gt; 1     0            1st</span>
 <span class="co">#&gt; 2     0            2nd</span>
@@ -191,10 +191,10 @@
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
 <span class="co">#&gt;             Term  Contrast    Effect     2.5 %    97.5 %</span>
-<span class="co">#&gt; 1          woman     dY/dX  0.365689  0.335646  0.391430</span>
-<span class="co">#&gt; 2            age     dY/dX -0.005263 -0.007065 -0.003417</span>
-<span class="co">#&gt; 3 passengerClass 2nd - 1st -0.237315 -0.309921 -0.164190</span>
-<span class="co">#&gt; 4 passengerClass 3rd - 1st -0.388584 -0.452663 -0.321707</span>
+<span class="co">#&gt; 1          woman     dY/dX  0.365751  0.336977  0.390604</span>
+<span class="co">#&gt; 2            age     dY/dX -0.005262 -0.007087 -0.003397</span>
+<span class="co">#&gt; 3 passengerClass 2nd - 1st -0.236738 -0.310350 -0.162407</span>
+<span class="co">#&gt; 4 passengerClass 3rd - 1st -0.388043 -0.454584 -0.320938</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  brmsfit </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
@@ -204,15 +204,15 @@
                 newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>woman <span class="op">=</span> <span class="fl">1</span>,
                                    passengerClass <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;   rowid     type           term  contrast          dydx     conf.low</span>
-<span class="co">#&gt; 1     1 response          woman     dY/dX  0.1559369405  0.112406261</span>
-<span class="co">#&gt; 2     1 response            age     dY/dX -0.0002341937 -0.001363231</span>
-<span class="co">#&gt; 3     1 response passengerClass 2nd - 1st -0.1576916187 -0.223962592</span>
-<span class="co">#&gt; 4     1 response passengerClass 3rd - 1st -0.3651248582 -0.437377465</span>
+<span class="co">#&gt; 1     1 response          woman     dY/dX  0.1559166851  0.111565602</span>
+<span class="co">#&gt; 2     1 response            age     dY/dX -0.0002056865 -0.001400889</span>
+<span class="co">#&gt; 3     1 response passengerClass 2nd - 1st -0.1564754078 -0.225403435</span>
+<span class="co">#&gt; 4     1 response passengerClass 3rd - 1st -0.3639894897 -0.438186680</span>
 <span class="co">#&gt;       conf.high      age woman passengerClass</span>
-<span class="co">#&gt; 1  0.2083777523 29.88113     1            1st</span>
-<span class="co">#&gt; 2  0.0009599293 29.88113     1            1st</span>
-<span class="co">#&gt; 3 -0.1020797532 29.88113     1            1st</span>
-<span class="co">#&gt; 4 -0.2937184600 29.88113     1            1st</span></code></pre></div>
+<span class="co">#&gt; 1  0.2084688835 29.88113     1            1st</span>
+<span class="co">#&gt; 2  0.0009750981 29.88113     1            1st</span>
+<span class="co">#&gt; 3 -0.0999016427 29.88113     1            1st</span>
+<span class="co">#&gt; 4 -0.2932527351 29.88113     1            1st</span></code></pre></div>
 <p>Compute and plot conditional marginal effects:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"woman"</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></code></pre></div>
@@ -226,19 +226,19 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span>
 <span class="co">#&gt;   drawid       draw rowid     type  term contrast       dydx   conf.low</span>
-<span class="co">#&gt; 1      1 0.13243980     1 response woman    dY/dX 0.15283379 0.10953127</span>
-<span class="co">#&gt; 2      1 0.13232098     2 response woman    dY/dX 0.13518993 0.03413719</span>
-<span class="co">#&gt; 3      1 0.04928088     3 response woman    dY/dX 0.05843934 0.02782563</span>
-<span class="co">#&gt; 4      1 0.59937857     4 response woman    dY/dX 0.65472558 0.57002000</span>
-<span class="co">#&gt; 5      1 0.11710312     5 response woman    dY/dX 0.13776413 0.09795975</span>
-<span class="co">#&gt; 6      1 0.71255791     6 response woman    dY/dX 0.70790011 0.58869299</span>
+<span class="co">#&gt; 1      1 0.15864558     1 response woman    dY/dX 0.15270281 0.10913965</span>
+<span class="co">#&gt; 2      1 0.17141074     2 response woman    dY/dX 0.13338492 0.03667357</span>
+<span class="co">#&gt; 3      1 0.07472899     3 response woman    dY/dX 0.05884655 0.02740153</span>
+<span class="co">#&gt; 4      1 0.69687496     4 response woman    dY/dX 0.65463974 0.56984848</span>
+<span class="co">#&gt; 5      1 0.14692372     5 response woman    dY/dX 0.13797342 0.09637866</span>
+<span class="co">#&gt; 6      1 0.73579899     6 response woman    dY/dX 0.70952107 0.59260316</span>
 <span class="co">#&gt;   conf.high survived woman     age passengerClass</span>
-<span class="co">#&gt; 1 0.2045611        1     1 29.0000            1st</span>
-<span class="co">#&gt; 2 0.2940011        1     0  0.9167            1st</span>
-<span class="co">#&gt; 3 0.1025270        0     1  2.0000            1st</span>
-<span class="co">#&gt; 4 0.7416688        0     0 30.0000            1st</span>
-<span class="co">#&gt; 5 0.1884234        0     1 25.0000            1st</span>
-<span class="co">#&gt; 6 0.8397762        1     0 48.0000            1st</span></code></pre></div>
+<span class="co">#&gt; 1 0.2046858        1     1 29.0000            1st</span>
+<span class="co">#&gt; 2 0.2921465        1     0  0.9167            1st</span>
+<span class="co">#&gt; 3 0.1003553        0     1  2.0000            1st</span>
+<span class="co">#&gt; 4 0.7445943        0     0 30.0000            1st</span>
+<span class="co">#&gt; 5 0.1877904        0     1 25.0000            1st</span>
+<span class="co">#&gt; 6 0.8457204        1     0 48.0000            1st</span></code></pre></div>
 <p>We can use this dataset to plot our results. For example, to plot the posterior density of the marginal effect of <code>age</code> when the <code>woman</code> variable is equal to 0 or 1:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,
@@ -324,8 +324,8 @@
                                           region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">mfx</span>
 <span class="co">#&gt;   rowid     type            term     contrast      dydx  conf.low conf.high</span>
-<span class="co">#&gt; 1     1 response  party_autonomy TRUE - FALSE 0.2537745 0.1666555 0.3335418</span>
-<span class="co">#&gt; 2     1 response civil_liberties        dY/dX 0.8146562 0.6209927 1.0012353</span>
+<span class="co">#&gt; 1     1 response  party_autonomy TRUE - FALSE 0.2498365 0.1594702 0.3331397</span>
+<span class="co">#&gt; 2     1 response civil_liberties        dY/dX 0.8218629 0.6252692 1.0074650</span>
 <span class="co">#&gt;   party_autonomy civil_liberties                       region</span>
 <span class="co">#&gt; 1           TRUE             0.5 Middle East and North Africa</span>
 <span class="co">#&gt; 2           TRUE             0.5 Middle East and North Africa</span></code></pre></div>
@@ -370,9 +370,9 @@
                        variables <span class="op">=</span> <span class="st">"civil_liberties"</span><span class="op">)</span>
 <span class="va">mfx</span>
 <span class="co">#&gt;   rowid     type            term      dydx  conf.low conf.high civil_liberties</span>
-<span class="co">#&gt; 1     1 response civil_liberties 0.4878425 0.3639372 0.6401433             0.2</span>
-<span class="co">#&gt; 2     2 response civil_liberties 0.8076476 0.6148585 0.9926511             0.5</span>
-<span class="co">#&gt; 3     3 response civil_liberties 0.8044075 0.6787519 0.9356047             0.8</span>
+<span class="co">#&gt; 1     1 response civil_liberties 0.4896740 0.3649954 0.6388054             0.2</span>
+<span class="co">#&gt; 2     2 response civil_liberties 0.8118232 0.6176011 1.0051060             0.5</span>
+<span class="co">#&gt; 3     3 response civil_liberties 0.8076969 0.6774447 0.9357934             0.8</span>
 <span class="co">#&gt;   party_autonomy                       region</span>
 <span class="co">#&gt; 1          FALSE Middle East and North Africa</span>
 <span class="co">#&gt; 2          FALSE Middle East and North Africa</span>
@@ -540,12 +540,12 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span>
 <span class="co">#&gt;   rowid     type group  predicted   conf.low  conf.high depvar  ic.gc  oc.gc</span>
-<span class="co">#&gt; 1     1 response    ec 0.06677914 0.04528130 0.09394915     gc 866.00 199.69</span>
-<span class="co">#&gt; 2     2 response    ec 0.07707496 0.05978103 0.09760636     gc 727.93 168.66</span>
-<span class="co">#&gt; 3     3 response    ec 0.10464894 0.06349662 0.16141794     gc 599.48 165.58</span>
-<span class="co">#&gt; 4     4 response    ec 0.06337891 0.04631451 0.08390683     er 835.17 180.88</span>
-<span class="co">#&gt; 5     5 response    ec 0.07499120 0.05822888 0.09424030     er 755.59 174.91</span>
-<span class="co">#&gt; 6     6 response    ec 0.07045297 0.04524151 0.10458739     gc 666.11 135.67</span></code></pre></div>
+<span class="co">#&gt; 1     1 response    ec 0.06671409 0.04531103 0.09267309     gc 866.00 199.69</span>
+<span class="co">#&gt; 2     2 response    ec 0.07730218 0.05896427 0.09732026     gc 727.93 168.66</span>
+<span class="co">#&gt; 3     3 response    ec 0.10335624 0.06379169 0.16103070     gc 599.48 165.58</span>
+<span class="co">#&gt; 4     4 response    ec 0.06410117 0.04665484 0.08341019     er 835.17 180.88</span>
+<span class="co">#&gt; 5     5 response    ec 0.07524860 0.05744629 0.09437307     er 755.59 174.91</span>
+<span class="co">#&gt; 6     6 response    ec 0.07165261 0.04636910 0.10405822     gc 666.11 135.67</span></code></pre></div>
 <p>Extract posterior draws and plot them:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span>
@@ -570,17 +570,17 @@
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
-<span class="co">#&gt;    Group  Term     Effect      2.5 %    97.5 %</span>
-<span class="co">#&gt; 1     ec ic.gc -1.880e-04 -4.012e-04 2.597e-05</span>
-<span class="co">#&gt; 2     ec oc.gc  5.174e-04 -4.068e-04 1.464e-03</span>
-<span class="co">#&gt; 3     er ic.gc  1.763e-05 -2.191e-04 2.417e-04</span>
-<span class="co">#&gt; 4     er oc.gc -1.028e-03 -2.094e-03 2.374e-05</span>
-<span class="co">#&gt; 5     gc ic.gc  1.145e-05 -3.863e-04 4.126e-04</span>
-<span class="co">#&gt; 6     gc oc.gc  1.052e-03 -7.678e-04 2.801e-03</span>
-<span class="co">#&gt; 7     gr ic.gc  4.692e-05 -2.377e-04 3.271e-04</span>
-<span class="co">#&gt; 8     gr oc.gc  6.393e-05 -1.161e-03 1.326e-03</span>
-<span class="co">#&gt; 9     hp ic.gc  1.120e-04 -7.366e-05 3.075e-04</span>
-<span class="co">#&gt; 10    hp oc.gc -6.048e-04 -1.497e-03 2.181e-04</span>
+<span class="co">#&gt;    Group  Term     Effect      2.5 %     97.5 %</span>
+<span class="co">#&gt; 1     ec ic.gc -1.810e-04 -4.016e-04  1.900e-05</span>
+<span class="co">#&gt; 2     ec oc.gc  4.813e-04 -4.649e-04  1.470e-03</span>
+<span class="co">#&gt; 3     er ic.gc  1.414e-05 -2.157e-04  2.410e-04</span>
+<span class="co">#&gt; 4     er oc.gc -1.022e-03 -2.087e-03 -1.367e-05</span>
+<span class="co">#&gt; 5     gc ic.gc  1.306e-05 -3.664e-04  3.876e-04</span>
+<span class="co">#&gt; 6     gc oc.gc  1.059e-03 -6.006e-04  2.686e-03</span>
+<span class="co">#&gt; 7     gr ic.gc  4.611e-05 -2.233e-04  3.248e-04</span>
+<span class="co">#&gt; 8     gr oc.gc  7.090e-05 -1.137e-03  1.348e-03</span>
+<span class="co">#&gt; 9     hp ic.gc  1.077e-04 -7.813e-05  2.968e-04</span>
+<span class="co">#&gt; 10    hp oc.gc -5.895e-04 -1.444e-03  2.476e-04</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  brmsfit </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
