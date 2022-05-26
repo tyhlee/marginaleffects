@@ -106,8 +106,12 @@ explicitly defined are held at their mean or mode.</p>
     <div id="details">
     <h2>Details</h2>
     <p>If <code>datagrid</code> is used in a <code>marginaleffects</code> or <code>predictions</code> call as the
-<code>newdata</code> argument, users do not need to specify the <code>model</code> or <code>newdata</code>
-argument. The data is extracted automatically from the model.</p>
+<code>newdata</code> argument, the model is automatically inserted in the function
+call, and users do not need to specify either the <code>model</code> or <code>newdata</code>
+arguments. Note that only the variables used to fit the models will be
+attached to the results. If a user wants to attach other variables as well
+(e.g., weights or grouping variables), they can supply a data.frame
+explicitly to the <code>newdata</code> argument inside <code>datagrid()</code>.</p>
 <p>If users supply a model, the data used to fit that model is retrieved using
 the <code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">insight::get_data</a></code> function.</p>
     </div>
