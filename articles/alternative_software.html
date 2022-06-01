@@ -590,7 +590,7 @@ hp           |
 <div class="section level4">
 <h4 id="marginaleffects-1">marginaleffects<a class="anchor" aria-label="anchor" href="#marginaleffects-1"></a>
 </h4>
-<p>You can estimate average counterfactual marginal effects with <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> by, first, setting the <code>grid_type</code> argument of <code>data.grid()</code> to <code>"counterfactual"</code> and, second, by telling the <code>summary</code> function that you want to average within groups:</p>
+<p>You can estimate average counterfactual marginal effects with <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> by, first, setting the <code>grid_type</code> argument of <code><a href="../reference/datagrid.html">datagrid()</a></code> to <code>"counterfactual"</code> and, second, by telling the <code>summary</code> function that you want to average within groups:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 
@@ -668,7 +668,7 @@ Expression   : Linear prediction, predict()
 <div class="section level4">
 <h4 id="marginaleffects-2">marginaleffects<a class="anchor" aria-label="anchor" href="#marginaleffects-2"></a>
 </h4>
-<p>You can estimate average counterfactual adjusted predictions with <code><a href="../reference/predictions.html">predictions()</a></code> by, first, setting the <code>grid_type</code> argument of <code>data.grid()</code> to <code>"counterfactual"</code> and, second, by averaging the predictions, for example using <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">dplyr::summarise()</a></code>.</p>
+<p>You can estimate average counterfactual adjusted predictions with <code><a href="../reference/predictions.html">predictions()</a></code> by, first, setting the <code>grid_type</code> argument of <code><a href="../reference/datagrid.html">datagrid()</a></code> to <code>"counterfactual"</code> and, second, by averaging the predictions using the <code>by</code> argument of <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, or a manual function like <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">dplyr::summarise()</a></code>.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 
@@ -684,8 +684,32 @@ Expression   : Linear prediction, predict()
 <span class="co">#&gt; 3   8     18.33      1.124  16.312 &lt; 2.22e-16  16.13   20.54</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  lm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
-<p>Note that standard errors are not yet available for average adjusted predictions.</p>
+<span class="co">#&gt; Prediction type:  response</span>
+
+<span class="va">pred</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;      rowid           type             predicted        std.error     </span>
+<span class="co">#&gt;  Min.   : 1.00   Length:96          Min.   :-2.368   Min.   :0.7171  </span>
+<span class="co">#&gt;  1st Qu.:24.75   Class :character   1st Qu.:15.699   1st Qu.:1.1053  </span>
+<span class="co">#&gt;  Median :48.50   Mode  :character   Median :18.786   Median :1.6349  </span>
+<span class="co">#&gt;  Mean   :48.50                      Mean   :18.230   Mean   :2.2313  </span>
+<span class="co">#&gt;  3rd Qu.:72.25                      3rd Qu.:22.416   3rd Qu.:2.5372  </span>
+<span class="co">#&gt;  Max.   :96.00                      Max.   :31.763   Max.   :8.7954  </span>
+<span class="co">#&gt;    statistic          p.value          conf.low        conf.high    </span>
+<span class="co">#&gt;  Min.   :-0.2692   Min.   :0.0000   Min.   :-19.61   Min.   :12.92  </span>
+<span class="co">#&gt;  1st Qu.: 6.7141   1st Qu.:0.0000   1st Qu.: 11.09   1st Qu.:19.34  </span>
+<span class="co">#&gt;  Median :11.5897   Median :0.0000   Median : 15.71   Median :22.44  </span>
+<span class="co">#&gt;  Mean   :12.7805   Mean   :0.0327   Mean   : 13.86   Mean   :22.60  </span>
+<span class="co">#&gt;  3rd Qu.:18.6622   3rd Qu.:0.0000   3rd Qu.: 18.98   3rd Qu.:25.74  </span>
+<span class="co">#&gt;  Max.   :34.4833   Max.   :0.7878   Max.   : 29.17   Max.   :34.35  </span>
+<span class="co">#&gt;  rowid_counterfactual       hp              wt        cyl         mpg   </span>
+<span class="co">#&gt;  Min.   : 1.00        Min.   : 52.0   Min.   :1.513   4:32   Min.   :0  </span>
+<span class="co">#&gt;  1st Qu.: 8.75        1st Qu.: 96.5   1st Qu.:2.581   6:32   1st Qu.:0  </span>
+<span class="co">#&gt;  Median :16.50        Median :123.0   Median :3.325   8:32   Median :0  </span>
+<span class="co">#&gt;  Mean   :16.50        Mean   :146.7   Mean   :3.217          Mean   :0  </span>
+<span class="co">#&gt;  3rd Qu.:24.25        3rd Qu.:180.0   3rd Qu.:3.610          3rd Qu.:0  </span>
+<span class="co">#&gt;  Max.   :32.00        Max.   :335.0   Max.   :5.424          Max.   :0</span></code></pre></div>
 </div>
 </div>
 </div>
