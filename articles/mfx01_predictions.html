@@ -365,17 +365,36 @@ hp
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pred</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;      AAP</span>
-<span class="co">#&gt; 1 0.4375</span></code></pre></div>
-<p>We can also compute the AAP for multiple values of the regressors. For example, here use create a “counterfactual” data grid where each observation of the dataset are repeated twice, with different values of the <code>am</code> variable, and all other variables held at the observed values. Then, we use some <code>dplyr</code> magic:</p>
+<span class="co">#&gt; 1 0.4375</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span>
+<span class="co">#&gt; Average Adjusted Predictions </span>
+<span class="co">#&gt;   Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span>
+<span class="co">#&gt; 1    0.4375    0.04288    10.2 &lt; 2.22e-16 0.3535  0.5215</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Model type:  glm </span>
+<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<p>We can also compute the AAP for multiple values of the regressors. For example, here use create a “counterfactual” data grid where each observation of the dataset are repeated twice, with different values of the <code>am</code> variable, and all other variables held at the observed values. Then, we use the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function’s <code>by</code> argument or some <code>dplyr</code> magic:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">predicted</span>, <span class="va">std.error</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span>
-<span class="co">#&gt;      am predicted std.error</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0     0.526    0.042<span style="text-decoration: underline;">8</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1     0.330    0.074<span style="text-decoration: underline;">0</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span>
+<span class="co">#&gt; Average Adjusted Predictions </span>
+<span class="co">#&gt;   am Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span>
+<span class="co">#&gt; 1  0    0.5261    0.03303   15.93 &lt; 2.22e-16 0.4614  0.5909</span>
+<span class="co">#&gt; 2  1    0.3302    0.06462    5.11 3.2272e-07 0.2035  0.4568</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Model type:  glm </span>
+<span class="co">#&gt; Prediction type:  response</span>
+
+<span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span>
+<span class="co">#&gt;      am   AAP</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0 0.526</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1 0.330</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="conditional-adjusted-predictions-plot">Conditional Adjusted Predictions (Plot)<a class="anchor" aria-label="anchor" href="#conditional-adjusted-predictions-plot"></a>

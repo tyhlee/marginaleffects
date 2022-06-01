@@ -119,8 +119,8 @@ visit the <code>marginaleffects</code> website for more:
 </ul></li>
 <li><p>Logical variables:</p><ul><li><p>NULL: contrast between TRUE and FALSE</p></li>
 </ul></li>
-<li><p>Numeric variables:</p><ul><li><p>Numeric of length 1: Contrast for a gap of <code>contrast_numeric</code>, computed at the observed value plus and minus <code>contrast_numeric / 2</code></p></li>
-<li><p>Numeric vector of length 2: Contrast between the 2nd element and the 1st element of the <code>contrast_numeric</code> vector.</p></li>
+<li><p>Numeric variables:</p><ul><li><p>Numeric of length 1: Contrast for a gap of <code>x</code>, computed at the observed value plus and minus <code>x / 2</code></p></li>
+<li><p>Numeric vector of length 2: Contrast between the 2nd element and the 1st element of the <code>x</code> vector.</p></li>
 <li><p>"iqr": Contrast across the interquartile range of the regressor.</p></li>
 <li><p>"sd": Contrast across one standard deviation around the regressor mean.</p></li>
 <li><p>"2sd": Contrast across two standard deviations around the regressor mean.</p></li>
@@ -159,6 +159,8 @@ acceptable values is returned in an error message.</p></dd>
 <li><p>"ratioavg": <code>function(hi, lo) mean(hi) / mean(lo)</code></p></li>
 <li><p>"lnratioavg": <code>function(hi, lo) log(mean(hi) / mean(lo))</code></p></li>
 <li><p>"lnoravg": <code>function(hi, lo) log((mean(hi)/(1 - mean(hi))) / (mean(lo)/(1 - mean(lo))))</code></p></li>
+<li><p>"dydx": <code>function(hi, lo) (hi - lo) / eps</code></p></li>
+<li><p>"expdydx": <code>function(hi, lo) ((exp(hi) - exp(lo)) / exp(e)) / e</code></p></li>
 </ul></li>
 <li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p></li>
 </ul></dd>
@@ -187,24 +189,11 @@ arguments.</p></dd>
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>Vignettes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">Contrasts</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">Marginal effects</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a></p></li>
-</ul><p>Case studies and technical information:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx06_supported_models.html" class="external-link">63 Supported Classes of Models</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html" class="external-link">Bayesian Analyses with <code>brms</code></a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html" class="external-link">Causal Inference with the g-Formula</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/transformation.html" class="external-link">Custom Contrasts and Transformations: Risk Ratio, Exponentiation, etc.</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gam.html" class="external-link">Generalized Additive Models</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/lincom.html" class="external-link">Linear Combinations and Custom Contrast</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/lme4.html" class="external-link">Mixed effects models</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mlogit.html" class="external-link">Multinomial Logit and Discrete Choice Models</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/multiple_imputation.html" class="external-link">Multiple Imputation</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/performance.html" class="external-link">Performance Tips</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/sandwich.html" class="external-link">Standard Errors and Hypothesis Tests</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/modelsummary.html" class="external-link">Tables and Plots</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html" class="external-link">Alternative Software</a></p></li>
-</ul><p>A "contrast" is the difference between (or some other function of) two
+    <p>Vignettes:</p>
+<p></p><div class="sourceCode {r child = " vignettes><pre><code></code></pre><p></p></div>
+<p>Case studies and technical information:</p>
+<p></p><div class="sourceCode {r, child=" vignettes><pre><code></code></pre><p></p></div>
+<p>A "contrast" is the difference between (or some other function of) two
 adjusted predictions, calculated for meaningfully different regressor values
 (e.g., College graduates vs. Others). Uncertainty estimates are computed
 using the delta method.</p>
@@ -274,9 +263,9 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term contrast comparison std.error statistic      p.value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high gear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high eps_tmp gear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528      NA    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148      NA    3</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Contrasts between marginal means</span></span>
 <span class="r-in"><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"marginalmeans"</span><span class="op">)</span></span>
@@ -297,13 +286,13 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     1 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     2 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     3 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high gear am cyl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528    3  0   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4364806 0.8968528    3  0   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.4364806 0.8968528    3  0   8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6930852 1.3069148    3  0   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.6930852 1.3069148    3  0   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.6930852 1.3069148    3  0   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high eps_tmp gear am cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528      NA    3  0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4364806 0.8968528      NA    3  0   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.4364806 0.8968528      NA    3  0   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6930852 1.3069148      NA    3  0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.6930852 1.3069148      NA    3  0   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.6930852 1.3069148      NA    3  0   8</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Numeric contrasts</span></span>
 <span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>

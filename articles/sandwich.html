@@ -153,9 +153,9 @@
 <span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic</span>
 <span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01146238 -4.522786</span>
 <span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.13425639  4.113833</span>
-<span class="co">#&gt;        p.value    conf.low   conf.high       hp    am cyl</span>
-<span class="co">#&gt; 1 6.103101e-06 -0.07430772 -0.02937603 146.6875 FALSE   8</span>
-<span class="co">#&gt; 2 3.891429e-05  2.44303975  6.88924310 146.6875 FALSE   8</span></code></pre></div>
+<span class="co">#&gt;        p.value    conf.low   conf.high eps_tmp       hp    am cyl</span>
+<span class="co">#&gt; 1 6.103101e-06 -0.07430772 -0.02937603   1e-04 146.6875 FALSE   8</span>
+<span class="co">#&gt; 2 3.891429e-05  2.44303975  6.88924310      NA 146.6875 FALSE   8</span></code></pre></div>
 <p>Marginal effects at the mean with Kenward-Roger adjusted variance-covariance and degrees of freedom:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,
@@ -164,9 +164,9 @@
 <span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic    p.value</span>
 <span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01518878 -3.413168 0.09642973</span>
 <span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.28244270  3.638479 0.08741990</span>
-<span class="co">#&gt;     conf.low  conf.high       df       hp    am cyl      mpg</span>
-<span class="co">#&gt; 1 -0.1305545  0.0268707 1.682575 146.6875 FALSE   8 20.09062</span>
-<span class="co">#&gt; 2 -1.9798401 11.3121230 1.682575 146.6875 FALSE   8 20.09062</span></code></pre></div>
+<span class="co">#&gt;     conf.low  conf.high       df eps_tmp       hp    am cyl      mpg</span>
+<span class="co">#&gt; 1 -0.1305545  0.0268707 1.682575   1e-04 146.6875 FALSE   8 20.09062</span>
+<span class="co">#&gt; 2 -1.9798401 11.3121230 1.682575      NA 146.6875 FALSE   8 20.09062</span></code></pre></div>
 <p>We can use the same option in any of the package’s core functions, including:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span>, vcov <span class="op">=</span> <span class="st">"satterthwaite"</span><span class="op">)</span></code></pre></div>
