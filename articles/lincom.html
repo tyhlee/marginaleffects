@@ -107,8 +107,8 @@
 <span class="co">#&gt; 6 carb     8     20.11667  3.510156 13.23689  26.99645 9.984697e-09  5.730989</span></code></pre></div>
 <p>The contrast between marginal means for <code>carb==1</code> and <code>carb==2</code> is:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">21.34058</span> <span class="op">-</span> <span class="fl">21.66232</span> 
-<span class="co">#&gt; [1] -0.32174</span></code></pre></div>
+<code class="sourceCode R"><span class="fl">21.66232</span> <span class="op">-</span> <span class="fl">21.34058</span> 
+<span class="co">#&gt; [1] 0.32174</span></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">21.66232</span> <span class="op">+</span> <span class="op">-</span><span class="op">(</span><span class="fl">21.34058</span><span class="op">)</span>
@@ -160,12 +160,12 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
     <span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>,
-    <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>
+    <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>
     <span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">lc</span>
 <span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]   -2   -1</span>
-<span class="co">#&gt; [2,]    1    1</span>
+<span class="co">#&gt; [1,]   -2    1</span>
+<span class="co">#&gt; [2,]    1   -1</span>
 <span class="co">#&gt; [3,]    1    0</span>
 <span class="co">#&gt; [4,]    0    0</span>
 <span class="co">#&gt; [5,]   -1    0</span>
@@ -174,7 +174,7 @@
 <span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, lincom <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
 <span class="co">#&gt;     term marginalmean std.error   conf.low conf.high   p.value   statistic</span>
 <span class="co">#&gt; 1 lincom   -0.2108696  6.928859 -13.791184 13.369445 0.9757213 -0.03043352</span>
-<span class="co">#&gt; 2 lincom   -0.3217391  1.773733  -3.798191  3.154713 0.8560607 -0.18139099</span></code></pre></div>
+<span class="co">#&gt; 2 lincom    0.3217391  1.773733  -3.154713  3.798191 0.8560607  0.18139099</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="linear-combinations-across-response-levels">Linear combinations across response levels<a class="anchor" aria-label="anchor" href="#linear-combinations-across-response-levels"></a>
