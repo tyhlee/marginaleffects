@@ -59,12 +59,17 @@
 <ul><li>
 <code>tidymodels</code> objects of class <code>tidy_model</code> are supported if the fit engine is supported by <code>marginaleffects</code>.</li></ul><p>New arguments:</p>
 <ul><li>
-<code>lincom</code> in <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> allows custom contrasts and linear combinations</li>
+<code>hypothesis</code> for hypothesis tests and custom contrasts</li>
 <li>
 <code>transform_post</code> in <code><a href="../reference/predictions.html">predictions()</a></code>
 </li>
 <li>
-<code>weights</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> only affects average predictions in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>.</li>
+<code>wts</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> only affects average predictions in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>.</li>
+</ul><p>New vignette:</p>
+<ul><li>Hypothesis Tests and Custom Contrasts: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="external-link uri">https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</a>
+</li>
+<li>Improved vignette on Multiple Imputation: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/multiple_imputation.html" class="external-link uri">https://vincentarelbundock.github.io/marginaleffects/articles/multiple_imputation.html</a>
+</li>
 </ul><p>Deprecated or renamed arguments:</p>
 <ul><li>
 <code>contrast_factor</code> and <code>contrast_numeric</code> arguments are deprecated in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Use a named list in the <code>variables</code> argument instead. Backward compatibility is maintained.</li>
@@ -74,9 +79,11 @@
 <code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> computes standard errors using the delta method for average predictions</li>
 <li>
 <code><a href="../reference/comparisons.html">comparisons()</a></code> now supports “log of marginal odds ratio” in the <code>transform_pre</code> argument. Thanks to Noah Greifer.</li>
+<li>New <code>transform_pre</code> shortcuts.</li>
 <li>Vignette on “Causal Inference with the g-Formula.” Thanks to Rohan Kapre for the idea.</li>
 <li>
 <code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> can compute standard errors and confidence intervals for linear models or GLM on the link scale.</li>
+<li>Support <code>gam</code> models with matrix columns.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0" id="marginaleffects-050">marginaleffects 0.5.0<small>2022-05-17</small><a class="anchor" aria-label="anchor" href="#marginaleffects-050"></a></h2>

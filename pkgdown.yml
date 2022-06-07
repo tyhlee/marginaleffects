@@ -6,7 +6,7 @@ articles:
   brms: brms.html
   gam: gam.html
   gformula: gformula.html
-  lincom: lincom.html
+  hypothesis: hypothesis.html
   links_external: links_external.html
   links_internal: links_internal.html
   links_main: links_main.html
@@ -24,5 +24,5 @@ articles:
   sandwich: sandwich.html
   technical_notes: technical_notes.html
   transformation: transformation.html
-last_built: 2022-06-02T16:44Z
+last_built: 2022-06-07T14:30Z
 

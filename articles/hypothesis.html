@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Linear Combinations and Custom Contrasts • marginaleffects</title>
+<title>Hypothesis Tests and Custom Contrasts • marginaleffects</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/readable/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Linear Combinations and Custom Contrasts">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Hypothesis Tests and Custom Contrasts">
 <meta property="og:description" content="marginaleffects">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -69,23 +69,126 @@
 
       
 
-      </header><script src="lincom_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="hypothesis_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Linear Combinations and Custom Contrasts</h1>
+      <h1 data-toc-skip>Hypothesis Tests and Custom Contrasts</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/vignettes/lincom.Rmd" class="external-link"><code>vignettes/lincom.Rmd</code></a></small>
-      <div class="hidden name"><code>lincom.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/vignettes/hypothesis.Rmd" class="external-link"><code>vignettes/hypothesis.Rmd</code></a></small>
+      <div class="hidden name"><code>hypothesis.Rmd</code></div>
 
     </div>
 
     
     
 <p>The code in this vignette requires <code>marginaleffects</code> version 0.5.1 or the development version hosted on Github.</p>
-<p>The <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function computes <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">estimated marginal means.</a> The <code>lincom</code> argument of that function offers a powerful mechanism to estimate custom contrasts between marginal means, by way of linear combination.</p>
-<p>Consider a simple example:</p>
+<div class="section level2">
+<h2 id="hypothesis-test-formulas-linear-and-non-linear">Hypothesis Test Formulas: Linear and Non-Linear<a class="anchor" aria-label="anchor" href="#hypothesis-test-formulas-linear-and-non-linear"></a>
+</h2>
+<p>Each of the 4 core functions of the package support a <code>hypothesis</code> argument which allows users to specify custom hypothesis tests and contrasts.</p>
+<div class="section level3">
+<h3 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
+</h3>
+<p>For example, let’s fit a model and compute some <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html#marginal-effect-at-the-mean-mem" class="external-link">marginal effects at the mean:</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
+
+<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>
+<span class="co">#&gt;   rowid     type term     dydx std.error statistic      p.value conf.low</span>
+<span class="co">#&gt; 1     1 response   am 6.066667  1.274842  4.758758 1.947875e-06 3.568022</span>
+<span class="co">#&gt; 2     1 response   vs 6.929365  1.262132  5.490207 4.014620e-08 4.455632</span>
+<span class="co">#&gt;   conf.high      am     vs</span>
+<span class="co">#&gt; 1  8.565312 0.40625 0.4375</span>
+<span class="co">#&gt; 2  9.403098 0.40625 0.4375</span></code></pre></div>
+<p>Is the marginal effect of <code>am</code> different from the marginal effect of <code>vs</code>? To answer this question we can run a linear hypothesis test:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
+
+<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    newdata <span class="op">=</span> <span class="st">"mean"</span>,
+    hypothesis <span class="op">=</span> <span class="st">"am = vs"</span><span class="op">)</span>
+<span class="co">#&gt;       type       term hypothesis       dydx std.error  statistic   p.value</span>
+<span class="co">#&gt; 1 response hypothesis      am=vs -0.8626984  1.939057 -0.4449063 0.6563875</span>
+<span class="co">#&gt;   conf.low conf.high</span>
+<span class="co">#&gt; 1 -4.66318  2.937783</span></code></pre></div>
+<p>The <code>hypothesis</code> string can include any valid <code>R</code> expression, so we can run some silly non-linear tests:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    newdata <span class="op">=</span> <span class="st">"mean"</span>,
+    hypothesis <span class="op">=</span> <span class="st">"exp(am) - 2 * vs = -400"</span><span class="op">)</span>
+<span class="co">#&gt;       type       term        hypothesis     dydx std.error statistic   p.value</span>
+<span class="co">#&gt; 1 response hypothesis exp(am)-2*vs=-400 817.3821  550.2221  1.485549 0.1373984</span>
+<span class="co">#&gt;    conf.low conf.high</span>
+<span class="co">#&gt; 1 -261.0335  1895.798</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="adjusted-predictions">Adjusted Predictions<a class="anchor" aria-label="anchor" href="#adjusted-predictions"></a>
+</h3>
+<p>Now consider the case of adjusted predictions:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, vs <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p</span>
+<span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high</span>
+<span class="co">#&gt; 1     1 response  14.59444 0.9261514  15.75816  6.036286e-56 12.77922  16.40967</span>
+<span class="co">#&gt; 2     2 response  21.52381 1.1300269  19.04717  6.935682e-81 19.30900  23.73862</span>
+<span class="co">#&gt; 3     3 response  20.66111 1.1830035  17.46496  2.648808e-68 18.34247  22.97976</span>
+<span class="co">#&gt; 4     4 response  27.59048 1.1300269  24.41577 1.163052e-131 25.37566  29.80529</span>
+<span class="co">#&gt;   am vs mpg</span>
+<span class="co">#&gt; 1  0  0   0</span>
+<span class="co">#&gt; 2  0  1   0</span>
+<span class="co">#&gt; 3  1  0   0</span>
+<span class="co">#&gt; 4  1  1   0</span></code></pre></div>
+<p>Since there is no <code>term</code> column in the output of the <code>predictions</code> function, we must use row identifiers like <code>r1</code>, <code>r2</code>, etc. to determine which estimates we want to compare:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    hypothesis <span class="op">=</span> <span class="st">"r1 = r2"</span>,
+    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, vs <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;       type       term hypothesis predicted std.error statistic     p.value</span>
+<span class="co">#&gt; 1 response hypothesis      r1=r2 -6.929365  1.262132 -5.490208 4.01461e-08</span>
+<span class="co">#&gt;    conf.low conf.high</span>
+<span class="co">#&gt; 1 -9.403098 -4.455633</span>
+
+<span class="va">p</span><span class="op">$</span><span class="va">predicted</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">p</span><span class="op">$</span><span class="va">predicted</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
+<span class="co">#&gt; [1] -6.929365</span>
+
+<span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    hypothesis <span class="op">=</span> <span class="st">"r1 + r2 = 30"</span>,
+    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, vs <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;       type       term hypothesis predicted std.error statistic      p.value</span>
+<span class="co">#&gt; 1 response hypothesis   r1+r2=30  6.118254  1.635988   3.73979 0.0001841737</span>
+<span class="co">#&gt;   conf.low conf.high</span>
+<span class="co">#&gt; 1 2.911776  9.324732</span>
+
+<span class="va">p</span><span class="op">$</span><span class="va">predicted</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">p</span><span class="op">$</span><span class="va">predicted</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="fl">30</span>
+<span class="co">#&gt; [1] 6.118254</span>
+
+<span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    hypothesis <span class="op">=</span> <span class="st">"(r2 - r1) / (r3 - r2) = 0"</span>,
+    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, vs <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;       type       term        hypothesis predicted std.error  statistic</span>
+<span class="co">#&gt; 1 response hypothesis (r2-r1)/(r3-r2)=0 -8.032199  16.96625 -0.4734223</span>
+<span class="co">#&gt;     p.value  conf.low conf.high</span>
+<span class="co">#&gt; 1 0.6359119 -41.28543  25.22103</span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="custom-contrasts-with-vectors-and-matrices">Custom Contrasts with Vectors and Matrices<a class="anchor" aria-label="anchor" href="#custom-contrasts-with-vectors-and-matrices"></a>
+</h2>
+<p>The <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function computes <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">estimated marginal means.</a> The <code>hypothesis</code> argument of that function offers a powerful mechanism to estimate custom contrasts between marginal means, by way of linear combination.</p>
+<p>Consider a simple example:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span>
@@ -106,44 +209,48 @@
 <span class="co">#&gt; 5 carb     6     19.76014  3.551143 12.80003  26.72026 2.629853e-08  5.564447</span>
 <span class="co">#&gt; 6 carb     8     20.11667  3.510156 13.23689  26.99645 9.984697e-09  5.730989</span></code></pre></div>
 <p>The contrast between marginal means for <code>carb==1</code> and <code>carb==2</code> is:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">21.66232</span> <span class="op">-</span> <span class="fl">21.34058</span> 
 <span class="co">#&gt; [1] 0.32174</span></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">21.66232</span> <span class="op">+</span> <span class="op">-</span><span class="op">(</span><span class="fl">21.34058</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.32174</span></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21.66232</span>, <span class="fl">21.34058</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.32174</span></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21.66232</span>, <span class="fl">21.34058</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt;         [,1]</span>
 <span class="co">#&gt; [1,] 0.32174</span></code></pre></div>
 <p>The last two commands express the contrast of interest as <a href="https://en.wikipedia.org/wiki/Linear_combination" class="external-link">a linear combination</a> of marginal means.</p>
-<div class="section level2">
-<h2 id="simple-contrast-between-marginal-means">Simple contrast between marginal means<a class="anchor" aria-label="anchor" href="#simple-contrast-between-marginal-means"></a>
-</h2>
-<p>In the <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function, we can supply a <code>lincom</code> argument to compute linear combinations of marginal means. This argument must be a numeric vector of the same length as the number of rows in the output of <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>. For example, in the previous there were six rows, and the two marginal means we want to compare are at in the first two positions:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="simple-contrast-between-marginal-means">Simple contrast between marginal means<a class="anchor" aria-label="anchor" href="#simple-contrast-between-marginal-means"></a>
+</h3>
+<p>In the <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function, we can supply a <code>hypothesis</code> argument to compute linear combinations of marginal means. This argument must be a numeric vector of the same length as the number of rows in the output of <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>. For example, in the previous there were six rows, and the two marginal means we want to compare are at in the first two positions:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, lincom <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
-<span class="co">#&gt;     term marginalmean std.error  conf.low conf.high   p.value statistic</span>
-<span class="co">#&gt; 1 lincom    0.3217391  1.773733 -3.154713  3.798191 0.8560607  0.181391</span></code></pre></div>
+<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
+<span class="co">#&gt;         term hypothesis marginalmean std.error  conf.low conf.high   p.value</span>
+<span class="co">#&gt; 1 hypothesis     custom    0.3217391  1.773733 -3.154713  3.798191 0.8560607</span>
+<span class="co">#&gt;   statistic</span>
+<span class="co">#&gt; 1  0.181391</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="complex-contrast-between-marginal-means">Complex contrast between marginal means<a class="anchor" aria-label="anchor" href="#complex-contrast-between-marginal-means"></a>
-</h2>
+<div class="section level3">
+<h3 id="complex-contrast-between-marginal-means">Complex contrast between marginal means<a class="anchor" aria-label="anchor" href="#complex-contrast-between-marginal-means"></a>
+</h3>
 <p>Of course, we can also estimate more complex contrasts:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, lincom <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
-<span class="co">#&gt;     term marginalmean std.error  conf.low conf.high   p.value   statistic</span>
-<span class="co">#&gt; 1 lincom   -0.2108696  6.928859 -13.79118  13.36945 0.9757213 -0.03043352</span></code></pre></div>
+<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
+<span class="co">#&gt;         term hypothesis marginalmean std.error  conf.low conf.high   p.value</span>
+<span class="co">#&gt; 1 hypothesis     custom   -0.2108696  6.928859 -13.79118  13.36945 0.9757213</span>
+<span class="co">#&gt;     statistic</span>
+<span class="co">#&gt; 1 -0.03043352</span></code></pre></div>
 <p><code>emmeans</code> produces similar results:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span>
 <span class="va">em</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, <span class="st">"carb"</span><span class="op">)</span>
 <span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>custom_contrast <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
@@ -153,11 +260,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Results are averaged over the levels of: cyl</span></code></pre></div>
 </div>
+</div>
 <div class="section level2">
 <h2 id="multiple-custom-contrasts">Multiple custom contrasts<a class="anchor" aria-label="anchor" href="#multiple-custom-contrasts"></a>
 </h2>
-<p>Users can also compute multiple linear combinations simultaneously by supplying a numeric matrix to <code>lincom</code>. This matrix must have the same number of rows as the output of <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, and each column represents a distinct set of weights for different linear combinations. For example:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p>Users can also compute multiple linear combinations simultaneously by supplying a numeric matrix to <code>hypothesis</code>. This matrix must have the same number of rows as the output of <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, and each column represents a distinct set of weights for different linear combinations. For example:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
     <span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>,
     <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>
@@ -171,16 +279,19 @@
 <span class="co">#&gt; [5,]   -1    0</span>
 <span class="co">#&gt; [6,]    1    0</span>
 
-<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, lincom <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
-<span class="co">#&gt;     term marginalmean std.error   conf.low conf.high   p.value   statistic</span>
-<span class="co">#&gt; 1 lincom   -0.2108696  6.928859 -13.791184 13.369445 0.9757213 -0.03043352</span>
-<span class="co">#&gt; 2 lincom    0.3217391  1.773733  -3.154713  3.798191 0.8560607  0.18139099</span></code></pre></div>
+<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
+<span class="co">#&gt;         term hypothesis marginalmean std.error   conf.low conf.high   p.value</span>
+<span class="co">#&gt; 1 hypothesis     custom   -0.2108696  6.928859 -13.791184 13.369445 0.9757213</span>
+<span class="co">#&gt; 2 hypothesis     custom    0.3217391  1.773733  -3.154713  3.798191 0.8560607</span>
+<span class="co">#&gt;     statistic</span>
+<span class="co">#&gt; 1 -0.03043352</span>
+<span class="co">#&gt; 2  0.18139099</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="linear-combinations-across-response-levels">Linear combinations across response levels<a class="anchor" aria-label="anchor" href="#linear-combinations-across-response-levels"></a>
 </h2>
 <p>In models with multinomial outcomes, one may be interested in comparing outcomes or contrasts across response levels. For example, in this model there are 18 estimated marginal means, across 6 outcome levels (the <code>group</code> column):</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span>
 <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">carb</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">dat</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span>
@@ -205,18 +316,18 @@
 <span class="co">#&gt; 17     6  cyl     8 4.345753e-09  1.934533e-05</span>
 <span class="co">#&gt; 18     8  cyl     8 1.412195e-02 1.868127e-116</span></code></pre></div>
 <p>Let’s contrast the marginal means in the first outcome level when <code>cyl</code> equals 4 and 6. These marginal means are located in rows 1 and 7 respectively:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span><span class="op">)</span>
 <span class="va">lc</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span>
 <span class="va">lc</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span>
     <span class="va">mod</span>,
     type <span class="op">=</span> <span class="st">"probs"</span>,
-    lincom <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
-<span class="co">#&gt;     term marginalmean     std.error</span>
-<span class="co">#&gt; 1 lincom  -0.08497951 1.987911e-112</span></code></pre></div>
+    hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
+<span class="co">#&gt;         term hypothesis marginalmean     std.error</span>
+<span class="co">#&gt; 1 hypothesis     custom  -0.08497951 1.987911e-112</span></code></pre></div>
 <p>This is indeed equal to the results we would have obtained manually:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2.828726e-01</span> <span class="op">-</span> <span class="fl">3.678521e-01</span>
 <span class="co">#&gt; [1] -0.0849795</span></code></pre></div>
 <p>Now let’s say we want to calculate a “contrast in contrasts”, that is, the outcome of a 3-step process:</p>
@@ -226,12 +337,12 @@
 <li>Contrast between the contrasts defined in steps 1 and 2.</li>
 </ol>
 <p>We create the linear combination weights as follows:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span><span class="op">)</span>
 <span class="va">lc</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span>
 <span class="va">lc</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span></code></pre></div>
 <p>To make sure that the weights are correct, we can display them side by side with the original <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> output:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/transform.data.table.html" class="external-link">transform</a></span><span class="op">(</span><span class="va">mm</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, lc <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
 <span class="co">#&gt;    group term value lc</span>
 <span class="co">#&gt; 1      1  cyl     4 -1</span>
@@ -253,10 +364,10 @@
 <span class="co">#&gt; 17     6  cyl     8  0</span>
 <span class="co">#&gt; 18     8  cyl     8  0</span></code></pre></div>
 <p>Compute the results:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span>, lincom <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
-<span class="co">#&gt;     term marginalmean     std.error</span>
-<span class="co">#&gt; 1 lincom    0.5461109 1.609472e-109</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span>
+<span class="co">#&gt;         term hypothesis marginalmean     std.error</span>
+<span class="co">#&gt; 1 hypothesis     custom    0.5461109 1.609472e-109</span></code></pre></div>
 </div>
   </div>
 
