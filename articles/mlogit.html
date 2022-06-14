@@ -109,12 +109,12 @@
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span> 
 <span class="co">#&gt; Average marginal effects </span>
 <span class="co">#&gt;   Group Term     Effect Std. Error    z value   Pr(&gt;|z|)      2.5 %     97.5 %</span>
-<span class="co">#&gt; 1     3   hp -3.356e-05  7.687e-11 -4.366e+05 &lt; 2.22e-16 -3.356e-05 -3.356e-05</span>
-<span class="co">#&gt; 2     3  mpg -7.130e-02  9.765e-12 -7.301e+09 &lt; 2.22e-16 -7.130e-02 -7.130e-02</span>
-<span class="co">#&gt; 3     4   hp -4.666e-03  2.833e-08 -1.647e+05 &lt; 2.22e-16 -4.666e-03 -4.666e-03</span>
-<span class="co">#&gt; 4     4  mpg  1.592e-02  1.391e-08  1.144e+06 &lt; 2.22e-16  1.592e-02  1.592e-02</span>
-<span class="co">#&gt; 5     5   hp  4.700e-03  0.000e+00        Inf &lt; 2.22e-16  4.700e-03  4.700e-03</span>
-<span class="co">#&gt; 6     5  mpg  5.538e-02  0.000e+00        Inf &lt; 2.22e-16  5.538e-02  5.538e-02</span>
+<span class="co">#&gt; 1     3   hp -3.438e-05  7.638e-11 -4.502e+05 &lt; 2.22e-16 -3.438e-05 -3.438e-05</span>
+<span class="co">#&gt; 2     3  mpg -7.131e-02  9.765e-12 -7.303e+09 &lt; 2.22e-16 -7.131e-02 -7.131e-02</span>
+<span class="co">#&gt; 3     4   hp -4.667e-03  3.781e-11 -1.234e+08 &lt; 2.22e-16 -4.667e-03 -4.667e-03</span>
+<span class="co">#&gt; 4     4  mpg  1.591e-02  5.918e-10  2.688e+07 &lt; 2.22e-16  1.591e-02  1.591e-02</span>
+<span class="co">#&gt; 5     5   hp  4.702e-03  0.000e+00        Inf &lt; 2.22e-16  4.702e-03  4.702e-03</span>
+<span class="co">#&gt; 6     5  mpg  5.540e-02  0.000e+00        Inf &lt; 2.22e-16  5.540e-02  5.540e-02</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  multinom </span>
 <span class="co">#&gt; Prediction type:  probs</span></code></pre></div>
@@ -144,15 +144,15 @@
 
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
-<span class="co">#&gt;   Group   Term    Effect Std. Error z value  Pr(&gt;|z|)      2.5 %    97.5 %</span>
-<span class="co">#&gt; 1   air income  0.002786   0.001218  2.2878 0.0221493  0.0003992  0.005172</span>
-<span class="co">#&gt; 2   bus income -0.000372   0.001103 -0.3373 0.7358957 -0.0025337  0.001790</span>
-<span class="co">#&gt; 3   car income  0.003373   0.001373  2.4561 0.0140448  0.0006814  0.006065</span>
-<span class="co">#&gt; 4 train income -0.005787   0.001319 -4.3859 1.155e-05 -0.0083727 -0.003201</span>
-<span class="co">#&gt; 5   air   size -0.126475   0.028922 -4.3729 1.226e-05 -0.1831612 -0.069788</span>
-<span class="co">#&gt; 6   bus   size  0.011348   0.025867  0.4387 0.6608765 -0.0393502  0.062046</span>
-<span class="co">#&gt; 7   car   size  0.045886   0.024754  1.8536 0.0637901 -0.0026319  0.094404</span>
-<span class="co">#&gt; 8 train   size  0.069241   0.024784  2.7938 0.0052088  0.0206661  0.117816</span>
+<span class="co">#&gt;   Group   Term     Effect Std. Error z value   Pr(&gt;|z|)      2.5 %    97.5 %</span>
+<span class="co">#&gt; 1   air income  0.0027855   0.001218  2.2876   0.022159  0.0003990  0.005172</span>
+<span class="co">#&gt; 2   bus income -0.0003721   0.001103 -0.3374   0.735811 -0.0025337  0.001790</span>
+<span class="co">#&gt; 3   car income  0.0033731   0.001373  2.4559   0.014052  0.0006812  0.006065</span>
+<span class="co">#&gt; 4 train income -0.0057865   0.001319 -4.3861 1.1540e-05 -0.0083723 -0.003201</span>
+<span class="co">#&gt; 5   air   size -0.1264647   0.028918 -4.3732 1.2245e-05 -0.1831434 -0.069786</span>
+<span class="co">#&gt; 6   bus   size  0.0113450   0.025867  0.4386   0.660962 -0.0393539  0.062044</span>
+<span class="co">#&gt; 7   car   size  0.0458798   0.024755  1.8534   0.063830 -0.0026388  0.094398</span>
+<span class="co">#&gt; 8 train   size  0.0692398   0.024785  2.7936   0.005212  0.0206624  0.117817</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  mlogit </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
@@ -174,14 +174,14 @@
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
 <span class="co">#&gt;   Group   Term     Effect Std. Error z value  Pr(&gt;|z|)      2.5 %     97.5 %</span>
-<span class="co">#&gt; 1   air income  6.657e-03  2.426e-03  2.7433 0.0060822  1.901e-03  0.0114123</span>
-<span class="co">#&gt; 2   bus income -1.141e-03  9.455e-04 -1.2071 0.2273999 -2.994e-03  0.0007118</span>
-<span class="co">#&gt; 3   car income  6.482e-06  2.031e-05  0.3191 0.7496573 -3.333e-05  0.0000463</span>
-<span class="co">#&gt; 4 train income -5.522e-03  1.911e-03 -2.8899 0.0038537 -9.267e-03 -0.0017768</span>
-<span class="co">#&gt; 5   air   size -1.694e-01  5.876e-02 -2.8831 0.0039379 -2.846e-01 -0.0542419</span>
-<span class="co">#&gt; 6   bus   size  4.672e-02  2.723e-02  1.7157 0.0862127 -6.650e-03  0.1000832</span>
-<span class="co">#&gt; 7   car   size  1.358e-03  8.807e-04  1.5422 0.1230366 -3.680e-04  0.0030842</span>
-<span class="co">#&gt; 8 train   size  1.213e-01  4.446e-02  2.7291 0.0063514  3.419e-02  0.2084703</span>
+<span class="co">#&gt; 1   air income  6.656e-03  2.426e-03   2.743 0.0060816  1.901e-03  0.0114108</span>
+<span class="co">#&gt; 2   bus income -1.141e-03  9.454e-04  -1.207 0.2273591 -2.994e-03  0.0007117</span>
+<span class="co">#&gt; 3   car income  6.480e-06  2.032e-05   0.319 0.7497346 -3.334e-05  0.0000463</span>
+<span class="co">#&gt; 4 train income -5.521e-03  1.910e-03  -2.890 0.0038527 -9.265e-03 -0.0017767</span>
+<span class="co">#&gt; 5   air   size -1.694e-01  5.877e-02  -2.883 0.0039386 -2.846e-01 -0.0542485</span>
+<span class="co">#&gt; 6   bus   size  4.672e-02  2.723e-02   1.716 0.0862434 -6.656e-03  0.1000991</span>
+<span class="co">#&gt; 7   car   size  1.358e-03  8.808e-04   1.542 0.1230361 -3.680e-04  0.0030845</span>
+<span class="co">#&gt; 8 train   size  1.214e-01  4.447e-02   2.729 0.0063528  3.420e-02  0.2085119</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  mlogit </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
@@ -202,14 +202,14 @@
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
 <span class="co">#&gt;   Group   Term     Effect Std. Error z value   Pr(&gt;|z|)      2.5 %    97.5 %</span>
-<span class="co">#&gt; 1   air income  0.0060151   0.002332  2.5796  0.0098924  0.0014448  0.010585</span>
-<span class="co">#&gt; 2   bus income -0.0007126   0.001461 -0.4876  0.6258043 -0.0035767  0.002152</span>
-<span class="co">#&gt; 3   car income  0.0054454   0.002288  2.3802  0.0173010  0.0009615  0.009929</span>
-<span class="co">#&gt; 4 train income -0.0107479   0.002564 -4.1922 2.7626e-05 -0.0157729 -0.005723</span>
-<span class="co">#&gt; 5   air   size -0.2329492   0.056631 -4.1134 3.8980e-05 -0.3439443 -0.121954</span>
-<span class="co">#&gt; 6   bus   size  0.0204453   0.034363  0.5950  0.5518581 -0.0469051  0.087796</span>
-<span class="co">#&gt; 7   car   size  0.0678352   0.041225  1.6455  0.0998690 -0.0129642  0.148635</span>
-<span class="co">#&gt; 8 train   size  0.1446687   0.047749  3.0298  0.0024473  0.0510827  0.238255</span>
+<span class="co">#&gt; 1   air income  0.0060149   0.002332  2.5793  0.0098996  0.0014443  0.010586</span>
+<span class="co">#&gt; 2   bus income -0.0007128   0.001461 -0.4878  0.6256800 -0.0035768  0.002151</span>
+<span class="co">#&gt; 3   car income  0.0054450   0.002288  2.3800  0.0173140  0.0009609  0.009929</span>
+<span class="co">#&gt; 4 train income -0.0107471   0.002563 -4.1925 2.7592e-05 -0.0157713 -0.005723</span>
+<span class="co">#&gt; 5   air   size -0.2329273   0.056622 -4.1137 3.8936e-05 -0.3439050 -0.121950</span>
+<span class="co">#&gt; 6   bus   size  0.0204397   0.034364  0.5948  0.5519797 -0.0469129  0.087792</span>
+<span class="co">#&gt; 7   car   size  0.0678200   0.041226  1.6451  0.0999517 -0.0129810  0.148621</span>
+<span class="co">#&gt; 8 train   size  0.1446676   0.047752  3.0295  0.0024493  0.0510747  0.238261</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  mlogit </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
@@ -257,14 +257,14 @@
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
 <span class="co">#&gt;   Group   Term     Effect Std. Error z value   Pr(&gt;|z|)      2.5 %     97.5 %</span>
-<span class="co">#&gt; 1   air income  7.460e-03  2.356e-03  3.1662 0.00154458  2.842e-03  1.208e-02</span>
-<span class="co">#&gt; 2   bus income -1.342e-03  1.176e-03 -1.1406 0.25404712 -3.647e-03  9.638e-04</span>
-<span class="co">#&gt; 3   car income  1.573e-05  3.418e-05  0.4602 0.64536603 -5.126e-05  8.272e-05</span>
-<span class="co">#&gt; 4 train income -6.134e-03  1.721e-03 -3.5635 0.00036598 -9.508e-03 -2.760e-03</span>
-<span class="co">#&gt; 5   air   size -1.928e-01  5.806e-02 -3.3216 0.00089502 -3.066e-01 -7.905e-02</span>
-<span class="co">#&gt; 6   bus   size  5.748e-02  3.304e-02  1.7399 0.08187290 -7.269e-03  1.222e-01</span>
-<span class="co">#&gt; 7   car   size  2.110e-03  1.389e-03  1.5190 0.12876140 -6.126e-04  4.833e-03</span>
-<span class="co">#&gt; 8 train   size  1.333e-01  3.918e-02  3.4009 0.00067157  5.646e-02  2.101e-01</span>
+<span class="co">#&gt; 1   air income  7.460e-03  2.356e-03  3.1661 0.00154479  2.842e-03  1.208e-02</span>
+<span class="co">#&gt; 2   bus income -1.342e-03  1.176e-03 -1.1407 0.25400561 -3.647e-03  9.637e-04</span>
+<span class="co">#&gt; 3   car income  1.573e-05  3.418e-05  0.4601 0.64543982 -5.127e-05  8.272e-05</span>
+<span class="co">#&gt; 4 train income -6.134e-03  1.721e-03 -3.5635 0.00036592 -9.507e-03 -2.760e-03</span>
+<span class="co">#&gt; 5   air   size -1.929e-01  5.806e-02 -3.3218 0.00089448 -3.067e-01 -7.907e-02</span>
+<span class="co">#&gt; 6   bus   size  5.748e-02  3.304e-02  1.7398 0.08189359 -7.274e-03  1.222e-01</span>
+<span class="co">#&gt; 7   car   size  2.110e-03  1.389e-03  1.5190 0.12876144 -6.126e-04  4.833e-03</span>
+<span class="co">#&gt; 8 train   size  1.333e-01  3.919e-02  3.4011 0.00067126  5.647e-02  2.101e-01</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  mlogit </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>

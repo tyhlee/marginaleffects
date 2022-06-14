@@ -85,9 +85,25 @@
     
 <p>In the context of this package, an “Adjusted Prediction” is defined as:</p>
 <blockquote>
-<p>The outcome predicted by a model for some combination of the regressors’ values, such as their observed values, their means, or factor levels (a.k.a. “reference grid”).</p>
+<p>The outcome predicted by a fitted model on a specified scale for a given combination of values of the predictor variables, such as their observed values, their means, or factor levels (a.k.a. “reference grid”).</p>
 </blockquote>
-<p>An adjusted prediction is thus the regression-adjusted response variable (or link, or other fitted value), for a given combination (or grid) of predictors. This grid may or may not correspond to the actual observations in a dataset.</p>
+<p>Here, the word “Adjusted” simply means “model-derived” or “model-based.”</p>
+<div class="section level2">
+<h2 id="prediction-type-or-scale">Prediction type (or scale)<a class="anchor" aria-label="anchor" href="#prediction-type-or-scale"></a>
+</h2>
+<p>Using the <code>type</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function we can specify the “scale” on which to make predictions. This refers to either the scale used to estimate the model (i.e., link scale) or to a more interpretable scale (e.g., response scale). For example, when fitting a linear regression model using the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function, the link scale and the response scale are identical. An “Adjusted Prediction” computed on either scale will be expressed as the mean value of the response variable at the given values of the predictor variables.</p>
+<p>On the other hand, when fitting a binary logistic regression model using the <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> function (which uses a binomial family and a logit link ), the link scale and the response scale will be different: an “Adjusted Prediction” computed on the link scale will be expressed as a log odds of a “successful” response at the given values of the predictor variables, whereas an “Adjusted Prediction” computed on the response scale will be expressed as a probability that the response variable equals 1.</p>
+<p>The default value of the <code>type</code> argument for most models is “response”, which means that the <code><a href="../reference/predictions.html">predictions()</a></code> function will compute predicted probabilities (binomial family), Poisson means (poisson family), etc.</p>
+</div>
+<div class="section level2">
+<h2 id="prediction-grid">Prediction grid<a class="anchor" aria-label="anchor" href="#prediction-grid"></a>
+</h2>
+<p>To compute adjusted predictions we must first specify the values of the predictors to consider: a “reference grid.” For example, if our model is a linear model fitted with the lm() function which relates the response variable Happiness with the predictor variables Age, Gender and Income, the reference grid could be a <code>data.frame</code> with values for Age, Gender and Income: Age = 40, Gender = Male, Income = 60000.</p>
+<p>The “reference grid” may or may not correspond to actual observations in the dataset used to fit the model; the example values given above could match the mean values of each variable, or they could represent a specific observed (or hypothetical) individual. The reference grid can include many different rows if we want to make predictions for different combinations of predictors. By default, the <code><a href="../reference/predictions.html">predictions()</a></code> function uses the full original dataset as a reference grid, which means it will compute adjusted predictions for each of the individuals observed in the dataset that was used to fit the model.</p>
+</div>
+<div class="section level2">
+<h2 id="the-predictions-function">The <code>predictions()</code> function<a class="anchor" aria-label="anchor" href="#the-predictions-function"></a>
+</h2>
 <p>By default, <code>predictions</code> calculates the regression-adjusted predicted values for every observation in the original dataset:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
@@ -112,6 +128,7 @@
 <span class="co">#&gt; 5 18.7 175   8</span>
 <span class="co">#&gt; 6 18.1 105   6</span></code></pre></div>
 <p>In many cases, this is too limiting, and researchers will want to specify a grid of “typical” values over which to compute adjusted predictions.</p>
+</div>
 <div class="section level2">
 <h2 id="adjusted-predictions-at-user-specified-values-aka-adjusted-predictions-at-representative-values-apr">Adjusted Predictions at User-Specified values (aka Adjusted Predictions at Representative values, APR)<a class="anchor" aria-label="anchor" href="#adjusted-predictions-at-user-specified-values-aka-adjusted-predictions-at-representative-values-apr"></a>
 </h2>

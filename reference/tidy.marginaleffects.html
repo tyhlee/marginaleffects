@@ -109,26 +109,26 @@ Average (or Median) Marginal Effect and its associated interval.</p>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># average marginal effects</span></span>
 <span class="r-in"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast    estimate std.error  statistic      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp    dY/dX -0.03533001 0.0104482 -3.3814449 7.210570e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response   wt    dY/dX -3.52592595 0.7320158 -4.8167346 1.459266e-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response gear    4 - 3  0.82900152 1.1180410  0.7414769 4.584043e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 response gear    5 - 3  1.81649741 1.5476051  1.1737474 2.404962e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.05580811 -0.01485192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -4.96065060 -2.09120130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.36231851  3.02032155</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -1.21675276  4.84974757</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast    estimate  std.error  statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp    dY/dX -0.03533001 0.01044819 -3.3814471 7.210511e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response   wt    dY/dX -3.52592595 0.73201586 -4.8167344 1.459267e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response gear    4 - 3  0.82900152 1.11804097  0.7414769 4.584043e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 response gear    5 - 3  1.81649741 1.54760505  1.1737474 2.404962e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.low   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0558081 -0.01485193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -4.9606507 -2.09120123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.3623185  3.02032155</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -1.2167528  4.84974757</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># average marginal effects by group</span></span>
 <span class="r-in"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span>, by <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        type term contrast gear    estimate  std.error  statistic      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  response   hp    dY/dX    4 -0.05180745 0.01142349 -4.5351697 5.755719e-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  response   hp    dY/dX    3 -0.01680129 0.01157628 -1.4513551 1.466810e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  response   hp    dY/dX    5 -0.05137031 0.01137555 -4.5158545 6.306196e-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  response   wt    dY/dX    4 -5.09490667 0.88830068 -5.7355654 9.718758e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  response   wt    dY/dX    3 -2.71805806 0.74163507 -3.6649535 2.473835e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  response   wt    dY/dX    5 -2.18397588 0.78316864 -2.7886406 5.292976e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  response   hp    dY/dX    4 -0.05180745 0.01142353 -4.5351527 5.756182e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  response   hp    dY/dX    3 -0.01680129 0.01157623 -1.4513608 1.466794e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  response   hp    dY/dX    5 -0.05137031 0.01137555 -4.5158519 6.306273e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  response   wt    dY/dX    4 -5.09490667 0.88830081 -5.7355646 9.718805e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  response   wt    dY/dX    3 -2.71805806 0.74163510 -3.6649533 2.473837e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  response   wt    dY/dX    5 -2.18397588 0.78316847 -2.7886412 5.292967e-03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7  response gear    4 - 3    4  0.82900152 1.11804097  0.7414769 4.584043e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  response gear    4 - 3    3  0.82900152 1.11804097  0.7414769 4.584043e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  response gear    4 - 3    5  0.82900152 1.11804097  0.7414769 4.584043e-01</span>
@@ -136,12 +136,12 @@ Average (or Median) Marginal Effect and its associated interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11 response gear    5 - 3    3  1.81649741 1.54760505  1.1737474 2.404962e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12 response gear    5 - 3    5  1.81649741 1.54760505  1.1737474 2.404962e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       conf.low    conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -0.07419708 -0.029417830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -0.03949039  0.005887798</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -0.07366597 -0.029074651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -6.83594402 -3.353869318</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  -4.17163610 -1.264480027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  -3.71895820 -0.648993557</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -0.07419716 -0.029417746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -0.03949030  0.005887709</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -0.07366599 -0.029074638</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -6.83594426 -3.353869073</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  -4.17163616 -1.264479966</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  -3.71895789 -0.648993877</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7  -1.36231851  3.020321553</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  -1.36231851  3.020321553</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  -1.36231851  3.020321553</span>

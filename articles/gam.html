@@ -170,19 +170,19 @@
 <code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">model</span>, variables <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt;   rowid     type term       dydx   std.error statistic       p.value   conf.low</span>
-<span class="co">#&gt; 1     1 response Time 0.02611718 0.001367310  19.10114  2.470118e-81 0.02343731</span>
-<span class="co">#&gt; 2     2 response Time 0.02610858 0.001360335  19.19276  4.254136e-82 0.02344237</span>
-<span class="co">#&gt; 3     3 response Time 0.02607566 0.001334637  19.53764  5.255320e-85 0.02345982</span>
-<span class="co">#&gt; 4     4 response Time 0.02600565 0.001282649  20.27495  2.140128e-91 0.02349170</span>
-<span class="co">#&gt; 5     5 response Time 0.02588870 0.001201695  21.54349 6.093400e-103 0.02353342</span>
-<span class="co">#&gt; 6     6 response Time 0.02571775 0.001092991  23.52971 2.025802e-122 0.02357553</span>
+<span class="co">#&gt; 1     1 response Time 0.02611718 0.001367279  19.10158  2.449658e-81 0.02343737</span>
+<span class="co">#&gt; 2     2 response Time 0.02610850 0.001360254  19.19384  4.167026e-82 0.02344245</span>
+<span class="co">#&gt; 3     3 response Time 0.02607541 0.001334433  19.54044  4.975241e-85 0.02345997</span>
+<span class="co">#&gt; 4     4 response Time 0.02600520 0.001282381  20.27884  1.977388e-91 0.02349178</span>
+<span class="co">#&gt; 5     5 response Time 0.02588800 0.001201131  21.55302 4.960033e-103 0.02353382</span>
+<span class="co">#&gt; 6     6 response Time 0.02571676 0.001092275  23.54421 1.438981e-122 0.02357594</span>
 <span class="co">#&gt;    conf.high         Y  Group      Time Subject</span>
-<span class="co">#&gt; 1 0.02879706 0.7554469 Adults   0.00000     a01</span>
-<span class="co">#&gt; 2 0.02877479 2.7834759 Adults  20.20202     a01</span>
-<span class="co">#&gt; 3 0.02869150 1.9696963 Adults  40.40404     a01</span>
-<span class="co">#&gt; 4 0.02851960 0.6814298 Adults  60.60606     a01</span>
-<span class="co">#&gt; 5 0.02824398 1.6939195 Adults  80.80808     a01</span>
-<span class="co">#&gt; 6 0.02785997 2.3651969 Adults 101.01010     a01</span></code></pre></div>
+<span class="co">#&gt; 1 0.02879700 0.7554469 Adults   0.00000     a01</span>
+<span class="co">#&gt; 2 0.02877454 2.7834759 Adults  20.20202     a01</span>
+<span class="co">#&gt; 3 0.02869086 1.9696963 Adults  40.40404     a01</span>
+<span class="co">#&gt; 4 0.02851862 0.6814298 Adults  60.60606     a01</span>
+<span class="co">#&gt; 5 0.02824217 1.6939195 Adults  80.80808     a01</span>
+<span class="co">#&gt; 6 0.02785758 2.3651969 Adults 101.01010     a01</span></code></pre></div>
 <p>We can plot marginal effects for different values of a regressor using the <code><a href="../reference/plot_cme.html">plot_cme()</a></code> function. This next plot shows the slope of the prediction equation, that is, the slope of the previous plot, at every value of the <code>Time</code> variable.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">model</span>, effect <span class="op">=</span> <span class="st">"Time"</span>, condition <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></code></pre></div>
