@@ -214,13 +214,13 @@
     variable.name <span class="op">=</span> <span class="st">"time"</span>,
     id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span>
-<span class="co">#&gt;   id trt time          y</span>
-<span class="co">#&gt; 1  1   0  pre -0.5028855</span>
-<span class="co">#&gt; 2  2   1  pre  0.7807213</span>
-<span class="co">#&gt; 3  3   1  pre -0.4547172</span>
-<span class="co">#&gt; 4  4   1  pre -0.2999218</span>
-<span class="co">#&gt; 5  5   0  pre  0.9355512</span>
-<span class="co">#&gt; 6  6   0  pre -0.3065612</span></code></pre></div>
+<span class="co">#&gt;   id trt time         y</span>
+<span class="co">#&gt; 1  1   0  pre -1.172925</span>
+<span class="co">#&gt; 2  2   1  pre -0.699494</span>
+<span class="co">#&gt; 3  3   1  pre -1.290606</span>
+<span class="co">#&gt; 4  4   1  pre -1.274940</span>
+<span class="co">#&gt; 5  5   1  pre  0.369632</span>
+<span class="co">#&gt; 6  6   0  pre -2.170450</span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We alco compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span>
@@ -230,11 +230,11 @@
     newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,
     variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span>
 <span class="co">#&gt;   rowid     type        term contrast_time comparison  std.error statistic</span>
-<span class="co">#&gt; 1     1 response interaction    post - pre 0.04421071 0.07616465 0.5804623</span>
-<span class="co">#&gt; 2     2 response interaction    post - pre 0.32101382 0.08153257 3.9372465</span>
-<span class="co">#&gt;        p.value   conf.low conf.high time trt</span>
-<span class="co">#&gt; 1 5.616029e-01 -0.1050693 0.1934907  pre   0</span>
-<span class="co">#&gt; 2 8.242194e-05  0.1612129 0.4808147  pre   1</span></code></pre></div>
+<span class="co">#&gt; 1     1 response interaction    post - pre 0.08079019 0.07431481  1.087134</span>
+<span class="co">#&gt; 2     2 response interaction    post - pre 0.26537493 0.07781567  3.410302</span>
+<span class="co">#&gt;        p.value    conf.low conf.high time trt</span>
+<span class="co">#&gt; 1 0.2769773991 -0.06486416 0.2264445  pre   0</span>
+<span class="co">#&gt; 2 0.0006489095  0.11285903 0.4178908  pre   1</span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
@@ -243,9 +243,9 @@
     newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,
     hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span>
 <span class="co">#&gt;       type       term    hypothesis comparison std.error statistic    p.value</span>
-<span class="co">#&gt; 1 response hypothesis Row 2 - Row 1  0.2768031 0.1115734  2.480907 0.01310486</span>
-<span class="co">#&gt;     conf.low conf.high</span>
-<span class="co">#&gt; 1 0.05812335 0.4954829</span></code></pre></div>
+<span class="co">#&gt; 1 response hypothesis Row 2 - Row 1  0.1845847  0.107601  1.715456 0.08626164</span>
+<span class="co">#&gt;      conf.low conf.high</span>
+<span class="co">#&gt; 1 -0.02630929 0.3954788</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="custom-contrasts-with-vectors-and-matrices">Custom Contrasts with Vectors and Matrices<a class="anchor" aria-label="anchor" href="#custom-contrasts-with-vectors-and-matrices"></a>
@@ -286,7 +286,7 @@
 <span class="co">#&gt; [1] 0.32174</span></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21.66232</span>, <span class="fl">21.34058</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21.66232</span>, <span class="fl">21.34058</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/Matrix/man/matrix-products.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt;         [,1]</span>
 <span class="co">#&gt; [1,] 0.32174</span></code></pre></div>
 <p>The last two commands express the contrast of interest as <a href="https://en.wikipedia.org/wiki/Linear_combination" class="external-link">a linear combination</a> of marginal means.</p>

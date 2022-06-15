@@ -395,6 +395,18 @@
 </div>
 </div>
 <div class="section level2">
+<h2 id="conditional-contrasts">Conditional contrasts<a class="anchor" aria-label="anchor" href="#conditional-contrasts"></a>
+</h2>
+<p>Consider a model with an interaction term. What happens to the dependent variable when the <code>hp</code> variable increases by 10 units?</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,
+    condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span></code></pre></div>
+<p><img src="mfx02_contrasts_files/figure-html/unnamed-chunk-19-1.png" width="576"></p>
+</div>
+<div class="section level2">
 <h2 id="adjusted-risk-ratios">Adjusted Risk ratios<a class="anchor" aria-label="anchor" href="#adjusted-risk-ratios"></a>
 </h2>
 <p>The <code>transform_pre</code> and <code>transform_post</code> arguments of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function can be used to compute custom and transformed contrasts, such as Adjusted Risk Ratios. <a href="https://vincentarelbundock.github.io/marginaleffects/articles/transformation.html" class="external-link">See the transformations vignette for details.</a></p>
