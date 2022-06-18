@@ -13,6 +13,12 @@
     <loc>/articles/brms.html</loc>
   </url>
   <url>
+    <loc>/articles/contrasts.html</loc>
+  </url>
+  <url>
+    <loc>/articles/documentation.html</loc>
+  </url>
+  <url>
     <loc>/articles/gam.html</loc>
   </url>
   <url>
@@ -25,34 +31,13 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/links_external.html</loc>
-  </url>
-  <url>
-    <loc>/articles/links_internal.html</loc>
-  </url>
-  <url>
-    <loc>/articles/links_main.html</loc>
-  </url>
-  <url>
     <loc>/articles/lme4.html</loc>
   </url>
   <url>
-    <loc>/articles/mfx01_predictions.html</loc>
+    <loc>/articles/marginaleffects.html</loc>
   </url>
   <url>
-    <loc>/articles/mfx02_contrasts.html</loc>
-  </url>
-  <url>
-    <loc>/articles/mfx03_mfx.html</loc>
-  </url>
-  <url>
-    <loc>/articles/mfx04_marginalmeans.html</loc>
-  </url>
-  <url>
-    <loc>/articles/mfx05_case_studies.html</loc>
-  </url>
-  <url>
-    <loc>/articles/mfx06_supported_models.html</loc>
+    <loc>/articles/marginalmeans.html</loc>
   </url>
   <url>
     <loc>/articles/mlogit.html</loc>
@@ -67,10 +52,19 @@
     <loc>/articles/performance.html</loc>
   </url>
   <url>
+    <loc>/articles/predictions.html</loc>
+  </url>
+  <url>
     <loc>/articles/sandwich.html</loc>
   </url>
   <url>
-    <loc>/articles/technical_notes.html</loc>
+    <loc>/articles/supported_models.html</loc>
+  </url>
+  <url>
+    <loc>/articles/toc.html</loc>
+  </url>
+  <url>
+    <loc>/articles/toc_external.html</loc>
   </url>
   <url>
     <loc>/articles/transformation.html</loc>
@@ -116,6 +110,9 @@
   </url>
   <url>
     <loc>/reference/get_vcov.html</loc>
+  </url>
+  <url>
+    <loc>/reference/glance.marginaleffects.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -173,6 +170,9 @@
   </url>
   <url>
     <loc>/reference/tidy.comparisons.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tidy.deltamethod.html</loc>
   </url>
   <url>
     <loc>/reference/tidy.marginaleffects.html</loc>

@@ -4,25 +4,23 @@ pkgdown_sha: ~
 articles:
   alternative_software: alternative_software.html
   brms: brms.html
+  contrasts: contrasts.html
+  documentation: documentation.html
   gam: gam.html
   gformula: gformula.html
   hypothesis: hypothesis.html
-  links_external: links_external.html
-  links_internal: links_internal.html
-  links_main: links_main.html
   lme4: lme4.html
-  mfx01_predictions: mfx01_predictions.html
-  mfx02_contrasts: mfx02_contrasts.html
-  mfx03_mfx: mfx03_mfx.html
-  mfx04_marginalmeans: mfx04_marginalmeans.html
-  mfx05_case_studies: mfx05_case_studies.html
-  mfx06_supported_models: mfx06_supported_models.html
+  marginaleffects: marginaleffects.html
+  marginalmeans: marginalmeans.html
   mlogit: mlogit.html
   modelsummary: modelsummary.html
   multiple_imputation: multiple_imputation.html
   performance: performance.html
+  predictions: predictions.html
   sandwich: sandwich.html
-  technical_notes: technical_notes.html
+  supported_models: supported_models.html
+  toc: toc.html
+  toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-06-16T15:33Z
+last_built: 2022-06-18T15:01Z
 

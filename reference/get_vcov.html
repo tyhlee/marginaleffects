@@ -23,16 +23,19 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">Adjusted predictions</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">Marginal effects</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html" class="external-link">Marginal effects</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">Contrasts</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">Contrasts</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">Marginal means</a>
+</li>
+<li>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="external-link">Hypothesis Tests</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="../reference/index.html">Functions</a>
@@ -50,7 +53,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get a named variance-covariance matrix from a model object (internal function)</h1>
-    <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/get_vcov.R" class="external-link"><code>R/get_vcov.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_afex.R" class="external-link"><code>R/methods_afex.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_brms.R" class="external-link"><code>R/methods_brms.R</code></a>, and 2 more</small>
+    <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/get_vcov.R" class="external-link"><code>R/get_vcov.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_afex.R" class="external-link"><code>R/methods_afex.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_aod.R" class="external-link"><code>R/methods_aod.R</code></a>, and 3 more</small>
     <div class="hidden name"><code>get_vcov.Rd</code></div>
     </div>
 
@@ -65,6 +68,9 @@
 <span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, vcov <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="co"># S3 method for afex_aov</span>
+<span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, vcov <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
+
+<span class="co"># S3 method for glimML</span>
 <span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, vcov <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="co"># S3 method for brmsfit</span>

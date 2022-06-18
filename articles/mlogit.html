@@ -40,16 +40,19 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">Adjusted predictions</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">Marginal effects</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html" class="external-link">Marginal effects</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">Contrasts</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">Contrasts</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">Marginal means</a>
+</li>
+<li>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="external-link">Hypothesis Tests</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -108,13 +111,13 @@
 
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span> 
 <span class="co">#&gt; Average marginal effects </span>
-<span class="co">#&gt;   Group Term     Effect Std. Error    z value   Pr(&gt;|z|)      2.5 %     97.5 %</span>
-<span class="co">#&gt; 1     3   hp -3.438e-05  7.638e-11 -4.502e+05 &lt; 2.22e-16 -3.438e-05 -3.438e-05</span>
-<span class="co">#&gt; 2     3  mpg -7.131e-02  9.765e-12 -7.303e+09 &lt; 2.22e-16 -7.131e-02 -7.131e-02</span>
-<span class="co">#&gt; 3     4   hp -4.667e-03  3.781e-11 -1.234e+08 &lt; 2.22e-16 -4.667e-03 -4.667e-03</span>
-<span class="co">#&gt; 4     4  mpg  1.591e-02  5.918e-10  2.688e+07 &lt; 2.22e-16  1.591e-02  1.591e-02</span>
-<span class="co">#&gt; 5     5   hp  4.702e-03  0.000e+00        Inf &lt; 2.22e-16  4.702e-03  4.702e-03</span>
-<span class="co">#&gt; 6     5  mpg  5.540e-02  0.000e+00        Inf &lt; 2.22e-16  5.540e-02  5.540e-02</span>
+<span class="co">#&gt;   Group Term     Effect Std. Error  z value   Pr(&gt;|z|)     2.5 %     97.5 %</span>
+<span class="co">#&gt; 1     3   hp -3.438e-05   0.002253 -0.01526 0.98782440 -0.004450  0.0043815</span>
+<span class="co">#&gt; 2     3  mpg -7.131e-02   0.026441 -2.69703 0.00699606 -0.123134 -0.0194886</span>
+<span class="co">#&gt; 3     4   hp -4.667e-03   0.002199 -2.12294 0.03375920 -0.008976 -0.0003583</span>
+<span class="co">#&gt; 4     4  mpg  1.591e-02   0.020003  0.79525 0.42646997 -0.023298  0.0551125</span>
+<span class="co">#&gt; 5     5   hp  4.702e-03   0.001304  3.60439 0.00031289  0.002145  0.0072584</span>
+<span class="co">#&gt; 6     5  mpg  5.540e-02   0.016469  3.36416 0.00076776  0.023126  0.0876827</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  multinom </span>
 <span class="co">#&gt; Prediction type:  probs</span></code></pre></div>

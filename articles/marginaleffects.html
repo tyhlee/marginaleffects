@@ -40,16 +40,19 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">Adjusted predictions</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">Marginal effects</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html" class="external-link">Marginal effects</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">Contrasts</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">Contrasts</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">Marginal means</a>
+</li>
+<li>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="external-link">Hypothesis Tests</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -69,14 +72,14 @@
 
       
 
-      </header><script src="mfx03_mfx_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="marginaleffects_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Marginal Effects</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/vignettes/mfx03_mfx.Rmd" class="external-link"><code>vignettes/mfx03_mfx.Rmd</code></a></small>
-      <div class="hidden name"><code>mfx03_mfx.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/vignettes/marginaleffects.Rmd" class="external-link"><code>vignettes/marginaleffects.Rmd</code></a></small>
+      <div class="hidden name"><code>marginaleffects.Rmd</code></div>
 
     </div>
 
@@ -91,13 +94,13 @@
 </blockquote>
 <p>Put differently, the marginal effect measures the association between a change in a regressor <span class="math inline">\(x\)</span>, and a change in the response <span class="math inline">\(y\)</span>. Put differently, differently, the marginal effect is the slope of the prediction function, measured at a specific value of the regressor <span class="math inline">\(x\)</span>.</p>
 <p>Marginal effects are extremely useful, because they are intuitive and easy to interpret. They are often the main quantity of interest in an empirical analysis.</p>
-<p>In scientific practice, the “Marginal Effect” falls in the same toolbox as the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">“Contrast.”</a> Both try to answer a counterfactual question: What would happen to <span class="math inline">\(y\)</span> if <span class="math inline">\(x\)</span> were different? They allow us to model the “effect” of a change/difference in the regressor <span class="math inline">\(x\)</span> on the response <span class="math inline">\(y\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>In scientific practice, the “Marginal Effect” falls in the same toolbox as the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">“Contrast.”</a> Both try to answer a counterfactual question: What would happen to <span class="math inline">\(y\)</span> if <span class="math inline">\(x\)</span> were different? They allow us to model the “effect” of a change/difference in the regressor <span class="math inline">\(x\)</span> on the response <span class="math inline">\(y\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>To illustrate the concept, consider this quadratic function:</p>
 <p><span class="math display">\[y = -x^2\]</span></p>
 <p>From the definition above, we know that the marginal effect is the partial derivative of <span class="math inline">\(y\)</span> with respect to <span class="math inline">\(x\)</span>:</p>
 <p><span class="math display">\[\frac{\partial y}{\partial x} = -2x\]</span></p>
 <p>To get intuition about how to interpret this quantity, consider the response of <span class="math inline">\(y\)</span> to <span class="math inline">\(x\)</span>. It looks like this:</p>
-<p><img src="mfx03_mfx_files/figure-html/unnamed-chunk-2-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-2-1.png" width="576"></p>
 <p>When <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> starts to increase. But then, as <span class="math inline">\(x\)</span> increases further, <span class="math inline">\(y\)</span> creeps back down in negative territory.</p>
 <p>A marginal effect is the slope of this response function at a certain value of <span class="math inline">\(x\)</span>. The next plot adds three tangent lines, highlighting the slopes of the response function for three values of <span class="math inline">\(x\)</span>. The slopes of these tangents tell us three things:</p>
 <ol style="list-style-type: decimal">
@@ -105,7 +108,7 @@
 <li>When <span class="math inline">\(x=0\)</span>, the slope is null: a (small) change in <span class="math inline">\(x\)</span> is associated with no change in <span class="math inline">\(y\)</span>. The marginal effect is null.</li>
 <li>When <span class="math inline">\(x&gt;0\)</span>, the slope is negative: an increase in <span class="math inline">\(x\)</span> is associated with a decrease in <span class="math inline">\(y\)</span>. The marginal effect is negative.</li>
 </ol>
-<p><img src="mfx03_mfx_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 <p>Below, we show how to reach the same conclusions in an estimation context, with simulated data and the <code>marginaleffects</code> function.</p>
 </div>
 <div class="section level2">
@@ -355,14 +358,14 @@
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span></code></pre></div>
-<p><img src="mfx03_mfx_files/figure-html/unnamed-chunk-18-1.png" width="60%"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-18-1.png" width="60%"></p>
 <p>The marginal effects in the plot above were computed with values of all regressors – except the <code>effect</code> and the <code>condition</code> – held at their means or modes, depending on variable type.</p>
 <p>Since <code><a href="../reference/plot_cme.html">plot_cme()</a></code> produces a <code>ggplot2</code> object, it is easy to customize. For example:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="mfx03_mfx_files/figure-html/unnamed-chunk-19-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-19-1.png" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="example-quadratic">Example: Quadratic<a class="anchor" aria-label="anchor" href="#example-quadratic"></a>
@@ -384,20 +387,20 @@
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
-<span class="co">#&gt;         dydx truth</span>
-<span class="co">#&gt; 1 -6.9919122    -7</span>
-<span class="co">#&gt; 2 -2.9960019    -3</span>
-<span class="co">#&gt; 3  0.9999084     1</span>
-<span class="co">#&gt; 4  4.9958187     5</span>
-<span class="co">#&gt; 5  8.9917289     9</span></code></pre></div>
+<span class="co">#&gt;        dydx truth</span>
+<span class="co">#&gt; 1 -7.004745    -7</span>
+<span class="co">#&gt; 2 -3.000644    -3</span>
+<span class="co">#&gt; 3  1.003457     1</span>
+<span class="co">#&gt; 4  5.007558     5</span>
+<span class="co">#&gt; 5  9.011659     9</span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
-<p><img src="mfx03_mfx_files/figure-html/unnamed-chunk-21-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-21-1.png" width="576"></p>
 <p>We can plot conditional marginal effects with the <code>plot_cme</code> function (see section below):</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
-<p><img src="mfx03_mfx_files/figure-html/unnamed-chunk-22-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-22-1.png" width="576"></p>
 <p>Again, the conclusion is the same. When <span class="math inline">\(x&lt;0\)</span>, an increase in <span class="math inline">\(x\)</span> is associated with an increase in <span class="math inline">\(y\)</span>. When <span class="math inline">\(x=0\)</span>, the marginal effect is equal to 0. When <span class="math inline">\(x&gt;0\)</span>, an increase in <span class="math inline">\(x\)</span> is associated with a decrease in <span class="math inline">\(y\)</span>.</p>
 </div>
 <div class="section level2">

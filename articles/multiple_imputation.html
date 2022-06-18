@@ -40,16 +40,19 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html" class="external-link">Adjusted predictions</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">Adjusted predictions</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx03_mfx.html" class="external-link">Marginal effects</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html" class="external-link">Marginal effects</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx02_contrasts.html" class="external-link">Contrasts</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">Contrasts</a>
 </li>
 <li>
-  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/mfx04_marginalmeans.html" class="external-link">Marginal means</a>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">Marginal means</a>
+</li>
+<li>
+  <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="external-link">Hypothesis Tests</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -121,8 +124,8 @@
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;   term    estimate  std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1   hp -0.06447585 0.01114571 -5.784812 29.68753 2.645524e-06</span></code></pre></div>
+<span class="co">#&gt;   term   estimate  std.error statistic       df      p.value</span>
+<span class="co">#&gt; 1   hp -0.0661781 0.01132427 -5.843917 29.20767 2.382387e-06</span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>
@@ -162,7 +165,7 @@ hp
 −0.068
 </td>
 <td style="text-align:center;">
-−0.064
+−0.066
 </td>
 </tr>
 <tr>
@@ -215,7 +218,7 @@ R2
 0.602
 </td>
 <td style="text-align:center;">
-0.534
+0.542
 </td>
 </tr>
 <tr>
@@ -229,7 +232,7 @@ R2 Adj.
 0.589
 </td>
 <td style="text-align:center;">
-0.518
+0.527
 </td>
 </tr>
 <tr>
@@ -312,8 +315,8 @@ RMSE
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;   term  estimate std.error statistic       df    p.value</span>
-<span class="co">#&gt; 1  cyl -9.010422  2.781789 -3.239075 8.097786 0.01170153</span></code></pre></div>
+<span class="co">#&gt;   term  estimate std.error statistic       df     p.value</span>
+<span class="co">#&gt; 1  cyl -9.296185  2.762272 -3.365413 8.257923 0.009408916</span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span>
@@ -336,8 +339,8 @@ RMSE
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 <span class="co">#&gt;        term   estimate std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1 cyl 6 - 4  -6.759351  1.693459 -3.991447 28.62266 4.169500e-04</span>
-<span class="co">#&gt; 2 cyl 8 - 4 -11.261494  1.401644 -8.034489 29.06158 7.230501e-09</span></code></pre></div>
+<span class="co">#&gt; 1 cyl 6 - 4  -7.099935  1.761969 -4.029545 26.19492 4.280222e-04</span>
+<span class="co">#&gt; 2 cyl 8 - 4 -11.492435  1.427559 -8.050407 28.05869 8.988237e-09</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -356,7 +359,7 @@ RMSE
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 <span class="co">#&gt;   term   estimate  std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1  mpg 0.05149745 0.01034222  4.979343 23.84714 4.455538e-05</span></code></pre></div>
+<span class="co">#&gt; 1  mpg 0.04867765 0.01004742  4.844789 24.27424 5.991295e-05</span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>
@@ -396,7 +399,7 @@ mpg
 0.046
 </td>
 <td style="text-align:center;">
-0.051
+0.049
 </td>
 </tr>
 <tr>
