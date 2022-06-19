@@ -243,11 +243,6 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="scale-type">Scale type<a class="anchor" aria-label="anchor" href="#scale-type"></a>
-</h2>
-<p>We can compute contrasts</p>
-</div>
-<div class="section level2">
 <h2 id="interactions">Interactions<a class="anchor" aria-label="anchor" href="#interactions"></a>
 </h2>
 <p>In some contexts we would like to know what happens when two (or more) predictors change at the same time. In the <code>marginaleffects</code> package terminology, this is an “interaction between contrasts.”</p>
@@ -501,7 +496,7 @@
 <div class="section level2">
 <h2 id="ratios">Ratios<a class="anchor" aria-label="anchor" href="#ratios"></a>
 </h2>
-<p>Instead of taking simple differences between adjusted predictions, it can sometimes be useful to compute other forms of contrasts. For example, <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X1301300304" class="external-link">the <code>adjrr</code> function the <code>Stata</code> software package</a> can compute “adjusted risk ratios”, which are ratios of adjusted predictions. To do this in <code>R</code>, we use the <code>transform_pre</code> argument:</p>
+<p>Instead of taking simple differences between adjusted predictions, it can sometimes be useful to compute ratios or other functions of predictions. For example, <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X1301300304" class="external-link">the <code>adjrr</code> function the <code>Stata</code> software package</a> can compute “adjusted risk ratios”, which are ratios of adjusted predictions. To do this in <code>R</code>, we use the <code>transform_pre</code> argument:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Average contrasts </span>
@@ -582,11 +577,7 @@
 
 <span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></code></pre></div>
 <p><img src="contrasts_files/figure-html/unnamed-chunk-26-1.png" width="576"></p>
-</div>
-<div class="section level2">
-<h2 id="adjusted-risk-ratios">Adjusted Risk Ratios<a class="anchor" aria-label="anchor" href="#adjusted-risk-ratios"></a>
-</h2>
-<p>By default, the standard errors are computed using the delta method on the scale determined by the <code>type</code> argument (e.g., “link” or “response”). Some analysts may prefer to proceed differently. For example, in <code>Stata</code>, the <code>adjrr</code> computes adjusted risk ratios (ARR) in two steps:</p>
+<p>By default, the standard errors around contrasts are computed using the delta method on the scale determined by the <code>type</code> argument (e.g., “link” or “response”). Some analysts may prefer to proceed differently. For example, in <code>Stata</code>, the <code>adjrr</code> computes adjusted risk ratios (ARR) in two steps:</p>
 <ol style="list-style-type: decimal">
 <li>Compute the natural log of the ratio between the mean of adjusted predictions with <span class="math inline">\(x+1\)</span> and the mean of adjusted predictions with <span class="math inline">\(x\)</span>.</li>
 <li>Exponentiate the estimate and confidence interval bounds.</li>
@@ -595,21 +586,21 @@
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
     <span class="va">mod</span>,
-    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span>,
-    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span>,
+    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span> |&gt;
     <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Average contrasts </span>
 <span class="co">#&gt;   Term   Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1), x  1.135       0.02   56.75 &lt; 2.22e-16 1.096  1.174</span>
+<span class="co">#&gt; 1  mpg (x + 1), x  1.287    0.09313   13.82 &lt; 2.22e-16 1.105   1.47</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response </span>
-<span class="co">#&gt; Pre-transformation:  function(hi, lo) log(mean(hi)/mean(lo)) </span>
+<span class="co">#&gt; Pre-transformation:  function(hi, lo) log(hi/lo) </span>
 <span class="co">#&gt; Post-transformation:  exp</span></code></pre></div>
 <p>Note that we can use the <code>lnratioavg</code> shortcut instead of defining the function ourselves.</p>
 <p>The order of operations in previous command was:</p>
 <ol style="list-style-type: decimal">
-<li>Compute the custom unit-level contrasts</li>
+<li>Compute the custom unit-level log ratios</li>
 <li>Exponentiate them</li>
 <li>Take the average using the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function</li>
 </ol>
@@ -617,18 +608,36 @@
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
     <span class="va">mod</span>,
-    transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>transform_avg <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
 <span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term                  Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg ln(mean(x + 1) / mean(x))  1.135 2.3808e-10 1.091   1.18</span>
+<span class="co">#&gt;   Term   Contrast Effect  Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="co">#&gt; 1  mpg (x + 1), x  1.274 0.0093462 1.061  1.529</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response </span>
+<span class="co">#&gt; Pre-transformation:  function(hi, lo) log(hi/lo) </span>
 <span class="co">#&gt; Average-transformation:</span></code></pre></div>
 <p>Since the <code>exp</code> function is now passed to the <code>transform_avg</code> argument of <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function, the exponentiation is now done only <em>after</em> unit-level contrasts have been averaged. This is what <code>Stata</code> appears to does under the hood, and the results are slightly different.</p>
-<p>All the same arguments apply to the plotting functions of the <code>marginaleffects</code> package as well. For example we can plot the Adjusted Risk Ratio in a model with a quadratic term:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span>,
+    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
+<span class="co">#&gt;       type term   contrast comparison      p.value conf.low conf.high</span>
+<span class="co">#&gt; 1 response  mpg (x + 1), x   1.135065 2.380805e-10 1.091432  1.180442</span></code></pre></div>
+<p>Note that equivalent results can be obtained using shortcut strings in the <code>transform_pre</code> argument: “ratio”, “lnratio”, “lnratioavg”.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
+    <span class="va">mod</span>,
+    transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span>,
+    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
+<span class="co">#&gt;       type term                  contrast comparison      p.value conf.low</span>
+<span class="co">#&gt; 1 response  mpg ln(mean(x + 1) / mean(x))   1.135065 2.380805e-10 1.091432</span>
+<span class="co">#&gt;   conf.high</span>
+<span class="co">#&gt; 1  1.180442</span></code></pre></div>
+<p>All the same arguments apply to the plotting functions of the <code>marginaleffects</code> package as well. For example we can plot the Adjusted Risk Ratio in a model with a quadratic term:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
 <span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">mpg</span><span class="op">^</span><span class="fl">2</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>
@@ -639,7 +648,7 @@
     condition <span class="op">=</span> <span class="st">"mpg"</span>,
     transformation_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Adjusted Risk Ratio\nP(vs = 1 | mpg + 10) / P(vs = 1 | mpg)"</span><span class="op">)</span></code></pre></div>
-<p><img src="contrasts_files/figure-html/unnamed-chunk-29-1.png" width="576"></p>
+<p><img src="contrasts_files/figure-html/unnamed-chunk-31-1.png" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="lognormal-hurdle-model">Lognormal hurdle model<a class="anchor" aria-label="anchor" href="#lognormal-hurdle-model"></a>
@@ -651,7 +660,7 @@
 </ol>
 <p>We can calculate predictions and marginal effects for each of these hurdle model processes, but doing so requires some variable transformation since the stages of these models use different link functions.</p>
 <p>The <code><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal()</a></code> family in <code>brms</code> uses logistic regression (with a logit link) for the hurdle part of the model and lognormal regression (where the outcome is logged before getting used in the model) for the non-hurdled part. Let’s look at an example of predicting GDP per capita (which is distributed exponentially) using life expectancy. We’ll add some artificial zeros so that we can work with a hurdle stage of the model.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span>
@@ -676,7 +685,7 @@
   family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal</a></span><span class="op">(</span><span class="op">)</span>,
   chains <span class="op">=</span> <span class="fl">4</span>, cores <span class="op">=</span> <span class="fl">4</span>, seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></code></pre></div>
 <p>We have two different sets of coefficients here for the two different processes. The hurdle part (<code>hu</code>) uses a logit link, and the non-hurdle part (<code>mu</code>) uses an identity link. However, that’s a slight misnomer—a true identity link would show the coefficients on a non-logged dollar value scale. Because we’re using a <code>lognormal</code> family, GDP per capita is pre-logged, so the “original” identity scale is actually logged dollars.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">#&gt;  Family: hurdle_lognormal </span>
 <span class="co">#&gt;   Links: mu = identity; sigma = identity; hu = logit </span>
@@ -694,7 +703,7 @@
 <span class="co">#&gt; hu_lifeExp      -0.10      0.01    -0.12    -0.08 1.00     2385     2652</span>
 <span class="co">#&gt; ...</span></code></pre>
 <p>We can get predictions for the <code>hu</code> part of the model on the link (logit) scale:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,
             newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;   rowid type predicted  conf.low  conf.high lifeExp</span>
@@ -702,7 +711,7 @@
 <span class="co">#&gt; 2     2 link -2.805488 -3.062906 -2.5550801      60</span>
 <span class="co">#&gt; 3     3 link -4.790200 -5.337808 -4.2745563      80</span></code></pre></div>
 <p>…or on the response (percentage point) scale:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,
             newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;   rowid     type   predicted    conf.low  conf.high lifeExp</span>
@@ -710,7 +719,7 @@
 <span class="co">#&gt; 2     2 response 0.057028334 0.044663565 0.07208594      60</span>
 <span class="co">#&gt; 3     3 response 0.008242295 0.004783404 0.01372716      80</span></code></pre></div>
 <p>We can also get slopes for the <code>hu</code> part of the model on the link (logit) or response (percentage point) scales:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,
                 newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;   rowid type    term        dydx   conf.low   conf.high lifeExp</span>
@@ -725,7 +734,7 @@
 <span class="co">#&gt; 2     2 response lifeExp -0.0053208087 -0.006148655 -0.0045608559      60</span>
 <span class="co">#&gt; 3     3 response lifeExp -0.0008118892 -0.001154388 -0.0005429417      80</span></code></pre></div>
 <p>Working with the <code>mu</code> part of the model is trickier. Switching between <code>type = "link"</code> and <code>type = "response"</code> doesn’t change anything, since the outcome is pre-logged:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,
             newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;   rowid type predicted conf.low conf.high lifeExp</span>
@@ -739,7 +748,7 @@
 <span class="co">#&gt; 2     2 response  8.183520 8.145944  8.220893      60</span>
 <span class="co">#&gt; 3     3 response  9.753512 9.687209  9.820665      80</span></code></pre></div>
 <p>For <strong>predictions</strong>, we need to exponentiate the results to scale them back up to dollar amounts. We can do this by post-processing the results (e.g. with <code>dplyr::mutate(predicted = exp(predicted))</code>), or we can use the <code>transform_post</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> to pass the results to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> after getting calculated:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, 
             newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,
             transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
@@ -748,7 +757,7 @@
 <span class="co">#&gt; 2     2 response  3581.4392  3449.3601  3717.8204      60</span>
 <span class="co">#&gt; 3     3 response 17214.5804 16110.2130 18410.2831      80</span></code></pre></div>
 <p>We can pass <code>transform_post = exp</code> to <code><a href="../reference/plot_cap.html">plot_cap()</a></code> too:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span>
   <span class="va">mod</span>,
   dpar <span class="op">=</span> <span class="st">"hu"</span>,
@@ -780,7 +789,7 @@
        subtitle <span class="op">=</span> <span class="st">"Dollar-scale predictions"</span><span class="op">)</span></code></pre></div>
 <p><img src="contrasts_files/figure-html/plot-hurdle-parts-1.png" width="768"></p>
 <p>For <strong>marginal effects</strong>, we need to transform the predictions <em>before</em> calculating the instantaneous slopes. We also can’t use the <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function directly—we need to use <code><a href="../reference/comparisons.html">comparisons()</a></code> and compute the numerical derivative ourselves (i.e. predict <code>gdpPercap</code> at <code>lifeExp</code> of 40 and 40.001 and calculate the slope between those predictions). We can use the <code>transform_pre</code> argument to pass the pair of predicted values to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> before calculating the slopes:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># step size of the numerical derivative</span>
 <span class="va">eps</span> <span class="op">&lt;-</span> <span class="fl">0.001</span>
 
@@ -802,7 +811,7 @@
 <span class="co">#&gt; 2      60</span>
 <span class="co">#&gt; 3      80</span></code></pre></div>
 <p>We can visually confirm that these are the instantaneous slopes at each of these levels of life expectancy:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">predictions_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span>
   <span class="va">mod</span>,
   newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">80</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
