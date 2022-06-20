@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
 <p>Note: Some of the code in this vignette requires <code>marginaleffects</code> version 0.6.0 or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version from github.</a></p>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html" class="external-link">In another vignette</a>, we introduced the “marginal effect” as a partial derivative. Since derivatives are only properly defined for continuous variables, we cannot use them to interpret the effects of changes in categorical variables. For this, we turn to <em>contrasts</em> between <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">Adjusted predictions.</a> In the context of this package, a “Contrast” is defined as:</p>
 <blockquote>
-<p>A difference, ratio, or function of two adjusted predictions, calculated for meaningfully different predictor values (e.g., College graduates vs. Others).</p>
+<p>A difference, ratio, or function of adjusted predictions, calculated for meaningfully different predictor values (e.g., College graduates vs. Others).</p>
 </blockquote>
 <p>The <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function automatically calculates contrasts instead of derivatives for factor, logical, or character variables.</p>
 <p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function gives users more powerful features to compute different contrasts, such as differences, risk ratios, linear combinations, and transformations.</p>
@@ -261,7 +261,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  lm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
-<p>When the <code>variables</code> argument is used and the model formula includes interactions, the “cross-contrasts” contrasts will automatically be displayed. You can also force <code><a href="../reference/comparisons.html">comparisons()</a></code> to do it by setting <code>interactions=TRUE</code> and using the <code>variables</code> argument to specify which variables should be manipulated simultaneously.</p>
+<p>When the <code>variables</code> argument is used and the model formula includes interactions, the “cross-contrasts” will automatically be displayed. You can also force <code><a href="../reference/comparisons.html">comparisons()</a></code> to do it by setting <code>interactions=TRUE</code> and using the <code>variables</code> argument to specify which variables should be manipulated simultaneously.</p>
 </div>
 <div class="section level2">
 <h2 id="quantities-of-interest">Quantities of interest<a class="anchor" aria-label="anchor" href="#quantities-of-interest"></a>

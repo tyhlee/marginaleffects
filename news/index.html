@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -57,12 +57,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.5.0.9000" id="marginaleffects-0509000">marginaleffects 0.5.0.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0509000"></a></h2>
+<h2 class="page-header" data-toc-text="0.6.0" id="marginaleffects-060">marginaleffects 0.6.0<a class="anchor" aria-label="anchor" href="#marginaleffects-060"></a></h2>
 <p>New supported packages and models:</p>
 <ul><li>
 <code>tidymodels</code> objects of class <code>tidy_model</code> are supported if the fit engine is supported by <code>marginaleffects</code>.</li></ul><p>New function:</p>
 <ul><li>
-<code><a href="../reference/plot_cco.html">plot_cco()</a></code>: Conditional contrasts</li></ul><p>New arguments:</p>
+<code><a href="../reference/deltamethod.html">deltamethod()</a></code>: Hypothesis tests on functions of parameters</li>
+<li>
+<code><a href="../reference/plot_cco.html">plot_cco()</a></code>: Plot conditional contrasts</li>
+</ul><p>New arguments:</p>
 <ul><li>
 <code>hypothesis</code> for hypothesis tests and custom contrasts</li>
 <li>
@@ -71,7 +74,7 @@
 <li>
 <code>wts</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> only affects average predictions in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>.</li>
 </ul><p>New or improved vignettes:</p>
-<ul><li>Hypothesis Tests and Custom Contrasts: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="external-link uri">https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</a>
+<ul><li>Hypothesis Tests and Custom Contrasts using the Delta Method: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="external-link uri">https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</a>
 </li>
 <li>Multiple Imputation: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/multiple_imputation.html" class="external-link uri">https://vincentarelbundock.github.io/marginaleffects/articles/multiple_imputation.html</a>
 </li>
@@ -88,7 +91,7 @@
 <code>eps</code> in <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> is now “adaptive” by default: it equals 0.0001 multiplied the range of the predictor variable</li>
 <li>
 <code><a href="../reference/comparisons.html">comparisons()</a></code> now supports “log of marginal odds ratio” in the <code>transform_pre</code> argument. Thanks to Noah Greifer.</li>
-<li>New <code>transform_pre</code> shortcuts: dydx, dxpdydx</li>
+<li>New <code>transform_pre</code> shortcuts: dydx, expdydx</li>
 <li>
 <code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> computes standard errors and confidence intervals for linear models or GLM on the link scale.</li>
 </ul></div>
