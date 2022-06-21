@@ -187,26 +187,9 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
-<p>We can compute other summaries of unit-level marginal effects by setting the <code>FUN</code> argument. For example, to compute “median marginal effects”:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span>, FUN <span class="op">=</span> <span class="va">median</span><span class="op">)</span>
-<span class="co">#&gt; Average marginal effects </span>
-<span class="co">#&gt;                Term           Contrast   Effect Std. Error z value   Pr(&gt;|z|)</span>
-<span class="co">#&gt; 1    bill_length_mm              dY/dX  0.02757   0.005784  4.7675 1.8653e-06</span>
-<span class="co">#&gt; 2 flipper_length_mm              dY/dX  0.01058   0.002357  4.4895 7.1390e-06</span>
-<span class="co">#&gt; 3           species Chinstrap - Adelie -0.41479   0.056900 -7.2898 3.1032e-13</span>
-<span class="co">#&gt; 4           species    Gentoo - Adelie  0.06170   0.106856  0.5774    0.56367</span>
-<span class="co">#&gt;       2.5 %   97.5 %</span>
-<span class="co">#&gt; 1  0.016238  0.03891</span>
-<span class="co">#&gt; 2  0.005963  0.01520</span>
-<span class="co">#&gt; 3 -0.526312 -0.30327</span>
-<span class="co">#&gt; 4 -0.147735  0.27113</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
 <p>Note that since marginal effects are derivatives, they are only properly defined for continuous numeric variables. When the model also includes categorical regressors, the <code>summary</code> function will try to display relevant (regression-adjusted) contrasts between different categories, as shown above.</p>
 <p>You can also extract average marginal effects using <code>tidy</code> and <code>glance</code> methods which conform to the <a href="https://broom.tidymodels.org/" class="external-link"><code>broom</code> package specification</a>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
 <span class="co">#&gt;       type              term           contrast    estimate   std.error</span>
 <span class="co">#&gt; 1 response    bill_length_mm              dY/dX  0.02757371 0.005783687</span>
@@ -227,7 +210,7 @@
 <h2 id="group-average-marginal-effect-g-ame">Group-Average Marginal Effect (G-AME)<a class="anchor" aria-label="anchor" href="#group-average-marginal-effect-g-ame"></a>
 </h2>
 <p>We can also use the <code>by</code> argument of the <code>summary</code> or <code>tidy</code> functions to compute the average marginal effects <em>within different subgroups</em> of the observed data, based on values of the regressors. For example, to compute the average marginal effects of Bill Length for each Species, we do:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mfx2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"bill_length_mm"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx2</span>, by <span class="op">=</span> <span class="st">"species"</span><span class="op">)</span>
 <span class="co">#&gt; Average marginal effects </span>
@@ -243,7 +226,7 @@
 <span class="co">#&gt; Model type:  glm </span>
 <span class="co">#&gt; Prediction type:  response</span></code></pre></div>
 <p>This is equivalent to manually taking the mean of the observation-level marginal effect for each species sub-group:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">dydx</span> <span class="op">~</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">mfx2</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>
 <span class="co">#&gt;     species        dydx</span>
 <span class="co">#&gt; 1    Adelie 0.043539914</span>
@@ -255,7 +238,7 @@
 <h2 id="marginal-effect-at-user-specified-values">Marginal Effect at User-Specified Values<a class="anchor" aria-label="anchor" href="#marginal-effect-at-user-specified-values"></a>
 </h2>
 <p>Sometimes, we are not interested in <em>all</em> the unit-specific marginal effects, but would rather look at the estimated marginal effects for certain “typical” individuals, or for user-specified values of the regressors. The <code>datagrid</code> function helps us build a data grid full of “typical” rows. For example, to generate artificial Adelies and Gentoos with 180mm flippers:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>flipper_length_mm <span class="op">=</span> <span class="fl">180</span>,
          species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span><span class="op">)</span>,
          model <span class="op">=</span> <span class="va">mod</span><span class="op">)</span>
@@ -263,7 +246,7 @@
 <span class="co">#&gt; 1:       43.92193               180  Adelie</span>
 <span class="co">#&gt; 2:       43.92193               180  Gentoo</span></code></pre></div>
 <p>The same command can be used (omitting the <code>model</code> argument) to <code>marginaleffects</code>’s <code>newdata</code> argument to compute marginal effects for those (fictional) individuals:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,
                 newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>flipper_length_mm <span class="op">=</span> <span class="fl">180</span>,
                                    species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -300,7 +283,7 @@
 <h2 id="marginal-effect-at-the-mean-mem">Marginal Effect at the Mean (MEM)<a class="anchor" aria-label="anchor" href="#marginal-effect-at-the-mean-mem"></a>
 </h2>
 <p>The “Marginal Effect at the Mean” is a marginal effect calculated for a hypothetical observation where each regressor is set at its mean or mode. By default, the <code>datagrid</code> function that we used in the previous section sets all regressors to their means or modes. To calculate the MEM, we can set the <code>newdata</code> argument, which determines the values of predictors at which we want to compute marginal effects:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>
 <span class="co">#&gt;   rowid     type              term           contrast        dydx   std.error</span>
 <span class="co">#&gt; 1     1 response    bill_length_mm              dY/dX  0.05063549 0.011972651</span>
@@ -322,12 +305,12 @@
 <h2 id="counterfactual-marginal-effects">Counterfactual Marginal Effects<a class="anchor" aria-label="anchor" href="#counterfactual-marginal-effects"></a>
 </h2>
 <p>The <code>datagrid</code> function allowed us look at completely fictional individuals. Setting the <code>grid_type</code> argument of this function to <code>"counterfactual"</code> lets us compute the marginal effects for the actual observations in our dataset, but with a few manipulated values. For example, this code will create a <code>data.frame</code> twice as long as the original <code>dat</code>, where each observation is repeated with different values of the <code>flipper_length_mm</code> variable:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>flipper_length_mm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">180</span><span class="op">)</span>,
                model <span class="op">=</span> <span class="va">mod</span>,
                grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span></code></pre></div>
 <p>We see that the rows 1, 2, and 3 of the original dataset have been replicated twice, with different values of the <code>flipper_length_mm</code> variable:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nd</span><span class="op">[</span><span class="va">nd</span><span class="op">$</span><span class="va">rowid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="op">]</span>
 <span class="co">#&gt;     rowid_counterfactual bill_length_mm species flipper_length_mm</span>
 <span class="co">#&gt; 1                      1           39.1  Adelie               160</span>
@@ -337,7 +320,7 @@
 <span class="co">#&gt; 344                    2           39.5  Adelie               180</span>
 <span class="co">#&gt; 345                    3           40.3  Adelie               180</span></code></pre></div>
 <p>We can use the observation-level marginal effects to compute average (or median, or anything else) marginal effects over the counterfactual individuals:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -354,18 +337,18 @@
 <h2 id="conditional-marginal-effects-plot">Conditional Marginal Effects (Plot)<a class="anchor" aria-label="anchor" href="#conditional-marginal-effects-plot"></a>
 </h2>
 <p>The <code>plot_cme</code> function can be used to draw “Conditional Marginal Effects.” This is useful when a model includes interaction terms and we want to plot how the marginal effect of a variable changes as the value of a “condition” (or “moderator”) variable changes:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span></code></pre></div>
-<p><img src="marginaleffects_files/figure-html/unnamed-chunk-18-1.png" width="60%"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-17-1.png" width="60%"></p>
 <p>The marginal effects in the plot above were computed with values of all regressors – except the <code>effect</code> and the <code>condition</code> – held at their means or modes, depending on variable type.</p>
 <p>Since <code><a href="../reference/plot_cme.html">plot_cme()</a></code> produces a <code>ggplot2</code> object, it is easy to customize. For example:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="marginaleffects_files/figure-html/unnamed-chunk-19-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-18-1.png" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="example-quadratic">Example: Quadratic<a class="anchor" aria-label="anchor" href="#example-quadratic"></a>
@@ -377,7 +360,7 @@
 <p><span class="math display">\[\partial Y / \partial X = \beta_0 + 2 \cdot \beta_1 X\]</span> <span class="math display">\[\partial Y / \partial X = 1 + 4X\]</span></p>
 <p>This result suggests that the effect of a <em>change</em> in <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> depends on the <em>level</em> of <span class="math inline">\(X\)</span>. When <span class="math inline">\(X\)</span> is large and positive, an increase in <span class="math inline">\(X\)</span> is associated to a large increase in <span class="math inline">\(Y\)</span>. When <span class="math inline">\(X\)</span> is small and positive, an increase in <span class="math inline">\(X\)</span> is associated to a small increase in <span class="math inline">\(Y\)</span>. When <span class="math inline">\(X\)</span> is a large negative value, an increase in <span class="math inline">\(X\)</span> is associated with a <em>decrease</em> in <span class="math inline">\(Y\)</span>.</p>
 <p><code>marginaleffects</code> arrives at the same conclusion in simulated data:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
 <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1e5</span>
 <span class="va">quad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span><span class="op">)</span>
@@ -388,19 +371,19 @@
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span>
 <span class="co">#&gt;         dydx truth</span>
-<span class="co">#&gt; 1 -7.0174812    -7</span>
-<span class="co">#&gt; 2 -3.0097478    -3</span>
-<span class="co">#&gt; 3  0.9979856     1</span>
-<span class="co">#&gt; 4  5.0057190     5</span>
-<span class="co">#&gt; 5  9.0134524     9</span></code></pre></div>
+<span class="co">#&gt; 1 -6.9915744    -7</span>
+<span class="co">#&gt; 2 -2.9973256    -3</span>
+<span class="co">#&gt; 3  0.9969232     1</span>
+<span class="co">#&gt; 4  4.9911720     5</span>
+<span class="co">#&gt; 5  8.9854208     9</span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
-<p><img src="marginaleffects_files/figure-html/unnamed-chunk-21-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-20-1.png" width="576"></p>
 <p>We can plot conditional marginal effects with the <code>plot_cme</code> function (see section below):</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
-<p><img src="marginaleffects_files/figure-html/unnamed-chunk-22-1.png" width="576"></p>
+<p><img src="marginaleffects_files/figure-html/unnamed-chunk-21-1.png" width="576"></p>
 <p>Again, the conclusion is the same. When <span class="math inline">\(x&lt;0\)</span>, an increase in <span class="math inline">\(x\)</span> is associated with an increase in <span class="math inline">\(y\)</span>. When <span class="math inline">\(x=0\)</span>, the marginal effect is equal to 0. When <span class="math inline">\(x&gt;0\)</span>, an increase in <span class="math inline">\(x\)</span> is associated with a decrease in <span class="math inline">\(y\)</span>.</p>
 </div>
 <div class="section level2">
@@ -408,7 +391,7 @@
 </h2>
 <p>The <code>marginaleffect</code> function takes the derivative of the fitted (or predicted) values of the model, as is typically generated by the <code>predict(model)</code> function. By default, <code>predict</code> produces predictions on the <code>"response"</code> scale, so the marginal effects should be interpreted on that scale. However, users can pass a string or a vector of strings to the <code>type</code> argument, and <code>marginaleffects</code> will consider different outcomes.</p>
 <p>Typical values include <code>"response"</code> and <code>"link"</code>, but users should refer to the documentation of the <code>predict</code> of the package they used to fit the model to know what values are allowable. documentation.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 <span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
@@ -441,7 +424,7 @@
 <h5 id="step-1-check-if-marginaleffects-default-functions-work">
 <em>Step 1:</em> Check if <code>marginaleffects</code> default functions work:<a class="anchor" aria-label="anchor" href="#step-1-check-if-marginaleffects-default-functions-work"></a>
 </h5>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># returns a named vector of coefficients</span>
 <span class="fu"><a href="../reference/get_coef.html">get_coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>
 
@@ -463,7 +446,7 @@
 <em>Step 2:</em> Define the missing methods.<a class="anchor" aria-label="anchor" href="#step-2-define-the-missing-methods-"></a>
 </h5>
 <p>Find the class name of your model by calling:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre></div>
 <p>Then, create functions (methods) called <code>get_coef.EXAMPLE</code>, <code>get_predict.EXAMPLE</code>, <code>vcov.EXAMPLE</code>, and <code>set_coef.EXAMPLE</code>, with the “EXAMPLE” replaced by the name your model class.</p>
 </div>
