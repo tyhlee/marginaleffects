@@ -94,7 +94,7 @@
 <div class="section level2">
 <h2 id="marginal-effects-and-contrasts">Marginal effects and contrasts<a class="anchor" aria-label="anchor" href="#marginal-effects-and-contrasts"></a>
 </h2>
-<p>This table shows the list of 64 model types for which the <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function can compute slopes and contrasts. There are three main alternative software packages to compute such slopes (1) <code>Stata</code>’s <code>margins</code> command, (2) <code>R</code>’s <code><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins::margins</a></code> function, and (3) <code>R</code>’s <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> function. The <a href="https://github.com/vincentarelbundock/marginaleffects/tree/main/tests/testthat" class="external-link">test suite hosted on Github</a> compares the numerical equivalence of results produced by <code>marginaleffects</code> to those produced by all 3 alternative software packages:</p>
+<p>This table shows the list of 66 model types for which the <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function can compute slopes and contrasts. There are three main alternative software packages to compute such slopes (1) <code>Stata</code>’s <code>margins</code> command, (2) <code>R</code>’s <code><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins::margins</a></code> function, and (3) <code>R</code>’s <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> function. The <a href="https://github.com/vincentarelbundock/marginaleffects/tree/main/tests/testthat" class="external-link">test suite hosted on Github</a> compares the numerical equivalence of results produced by <code>marginaleffects</code> to those produced by all 3 alternative software packages:</p>
 <ul>
 <li>✓: a green check means that the results of at least one model are equal to a reasonable tolerance.</li>
 <li>✖: a red cross means that the results are <em>not</em> identical; extra caution is warranted.</li>
@@ -367,6 +367,53 @@ bife
 </td>
 <td style="text-align:left;">
 bife
+</td>
+<td style="text-align:center;color: grey !important;">
+</td>
+<td style="text-align:center;color: grey !important;">
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+biglm
+</td>
+<td style="text-align:left;">
+biglm
+</td>
+<td style="text-align:center;color: grey !important;">
+</td>
+<td style="text-align:center;color: grey !important;">
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+<td style="text-align:center;color: grey !important;">
+U
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+bigglm
 </td>
 <td style="text-align:center;color: grey !important;">
 </td>
