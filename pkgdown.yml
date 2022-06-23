@@ -6,6 +6,7 @@ articles:
   brms: brms.html
   contrasts: contrasts.html
   documentation: documentation.html
+  faq: faq.html
   gam: gam.html
   gformula: gformula.html
   hypothesis: hypothesis.html
@@ -22,5 +23,5 @@ articles:
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-06-23T12:43Z
+last_built: 2022-06-23T21:07Z
 
