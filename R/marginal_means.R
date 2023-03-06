@@ -321,13 +321,13 @@ marginal_means <- function(model,
       modeldata$follow_up <- 1
       args <- list(
         model = model,
-        newdata = newgrid %>% filter(follow_up==1),
+        newdata = newgrid,
         type = type,
         variables = focal,
         cross = cross,
         hypothesis = hypothesis,
         by = by,
-        modeldata = modeldata %>% mutate(follow_up=1)
+        modeldata = modeldata)
     } else {
     args <- list(
         model = model,
