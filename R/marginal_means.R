@@ -145,6 +145,7 @@ marginal_means <- function(model,
                            df = Inf,
                            wts = "equal",
                            by = NULL,
+                           glmmTMB_FU = F,
                            ...) {
 
 
@@ -315,6 +316,19 @@ marginal_means <- function(model,
     }
 
     # `equivalence` should not be passed to predictions() at this stage
+    if(glmmTMB_FU){
+      newgrid <- newgrid[newgrid$follow_up==1,]
+      modeldata$follow_up <- 1
+      args <- list(
+        model = model,
+        newdata = newgrid %>% filter(follow_up==1),
+        type = type,
+        variables = focal,
+        cross = cross,
+        hypothesis = hypothesis,
+        by = by,
+        modeldata = modeldata %>% mutate(follow_up=1)
+    } else {
     args <- list(
         model = model,
         newdata = newgrid,
@@ -324,6 +338,7 @@ marginal_means <- function(model,
         hypothesis = hypothesis,
         by = by,
         modeldata = modeldata)
+      }
     args <- c(args, list(...))
     args[["equivalence"]] <- NULL
     mm <- do.call(get_marginalmeans, args)
