@@ -438,8 +438,8 @@ marginal_means <- function(model,
    if(OR){
       var_cov <- J %*% vcov %*% t(J)
       var_cov <- var_cov/2
-      P0 <- mm$marginalmean[1]
-      P1 <- mm$marginalmean[2]
+      P0 <- mm$estimate[1]
+      P1 <- mm$estimate[2]
       v1 <- 1/(P0*(1-P0))
       v2 <- 1/(P1*(1-P1))
       log_OR_var <- var_cov[1,1] * v1^2 + var_cov[2,2] * v2^2 - 2 * var_cov[1,2] * v1*v2
