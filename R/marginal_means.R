@@ -148,7 +148,6 @@ marginal_means <- function(model,
                            wts = "equal",
                            by = NULL,
                            numderiv = "fdforward",
-                           grid_type="typical",
                            OR=F,
                            ...) {
     if(is.null(type) & OR){
