@@ -148,6 +148,8 @@ marginal_means <- function(model,
                            wts = "equal",
                            by = NULL,
                            numderiv = "fdforward",
+                           grid_type="typical",
+                           OR=F,
                            ...) {
 
 
@@ -432,6 +434,24 @@ marginal_means <- function(model,
     }
 
     class(out) <- c("marginalmeans", class(out))
+
+   if(OR){
+      var_cov <- J %*% vcov %*% t(J)
+      var_cov <- var_cov/2
+      P0 <- mm$marginalmean[1]
+      P1 <- mm$marginalmean[2]
+      v1 <- 1/(P0*(1-P0))
+      v2 <- 1/(P1*(1-P1))
+      log_OR_var <- var_cov[1,1] * v1^2 + var_cov[2,2] * v2^2 - 2 * var_cov[1,2] * v1*v2
+      OR_dat <- data.frame(est=P1*(1-P0)/((1-P1)*P0),
+                                   se = sqrt(log_OR_var*exp(log_OR_var)^2))
+      alpha <- 1-0.95
+      OR_dat$cl <- OR_dat$est - qnorm(1-alpha/2)*OR_dat$se
+      OR_dat$cu <- OR_dat$est + qnorm(1-alpha/2)*OR_dat$se
+
+      attr(out,"OR") <- OR_dat
+      return(OR_dat)
+    }
 
     return(out)
 }
