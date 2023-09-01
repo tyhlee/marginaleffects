@@ -151,6 +151,9 @@ marginal_means <- function(model,
                            grid_type="typical",
                            OR=F,
                            ...) {
+    if(is.null(type) & OR){
+      type <- "response"
+      }
 
 
     # deprecation and backward compatibility
